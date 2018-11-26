@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="503a28ff-80f3-4544-ade5-420433018a54" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://tottus.baplicada.cl/EnroladorWebServices/EnroladorWebServices.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EnroladorWebServices11.disco" MetadataType="Disco" ID="2c5077cb-44e2-4039-b582-0c14589dd262" SourceId="1" SourceUrl="http://tottus.baplicada.cl/EnroladorWebServices/EnroladorWebServices.svc?disco" />
+    <MetadataFile FileName="EnroladorWebServices33.xsd" MetadataType="Schema" ID="ccf203d9-a859-4a9c-ae2f-827bd4f62869" SourceId="1" SourceUrl="http://tottus.baplicada.cl/EnroladorWebServices/EnroladorWebServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="EnroladorWebServices34.xsd" MetadataType="Schema" ID="69cc8dd7-7885-435a-bd40-be140c4f41e9" SourceId="1" SourceUrl="http://tottus.baplicada.cl/EnroladorWebServices/EnroladorWebServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="EnroladorWebServices11.wsdl" MetadataType="Wsdl" ID="5284b324-d8e0-41f4-99d0-0c50ee6dbaa4" SourceId="1" SourceUrl="http://tottus.baplicada.cl/EnroladorWebServices/EnroladorWebServices.svc?wsdl" />
+    <MetadataFile FileName="EnroladorWebServices35.xsd" MetadataType="Schema" ID="23460450-b924-45fe-94d7-96b5d1d8c789" SourceId="1" SourceUrl="http://tottus.baplicada.cl/EnroladorWebServices/EnroladorWebServices.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
