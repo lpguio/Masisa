@@ -578,7 +578,8 @@ namespace EnroladorWebServices
 
         public List<Tuple<Guid, int, string, bool, string, string>> LeeEmpleado()
         {
-            string sql = "SELECT Oid, EnrollID, RUT, Contraseña, Firstname, LastName FROM ESA_Empleado";
+            //lpg
+            string sql = "SELECT TOP 80000 Oid, EnrollID, RUT, Contraseña, Firstname, LastName FROM ESA_Empleado";
 
             try
             {
