@@ -35,10 +35,6 @@ namespace EnroladorStandAlone
         private Accion accionEditada = null;
         private Guid caducandoContrato;
 
-        #region Propiedades de Validacion
-                private DateTime FechaUltimoCierre;
-        #endregion
-
         public EnrollForm(Form1 parent, List<Accion> acciones, string rut)
         {
             InitializeComponent();
@@ -919,6 +915,23 @@ namespace EnroladorStandAlone
                     e.Valid = false;
                     return;
                 }
+                else
+                {
+                    //Validar en nuevo Contrato la fecha de cierre de la empresa
+                    dynamic Oid = cmbNuevoCuenta.EditValue;
+                    var aDt = (parent.CuentaTable[Oid.Oid] as Tuple<string, DateTime?>).Item2 as DateTime?;
+                    var aDtActual = dteNuevoInicioVigencia.DateTime.Date;
+                    if (aDt != null)
+                    {
+                        if (aDtActual < Convert.ToDateTime(aDt))
+                        {
+                            e.ErrorText = string.Format("La fecha de inicio de vigencia no puede ser mayor que la de la fecha de cierre de la empresa: {0} ", Convert.ToDateTime(aDt).ToShortDateString());
+                            e.ErrorIconType = MessageBoxIcon.Hand;
+                            e.Valid = false;
+                            return;
+                        }
+                    }
+                }
             }
             e.Valid = true;
         }
@@ -954,6 +967,23 @@ namespace EnroladorStandAlone
                     e.ErrorIconType = MessageBoxIcon.Hand;
                     e.Valid = false;
                     return;
+                }
+                else
+                {
+                    //Validar en nuevo Contrato la fecha de cierre de la empresa
+                    dynamic Oid = cmbNuevoCuenta.EditValue;
+                    var aDt = (parent.CuentaTable[Oid.Oid] as Tuple<string, DateTime?>).Item2 as DateTime?;
+                    var aDtActual = dteNuevoInicioVigencia.DateTime.Date;
+                    if (aDt != null)
+                    {
+                        if (aDtActual < Convert.ToDateTime(aDt))
+                        {
+                            e.ErrorText = string.Format("La fecha de inicio de vigencia no puede ser mayor que la de la fecha de cierre de la empresa: {0} ", Convert.ToDateTime(aDt).ToShortDateString());
+                            e.ErrorIconType = MessageBoxIcon.Hand;
+                            e.Valid = false;
+                            return;
+                        }
+                    }
                 }
             }
             e.Valid = true;
@@ -1577,11 +1607,6 @@ namespace EnroladorStandAlone
             {
                 return _nombre;
             }
-
-            private void Validar()
-            {
-
-            }
         }
 
         public enum TipoAccion
@@ -1589,6 +1614,25 @@ namespace EnroladorStandAlone
             Nueva,
             Modificada,
             Eliminada
+        }
+
+        private void wpCaducarContrato_PageValidating(object sender, WizardPageValidatingEventArgs e)
+        {
+            if (e.Direction == Direction.Forward)
+            {
+                var contrato = gridView1.GetFocusedRow() as Tuple<string, string, string, DateTime, DateTime?, Guid, TipoAccion?>;
+
+                var inicioVigencia = contrato.Item4;
+                var fechaCaducidad = dteCaducarContrato.DateTime.Date;
+
+                if (fechaCaducidad <= inicioVigencia) //La caducidad debe de ser mayor que el inicio de la vigencia
+                {
+                    e.ErrorText = string.Format("El fin de vigencia {0}, debe de ser mayor que el inicio de vigencia {1} del contrato", fechaCaducidad.Date.ToShortDateString(), inicioVigencia.Date.ToShortDateString());
+                    e.ErrorIconType = MessageBoxIcon.Hand;
+                    e.Valid = false;
+                    return;
+                }
+            }
         }
     }
 }

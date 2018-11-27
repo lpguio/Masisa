@@ -1787,6 +1787,7 @@
             this.wpCaducarContrato.Name = "wpCaducarContrato";
             this.wpCaducarContrato.Size = new System.Drawing.Size(752, 417);
             this.wpCaducarContrato.Text = "Caducar Contrato";
+            this.wpCaducarContrato.PageValidating += new DevExpress.XtraWizard.WizardPageValidatingEventHandler(this.wpCaducarContrato_PageValidating);
             this.wpCaducarContrato.PageCommit += new System.EventHandler(this.wpCaducarContrato_PageCommit);
             this.wpCaducarContrato.PageInit += new System.EventHandler(this.wpCaducarContrato_PageInit);
             // 
@@ -1921,7 +1922,7 @@
             this.cmbEditarCuenta.Size = new System.Drawing.Size(596, 30);
             this.cmbEditarCuenta.StyleController = this.layoutControl10;
             this.cmbEditarCuenta.TabIndex = 3;
-            //  
+            // 
             // cmbEditarEmpresa
             // 
             this.cmbEditarEmpresa.Location = new System.Drawing.Point(144, 12);
