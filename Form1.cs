@@ -562,6 +562,7 @@ namespace EnroladorStandAlone
                         BinaryFormatter bin = new BinaryFormatter();
                         ultimaConexión = DateTime.Now;
                         bin.Serialize(stream, ultimaConexión);
+                        stream.Close();
                     }
                 }
                 else
@@ -632,11 +633,13 @@ namespace EnroladorStandAlone
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, loggedUser);
+                    stream.Close();
                 }
                 using (Stream stream = File.Open(huellaUserFile, FileMode.Create, FileAccess.Write))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, huellaUserTable);
+                    stream.Close();
                 }
 
                 return true;
@@ -709,11 +712,13 @@ namespace EnroladorStandAlone
                     {
                         BinaryFormatter bin = new BinaryFormatter();
                         bin.Serialize(stream, loggedUser);
+                        stream.Close();
                     }
                     using (Stream stream = File.Open(huellaUserFile, FileMode.Create, FileAccess.Write))
                     {
                         BinaryFormatter bin = new BinaryFormatter();
                         bin.Serialize(stream, huellaUserTable);
+                        stream.Close();
                     }
                 }
                 else
@@ -747,11 +752,13 @@ namespace EnroladorStandAlone
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, loggedUser);
+                    stream.Close();
                 }
                 using (Stream stream = File.Open(huellaUserFile, FileMode.Create, FileAccess.Write))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, huellaUserTable);
+                    stream.Close();
                 }
 
                 return huellero.Refrescar(huellaUserTable);
@@ -1258,54 +1265,63 @@ namespace EnroladorStandAlone
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, cadenaTable);
+                    stream.Close();
                 }
 
                 using (Stream stream = File.Open(instalacionFile, FileMode.Create, FileAccess.Write))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, instalacionTable);
+                    stream.Close();
                 }
 
                 using (Stream stream = File.Open(dispositivoFile, FileMode.Create, FileAccess.Write))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, dispositivoTable);
+                    stream.Close();
                 }
 
                 using (Stream stream = File.Open(empresaFile, FileMode.Create, FileAccess.Write))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, empresaTable);
+                    stream.Close();
                 }
 
                 using (Stream stream = File.Open(cargoFile, FileMode.Create, FileAccess.Write))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, cargoTable);
+                    stream.Close();
                 }
 
                 using (Stream stream = File.Open(cuentaFile, FileMode.Create, FileAccess.Write))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, cuentaTable);
+                    stream.Close();
                 }
 
                 using (Stream stream = File.Open(empleadoFile, FileMode.Create, FileAccess.Write))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, empleadoTable);
+                    stream.Close();
                 }
 
                 using (Stream stream = File.Open(huellaFile, FileMode.Create, FileAccess.Write))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, huellaTable);
+                    stream.Close();
                 }
 
                 using (Stream stream = File.Open(contratoFile, FileMode.Create, FileAccess.Write))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, contratoTable);
+                    stream.Close();
                 }
 
                 return true;
@@ -1334,6 +1350,7 @@ namespace EnroladorStandAlone
                     {
                         BinaryFormatter bin = new BinaryFormatter();
                         bin.Serialize(stream, accion);
+                        stream.Close();
                     }
                 }
                 if (File.Exists(dat))
@@ -1364,6 +1381,7 @@ namespace EnroladorStandAlone
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, error.Item1);
+                    stream.Close();
                 }
             }
             catch (Exception ex)
