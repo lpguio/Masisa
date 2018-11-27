@@ -9,6 +9,7 @@ namespace EnroladorStandAlone
 {
     public partial class LogInDialog : Form
     {
+        #region Atributos
         private CancellationTokenSource ctsMensaje;
 
         private Tuple<Guid, string, string> _loggedUser = null;
@@ -18,142 +19,125 @@ namespace EnroladorStandAlone
 
         private bool online = false;
         public bool Online { get { return online; } }
+        #endregion
 
-        public LogInDialog()
-        {
+        #region Constructor
+        public LogInDialog() {
             InitializeComponent();
             this.online = true;
         }
 
-        public LogInDialog(Tuple<Guid, string, string> storedUser, bool cambiarUsuario)
-        {
+        public LogInDialog(Tuple<Guid, string, string> storedUser, bool cambiarUsuario) {
             InitializeComponent();
             txtUser.Text = storedUser.Item2;
             txtUser.Enabled = false;
             this.storedUser = storedUser;
-            if (cambiarUsuario)
-            {
-                btnCambiarUsuario.Visible = true;
+            if (cambiarUsuario) {
+                DevButtonCambiarUsuario.Visible = true;
             }
-        }
 
-        private async void btnAceptar_Click(object sender, EventArgs e)
-        {
-            if (ctsMensaje != null)
-            {
+            dxErrorProvider.SetIconAlignment(txtUser, ErrorIconAlignment.MiddleRight);
+            dxErrorProvider.SetIconAlignment(txtPass, ErrorIconAlignment.MiddleRight);
+        }
+        #endregion
+
+        #region Metodos y Eventos
+        private async void btnAceptar_Click(object sender, EventArgs e) {
+            if (ctsMensaje != null) {
                 ctsMensaje.Cancel();
                 ctsMensaje = null;
-                lblUsuarioError.Text = "";
-                lblContraseñaError.Text = "";
+                dxErrorProvider.ClearErrors();
+                //lblUsuarioError.Text = "";
+                //lblContraseñaError.Text = "";
             }
 
             bool error = false;
 
             string user = txtUser.Text;
-            if (string.IsNullOrEmpty(user))
-            {
+            if (string.IsNullOrEmpty(user)) {
                 txtUser.Focus();
-                lblUsuarioError.Text = "Ingrese un usuario";
+                dxErrorProvider.SetError(txtUser, "Ingrese un usuario..."); //lblUsuarioError.Text = "Ingrese un usuario";
                 error = true;
             }
             string pass = txtPass.Text;
-            if (!error && string.IsNullOrEmpty(pass))
-            {
+            if (!error && string.IsNullOrEmpty(pass)) {
                 txtPass.Focus();
-                lblContraseñaError.Text = "Ingrese una contraseña";
+                dxErrorProvider.SetError(txtPass, "Ingrese una contraseña..."); //lblContraseñaError.Text = "Ingrese una contraseña";
                 error = true;
             }
 
-            if (!error)
-            {
-                if (online)
-                {
-                    try
-                    {
+            if (!error) {
+                if (online) {
+                    try {
                         var res = await new EnroladorWebServices.EnroladorWebServicesClient().LoginAsync(user, pass);
 
-                        if (res.HasValue)
-                        {
+                        if (res.HasValue) {
                             _loggedUser = new Tuple<Guid, string, string>(res.Value, user, PassVerifier.StorePassword(pass, res.Value));
                             DialogResult = DialogResult.OK;
                             return;
                         }
-                    }
-                    catch (Exception)
-                    {
+                    } catch (Exception) {
                         MessageBox.Show("Ocurrió un problema al intentar iniciar sesión. Compruebe la conexión con el servidor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                }
-                else
-                {
-                    if (PassVerifier.AreEqual(storedUser.Item3, pass, storedUser.Item1))
-                    {
+                } else {
+                    if (PassVerifier.AreEqual(storedUser.Item3, pass, storedUser.Item1)) {
                         _loggedUser = storedUser;
                         DialogResult = DialogResult.OK;
                         return;
-                    }
-                    else
-                    {
+                    } else {
                         txtPass.Text = "";
                         txtPass.Focus();
-                        lblContraseñaError.Text = "Contraseña incorrecta";
+                        dxErrorProvider.SetError(txtPass, "Contraseña incorrecta..."); //lblContraseñaError.Text = "Contraseña incorrecta";
                         error = true;
                     }
                 }
             }
 
-            if (!error)
-            {
+            if (!error) {
                 txtUser.Text = "";
                 txtPass.Text = "";
                 txtUser.Focus();
-                lblUsuarioError.Text = "Usuario o contraseña incorrectos";
+                dxErrorProvider.SetError(txtUser, "Usuario o contraseña incorrectos...");
+                dxErrorProvider.SetError(txtPass, "Usuario o contraseña incorrectos..."); //lblUsuarioError.Text = "Usuario o contraseña incorrectos";
             }
 
-            try
-            {
+            try {
                 await Task.Delay(5000, (ctsMensaje = new CancellationTokenSource()).Token);
-                if (ctsMensaje != null && !ctsMensaje.IsCancellationRequested)
-                {
-                    lblUsuarioError.Text = "";
-                    lblContraseñaError.Text = "";
+                if (ctsMensaje != null && !ctsMensaje.IsCancellationRequested) {
+                    dxErrorProvider.ClearErrors();
+                    //lblUsuarioError.Text = "";
+                    //lblContraseñaError.Text = "";
                     ctsMensaje = null;
                 }
-            }
-            catch (TaskCanceledException) { }
+            } catch (TaskCanceledException) { }
         }
 
-        private void LogInDialog_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == '\r')
-            {
+        private void LogInDialog_KeyPress(object sender, KeyPressEventArgs e) {
+            if (e.KeyChar == '\r') {
                 btnAceptar_Click(this, EventArgs.Empty);
                 e.Handled = true;
             }
         }
 
-        private void btnCambiarUsuario_Click(object sender, EventArgs e)
-        {
-            if (online)
-            {
+        private void DevButtonCambiarUsuario_Click(object sender, EventArgs e) {
+            if (online) {
                 online = false;
-                btnCambiarUsuario.Text = "Cambiar usuario";
+                DevButtonCambiarUsuario.Text = "Cambiar usuario";
                 txtUser.Text = storedUser.Item2;
                 txtUser.Enabled = false;
                 txtPass.Focus();
-            }
-            else
-            {
-                if (MessageBox.Show("Se conectará al servidor para iniciar sesión con otro usuario. Asegurese de que exista conexión con el servidor", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
+            } else {
+                if (MessageBox.Show("Se conectará al servidor para iniciar sesión con otro usuario. Asegurese de que exista conexión con el servidor", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
                     online = true;
-                    btnCambiarUsuario.Text = "Volver";
+                    DevButtonCambiarUsuario.Text = "Volver";
                     txtUser.Text = "";
                     txtUser.Enabled = true;
                     txtUser.Focus();
                 }
             }
+            dxErrorProvider.ClearErrors();
         }
+        #endregion
     }
 }
