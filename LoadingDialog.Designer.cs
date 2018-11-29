@@ -40,21 +40,21 @@
             // 
             // pgbTotal
             // 
-            this.pgbTotal.Location = new System.Drawing.Point(12, 5);
+            this.pgbTotal.Location = new System.Drawing.Point(14, 21);
             this.pgbTotal.Name = "pgbTotal";
-            this.pgbTotal.Size = new System.Drawing.Size(360, 20);
+            this.pgbTotal.Size = new System.Drawing.Size(425, 11);
             this.pgbTotal.TabIndex = 0;
             // 
             // pgbActual
             // 
-            this.pgbActual.Location = new System.Drawing.Point(56, 50);
+            this.pgbActual.Location = new System.Drawing.Point(14, 57);
             this.pgbActual.Name = "pgbActual";
-            this.pgbActual.Size = new System.Drawing.Size(360, 23);
+            this.pgbActual.Size = new System.Drawing.Size(425, 11);
             this.pgbActual.TabIndex = 0;
             // 
             // lblTotal
             // 
-            this.lblTotal.Location = new System.Drawing.Point(199, 31);
+            this.lblTotal.Location = new System.Drawing.Point(215, 38);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(24, 13);
             this.lblTotal.TabIndex = 1;
@@ -62,7 +62,7 @@
             // 
             // lblActual
             // 
-            this.lblActual.Location = new System.Drawing.Point(203, 79);
+            this.lblActual.Location = new System.Drawing.Point(215, 76);
             this.lblActual.Name = "lblActual";
             this.lblActual.Size = new System.Drawing.Size(30, 13);
             this.lblActual.TabIndex = 1;
@@ -77,22 +77,21 @@
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(384, 111);
+            this.panel.Size = new System.Drawing.Size(465, 134);
             this.panel.TabIndex = 2;
             // 
             // LoadingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 111);
+            this.ClientSize = new System.Drawing.Size(465, 134);
             this.ControlBox = false;
             this.Controls.Add(this.panel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(400, 150);
-            this.MinimumSize = new System.Drawing.Size(400, 150);
+            this.MinimumSize = new System.Drawing.Size(16, 150);
             this.Name = "LoadingDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cargando datos";
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);

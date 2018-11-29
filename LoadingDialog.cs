@@ -8,18 +8,22 @@ namespace EnroladorStandAlone
 {
     public partial class LoadingDialog : Form, ILoadingDialog
     {
+        #region Atributos
         string nombrePaso;
         int numeroPaso;
-        public LoadingDialog()
-        {
+        #endregion
+
+        #region Constructor
+        public LoadingDialog() {
             InitializeComponent();
             lblTotal.Text = "";
             lblActual.Text = "";
             OrganizaElementos();
         }
+        #endregion
 
-        public void PrimerPaso(int totalPasos, int totalPrimero, string nombrePrimero)
-        {
+        #region Metodos
+        public void PrimerPaso(int totalPasos, int totalPrimero, string nombrePrimero) {
             pgbTotal.Minimum = 0;
             pgbTotal.Maximum = totalPasos * 10;
             pgbTotal.Value = 0;
@@ -33,8 +37,7 @@ namespace EnroladorStandAlone
             ActualizaLabels();
         }
 
-        public void SiguientePaso(int totalActual, string nombrePaso)
-        {
+        public void SiguientePaso(int totalActual, string nombrePaso) {
             numeroPaso++;
             pgbTotal.Value = (numeroPaso - 1) * 10;
             pgbActual.Value = 0;
@@ -43,29 +46,27 @@ namespace EnroladorStandAlone
             ActualizaLabels();
         }
 
-        public void AvanzarActual()
-        {
+        public void AvanzarActual() {
             pgbActual.PerformStep();
             pgbTotal.Value = ((numeroPaso - 1) * 10) + (10 * pgbActual.Value / pgbActual.Maximum);
             ActualizaLabels();
         }
 
-        private void ActualizaLabels()
-        {
+        private void ActualizaLabels() {
             lblTotal.Text = string.Format("Paso {0} de {1}: {2}", numeroPaso, pgbTotal.Maximum / 10, nombrePaso);
             lblActual.Text = string.Format("{0}%", 100 * pgbActual.Value / pgbActual.Maximum);
             lblTotal.Location = new Point((panel.Width - lblTotal.Width) / 2, lblTotal.Location.Y);
             lblActual.Location = new Point((panel.Width - lblActual.Width) / 2, lblActual.Location.Y);
         }
 
-        private void OrganizaElementos()
-        {
-            const int altura = 20;
-            int separacion = (panel.Height - (lblTotal.Height + lblActual.Height + 2 * altura)) / 5;
-            pgbTotal.SetBounds(10, separacion, panel.Width - 20, altura);
-            lblTotal.Location = new Point((panel.Width - lblTotal.Width) / 2, pgbTotal.Location.Y + pgbTotal.Height + separacion);
-            pgbActual.SetBounds(10, lblTotal.Location.Y + lblTotal.Height + separacion, panel.Width - 20, altura);
-            lblActual.Location = new Point((panel.Width - lblActual.Width) / 2, pgbActual.Location.Y + pgbActual.Height + separacion);
+        private void OrganizaElementos() {
+            //const int altura = 20;
+            //int separacion = (panel.Height - (lblTotal.Height + lblActual.Height + 2 * altura)) / 5;
+            //pgbTotal.SetBounds(10, separacion, panel.Width - 20, altura);
+            //lblTotal.Location = new Point((panel.Width - lblTotal.Width) / 2, pgbTotal.Location.Y + pgbTotal.Height + separacion);
+            //pgbActual.SetBounds(10, lblTotal.Location.Y + lblTotal.Height + separacion, panel.Width - 20, altura);
+            //lblActual.Location = new Point((panel.Width - lblActual.Width) / 2, pgbActual.Location.Y + pgbActual.Height + separacion);
         }
+        #endregion
     }
 }
