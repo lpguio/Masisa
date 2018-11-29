@@ -18,6 +18,7 @@ namespace EnroladorStandAlone
         private BindingList<Tuple<string, string, string, DateTime, DateTime?, Guid, TipoAccion?>> bnlContratos = new BindingList<Tuple<string, string, string, DateTime, DateTime?, Guid, EnrollForm.TipoAccion?>>();
         private BindingList<Tuple<string, bool, TipoHuella, Guid?>> bnlHuellas = new BindingList<Tuple<string, bool, TipoHuella, Guid?>>();
         private BindingList<Tuple<string, string, string>> bnlAsignaciones = new BindingList<Tuple<string, string, string>>();
+        private BindingList<Guid> bnlAsignacionesTemporales = new BindingList<Guid>();
         private BindingList<Tuple<string, string, string, Guid>> bnlNuevaAsignacion = new BindingList<Tuple<string, string, string, Guid>>();
         private bool enrolando = false;
         private int fingers = 0;
@@ -710,34 +711,6 @@ namespace EnroladorStandAlone
                         var cadena = parent.CadenaTable.FirstOrDefault(p => p.Value.Item2.Exists(q => q.Equals(instalacion.Key)));
 
                         bnlAsignaciones.Add(new Tuple<string, string, string>(cadena.Value.Item1, instalacion.Value.Item1, dispositivoItem.Item1));
-
-                        //Guid empresa = contratoItem.Item1;
-                        //Guid cuenta = contratoItem.Item2;
-                        //Guid cargo = contratoItem.Item3;
-                        //DateTime inicio = contratoItem.Item4;
-                        //DateTime? fin = contratoItem.Item5;
-                        //if (parent.EmpresaTable.ContainsKey(empresa) && parent.CuentaTable.ContainsKey(cuenta) && parent.CargoTable.ContainsKey(cargo))
-                        //{
-                        //    TipoAccion? tipoAccion = null;
-                        //    foreach (Accion accion in acciones)
-                        //    {
-                        //        if (accion is AccionCrearContrato && ((AccionCrearContrato)accion).Oid.Equals(contrato))
-                        //        {
-                        //            tipoAccion = TipoAccion.Nueva;
-                        //            break;
-                        //        }
-                        //        if (accion is AccionCaducarContrato)
-                        //        {
-                        //            AccionCaducarContrato accion2 = (AccionCaducarContrato)accion;
-                        //            if (accion2.Oid.Equals(contrato))
-                        //            {
-                        //                tipoAccion = accion2.FinVigencia.HasValue ? TipoAccion.Eliminada : TipoAccion.Modificada;
-                        //                break;
-                        //            }
-                        //        }
-                        //    }
-                        //    bnlContratos.Add(new Tuple<string, string, string, DateTime, DateTime?, Guid, TipoAccion?>(parent.EmpresaTable[empresa].Item1, parent.CuentaTable[cuenta].Item1, parent.CargoTable[cargo], inicio, fin, contrato, tipoAccion));
-                        //}
                     }
                 }
             }
@@ -1231,6 +1204,7 @@ namespace EnroladorStandAlone
                         Accion accion = new AccionCrearAsignacion(parent.EmpleadoRUTIndex[RUT], dispositivo, parent);
                         acciones.Add(accion);
                         accionesActuales.Push(new Tuple<Accion, TipoAccion>(accion, TipoAccion.Nueva));
+                        bnlAsignacionesTemporales.Add(dispositivo);
                     }
                     else
                     {
@@ -1672,16 +1646,20 @@ namespace EnroladorStandAlone
             {
                 if (gridView3.IsDataRow(rowHandle))
                 {
-                    Guid dispositivo = (Guid)gridView3.GetRowCellValue(rowHandle, "Item4");
-                    if (parent.EmpleadoRUTIndex.ContainsKey(RUT) && parent.EmpleadoTable.ContainsKey(parent.EmpleadoRUTIndex[RUT]) && parent.DispositivoTable.ContainsKey(dispositivo))
+                    var nombreDispositivo = gridView3.GetRowCellValue(rowHandle, "Item3").ToString();
+
+                    var dispositivo = parent.DispositivoTable.FirstOrDefault(p => p.Value.Item1 == nombreDispositivo);
+
+                    if (bnlAsignacionesTemporales.FirstOrDefault(p => p == dispositivo.Key) != new Guid("00000000-0000-0000-0000-000000000000"))
                     {
-                        Accion accion = new AccionCrearAsignacion(parent.EmpleadoRUTIndex[RUT], dispositivo, parent);
-                        acciones.Add(accion);
-                        accionesActuales.Push(new Tuple<Accion, TipoAccion>(accion, TipoAccion.Nueva));
-                    }
-                    else
-                    {
-                        // TODO: Error
+                        bnlAsignacionesTemporales.Remove(dispositivo.Key);
+                        bnlAsignaciones.Remove(bnlAsignaciones.FirstOrDefault(p => p.Item1 == gridView3.GetRowCellValue(rowHandle, "Item1").ToString()
+                                    && p.Item2 == gridView3.GetRowCellValue(rowHandle, "Item2").ToString()
+                                    && p.Item3 == gridView3.GetRowCellValue(rowHandle, "Item3").ToString()));
+
+                        dispositivo.Value.Item5.Remove(parent.EmpleadoRUTIndex[RUT]);
+                        parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item2.Remove(dispositivo.Key);
+                        //parent.EmpleadoTable[]
                     }
                 }
             }
@@ -1689,8 +1667,27 @@ namespace EnroladorStandAlone
 
         private void gridView3_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            btnEliminarAsignacion.Enabled = e.FocusedRowHandle >= 0;
-            //btnEliminarAsignacion.Enabled = gridView3.GetFocusedDataRow() != null;
+            btnEliminarAsignacion.Enabled = false;
+
+            if (e.FocusedRowHandle < 0)
+            {
+                return;
+            }
+
+            int rowHandle = gridView3.GetSelectedRows().First<int>();
+
+            var nombreDispositivo = gridView3.GetRowCellValue(rowHandle, "Item3".ToString());
+
+            var dispositivo = parent.DispositivoTable.FirstOrDefault(p => p.Value.Item1 == nombreDispositivo);
+
+            if (
+                    (acciones.FirstOrDefault(p => (p is AccionCrearAsignacion) && (((AccionCrearAsignacion)p)).Oid.Equals(dispositivo.Key)) != null)
+                ||
+                    (bnlAsignacionesTemporales.FirstOrDefault(p => p == dispositivo.Key) != new Guid("00000000-0000-0000-0000-000000000000"))
+                )
+            {
+                btnEliminarAsignacion.Enabled = true;
+            }
         }
     }
 }

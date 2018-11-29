@@ -1596,52 +1596,6 @@ namespace EnroladorStandAlone
 
         }
 
-        private void ContratosActivos()
-        {
-            //BindingList<Tuple<string, string, string, DateTime, DateTime?, Guid?>> bnlContratos = new BindingList<Tuple<string, string, string, DateTime, DateTime?, Guid?>>();
-
-            //gdcContratos.BeginUpdate();
-            //bnlContratos.Clear();
-            //if (parent.EmpleadoRUTIndex.ContainsKey(RUT) && parent.EmpleadoTable.ContainsKey(parent.EmpleadoRUTIndex[RUT]))
-            //{
-            //    foreach (Guid contrato in parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item3)
-            //    {
-            //        if (parent.ContratoTable.ContainsKey(contrato))
-            //        {
-            //            var contratoItem = parent.ContratoTable[contrato];
-            //            Guid empresa = contratoItem.Item1;
-            //            Guid cuenta = contratoItem.Item2;
-            //            Guid cargo = contratoItem.Item3;
-            //            DateTime inicio = contratoItem.Item4;
-            //            DateTime? fin = contratoItem.Item5;
-            //            if (parent.EmpresaTable.ContainsKey(empresa) && parent.CuentaTable.ContainsKey(cuenta) && parent.CargoTable.ContainsKey(cargo))
-            //            {
-            //                TipoAccion? tipoAccion = null;
-            //                foreach (Accion accion in acciones)
-            //                {
-            //                    if (accion is AccionCrearContrato && ((AccionCrearContrato)accion).Oid.Equals(contrato))
-            //                    {
-            //                        tipoAccion = TipoAccion.Nueva;
-            //                        break;
-            //                    }
-            //                    if (accion is AccionCaducarContrato)
-            //                    {
-            //                        AccionCaducarContrato accion2 = (AccionCaducarContrato)accion;
-            //                        if (accion2.Oid.Equals(contrato))
-            //                        {
-            //                            tipoAccion = accion2.FinVigencia.HasValue ? TipoAccion.Eliminada : TipoAccion.Modificada;
-            //                            break;
-            //                        }
-            //                    }
-            //                }
-            //                bnlContratos.Add(new Tuple<string, string, string, DateTime, DateTime?, Guid, TipoAccion?>(parent.EmpresaTable[empresa].Item1, parent.CuentaTable[cuenta], parent.CargoTable[cargo], inicio, fin, contrato, tipoAccion));
-            //            }
-            //        }
-            //    }
-            //}
-            //gdcContratos.EndUpdate();
-        }
-
         private void gvHistoria_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         {
             //gvHistoria.selectr
