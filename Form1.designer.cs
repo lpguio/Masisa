@@ -60,6 +60,8 @@
             this.axZKFPEngX1 = new AxZKFPEngXControl.AxZKFPEngX();
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
@@ -69,6 +71,8 @@
             this.panelGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axZKFPEngX1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // repositoryItemProgressBar3
@@ -238,6 +242,9 @@
             this.gcHistoria.Location = new System.Drawing.Point(0, 0);
             this.gcHistoria.MainView = this.gvHistoria;
             this.gcHistoria.Name = "gcHistoria";
+            this.gcHistoria.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemMemoEdit2,
+            this.repositoryItemTextEdit1});
             this.gcHistoria.Size = new System.Drawing.Size(1008, 681);
             this.gcHistoria.TabIndex = 1;
             this.gcHistoria.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -384,7 +391,12 @@
             // 
             // colContratosActivos
             // 
+            this.colContratosActivos.AppearanceCell.Options.UseTextOptions = true;
+            this.colContratosActivos.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.colContratosActivos.AppearanceHeader.Options.UseTextOptions = true;
+            this.colContratosActivos.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.colContratosActivos.Caption = "Contrato Vigente";
+            this.colContratosActivos.ColumnEdit = this.repositoryItemMemoEdit2;
             this.colContratosActivos.Name = "colContratosActivos";
             this.colContratosActivos.OptionsColumn.AllowEdit = false;
             this.colContratosActivos.OptionsColumn.AllowFocus = false;
@@ -430,6 +442,15 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
             // 
+            // repositoryItemMemoEdit2
+            // 
+            this.repositoryItemMemoEdit2.Name = "repositoryItemMemoEdit2";
+            // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -457,6 +478,8 @@
             this.panelGeneral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axZKFPEngX1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -491,5 +514,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn Identificacion;
         private AxZKFPEngXControl.AxZKFPEngX axZKFPEngX1;
         private DevExpress.XtraGrid.Columns.GridColumn colContratosActivos;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
     }
 }
