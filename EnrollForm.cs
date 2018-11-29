@@ -690,30 +690,54 @@ namespace EnroladorStandAlone
 
         private void wpMostrarAsignaciones_PageInit(object sender, EventArgs e)
         {
+            RecargarAsignaciones();
+        }
+
+        private void RecargarAsignaciones()
+        {
             gdcAsignaciones.BeginUpdate();
             bnlAsignaciones.Clear();
             if (parent.EmpleadoRUTIndex.ContainsKey(RUT) && parent.EmpleadoTable.ContainsKey(parent.EmpleadoRUTIndex[RUT]))
             {
-                List<Guid> asignaciones = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item2;
-                foreach (KeyValuePair<Guid, Tuple<string, List<Guid>>> cadena in parent.CadenaTable)
+                //foreach (Guid contrato in parent. EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item3)
+                foreach (Guid dispositivo in parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item2)
                 {
-                    foreach (Guid instalacionOid in cadena.Value.Item2)
+                    if (parent.DispositivoTable.ContainsKey(dispositivo))
                     {
-                        if (parent.InstalacionTable.ContainsKey(instalacionOid))
-                        {
-                            Tuple<string, List<Guid>> instalacion = parent.InstalacionTable[instalacionOid];
-                            foreach (Guid dispositivoOid in instalacion.Item2)
-                            {
-                                if (asignaciones.Contains(dispositivoOid) && parent.DispositivoTable.ContainsKey(dispositivoOid))
-                                {
-                                    Tuple<string, string, int, TipoDispositivo, List<Guid>> dispositivo = parent.DispositivoTable[dispositivoOid];
-                                    //if (dispositivo.Item4 == TipoDispositivo.PuntoAcceso)
-                                    {
-                                        bnlAsignaciones.Add(new Tuple<string, string, string>(cadena.Value.Item1, instalacion.Item1, dispositivo.Item1));
-                                    }
-                                }
-                            }
-                        }
+                        var dispositivoItem = parent.DispositivoTable[dispositivo];
+
+                        var instalacion = parent.InstalacionTable.FirstOrDefault(p => p.Value.Item2.Exists(q => q.Equals(dispositivo)));
+                        var cadena = parent.CadenaTable.FirstOrDefault(p => p.Value.Item2.Exists(q => q.Equals(instalacion.Key)));
+
+                        bnlAsignaciones.Add(new Tuple<string, string, string>(cadena.Value.Item1, instalacion.Value.Item1, dispositivoItem.Item1));
+
+                        //Guid empresa = contratoItem.Item1;
+                        //Guid cuenta = contratoItem.Item2;
+                        //Guid cargo = contratoItem.Item3;
+                        //DateTime inicio = contratoItem.Item4;
+                        //DateTime? fin = contratoItem.Item5;
+                        //if (parent.EmpresaTable.ContainsKey(empresa) && parent.CuentaTable.ContainsKey(cuenta) && parent.CargoTable.ContainsKey(cargo))
+                        //{
+                        //    TipoAccion? tipoAccion = null;
+                        //    foreach (Accion accion in acciones)
+                        //    {
+                        //        if (accion is AccionCrearContrato && ((AccionCrearContrato)accion).Oid.Equals(contrato))
+                        //        {
+                        //            tipoAccion = TipoAccion.Nueva;
+                        //            break;
+                        //        }
+                        //        if (accion is AccionCaducarContrato)
+                        //        {
+                        //            AccionCaducarContrato accion2 = (AccionCaducarContrato)accion;
+                        //            if (accion2.Oid.Equals(contrato))
+                        //            {
+                        //                tipoAccion = accion2.FinVigencia.HasValue ? TipoAccion.Eliminada : TipoAccion.Modificada;
+                        //                break;
+                        //            }
+                        //        }
+                        //    }
+                        //    bnlContratos.Add(new Tuple<string, string, string, DateTime, DateTime?, Guid, TipoAccion?>(parent.EmpresaTable[empresa].Item1, parent.CuentaTable[cuenta].Item1, parent.CargoTable[cargo], inicio, fin, contrato, tipoAccion));
+                        //}
                     }
                 }
             }
@@ -1633,6 +1657,40 @@ namespace EnroladorStandAlone
                     return;
                 }
             }
+        }
+
+        private void gridView4_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            
+
+
+        }
+
+        private void btnEliminarAsignacion_Click(object sender, EventArgs e)
+        {
+            foreach (int rowHandle in gridView3.GetSelectedRows())
+            {
+                if (gridView3.IsDataRow(rowHandle))
+                {
+                    Guid dispositivo = (Guid)gridView3.GetRowCellValue(rowHandle, "Item4");
+                    if (parent.EmpleadoRUTIndex.ContainsKey(RUT) && parent.EmpleadoTable.ContainsKey(parent.EmpleadoRUTIndex[RUT]) && parent.DispositivoTable.ContainsKey(dispositivo))
+                    {
+                        Accion accion = new AccionCrearAsignacion(parent.EmpleadoRUTIndex[RUT], dispositivo, parent);
+                        acciones.Add(accion);
+                        accionesActuales.Push(new Tuple<Accion, TipoAccion>(accion, TipoAccion.Nueva));
+                    }
+                    else
+                    {
+                        // TODO: Error
+                    }
+                }
+            }
+        }
+
+        private void gridView3_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            btnEliminarAsignacion.Enabled = e.FocusedRowHandle >= 0;
+            //btnEliminarAsignacion.Enabled = gridView3.GetFocusedDataRow() != null;
         }
     }
 }

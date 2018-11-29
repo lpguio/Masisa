@@ -760,7 +760,8 @@ namespace EnroladorStandAlone
                     bin.Serialize(stream, huellaUserTable);
                     stream.Close();
                 }
-
+                //lpg
+                return true;
                 return huellero.Refrescar(huellaUserTable);
             }
             catch (Exception)
@@ -1350,8 +1351,8 @@ namespace EnroladorStandAlone
                     {
                         BinaryFormatter bin = new BinaryFormatter();
                         bin.Serialize(stream, accion);
-                        stream.Close();
                     }
+                    stream.Close();
                 }
                 if (File.Exists(dat))
                 {

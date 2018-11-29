@@ -173,6 +173,8 @@
             this.simpleSeparator9 = new DevExpress.XtraLayout.SimpleSeparator();
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
             this.simpleSeparator11 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.btnEliminarAsignacion = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem36 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.wzrEnroll)).BeginInit();
             this.wzrEnroll.SuspendLayout();
             this.wpRUT.SuspendLayout();
@@ -306,6 +308,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).BeginInit();
             this.SuspendLayout();
             // 
             // wzrEnroll
@@ -1398,6 +1401,7 @@
             this.gridView4.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.CadenaNueva, DevExpress.Data.ColumnSortOrder.Ascending),
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.InstalacionNueva, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView4.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView4_FocusedRowChanged);
             // 
             // CadenaNueva
             // 
@@ -1441,6 +1445,7 @@
             // 
             // layoutControl5
             // 
+            this.layoutControl5.Controls.Add(this.btnEliminarAsignacion);
             this.layoutControl5.Controls.Add(this.gdcAsignaciones);
             this.layoutControl5.Controls.Add(this.btnNuevaAsignacion);
             this.layoutControl5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1462,7 +1467,7 @@
             this.gdcAsignaciones.Location = new System.Drawing.Point(12, 12);
             this.gdcAsignaciones.MainView = this.gridView3;
             this.gdcAsignaciones.Name = "gdcAsignaciones";
-            this.gdcAsignaciones.Size = new System.Drawing.Size(728, 358);
+            this.gdcAsignaciones.Size = new System.Drawing.Size(728, 323);
             this.gdcAsignaciones.TabIndex = 0;
             this.gdcAsignaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
@@ -1498,6 +1503,7 @@
             this.gridView3.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Cadena, DevExpress.Data.ColumnSortOrder.Ascending),
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Instalacion, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView3.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView3_FocusedRowChanged);
             // 
             // Cadena
             // 
@@ -1527,12 +1533,12 @@
             // 
             this.btnNuevaAsignacion.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.btnNuevaAsignacion.Appearance.Options.UseFont = true;
-            this.btnNuevaAsignacion.Location = new System.Drawing.Point(12, 374);
+            this.btnNuevaAsignacion.Location = new System.Drawing.Point(12, 339);
             this.btnNuevaAsignacion.Name = "btnNuevaAsignacion";
             this.btnNuevaAsignacion.Size = new System.Drawing.Size(728, 31);
             this.btnNuevaAsignacion.StyleController = this.layoutControl5;
             this.btnNuevaAsignacion.TabIndex = 1;
-            this.btnNuevaAsignacion.Text = "Nueva Asignacion";
+            this.btnNuevaAsignacion.Text = "Nueva Asignación";
             this.btnNuevaAsignacion.Click += new System.EventHandler(this.btnNuevaAsignacion_Click);
             // 
             // layoutControlGroup5
@@ -1542,7 +1548,8 @@
             this.layoutControlGroup5.GroupBordersVisible = false;
             this.layoutControlGroup5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem11,
-            this.layoutControlItem10});
+            this.layoutControlItem10,
+            this.layoutControlItem36});
             this.layoutControlGroup5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
             this.layoutControlGroup5.Size = new System.Drawing.Size(752, 417);
@@ -1554,7 +1561,7 @@
             this.layoutControlItem11.CustomizationFormText = "layoutControlItem11";
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(732, 362);
+            this.layoutControlItem11.Size = new System.Drawing.Size(732, 327);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
@@ -1562,7 +1569,7 @@
             // 
             this.layoutControlItem10.Control = this.btnNuevaAsignacion;
             this.layoutControlItem10.CustomizationFormText = "layoutControlItem10";
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 362);
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 327);
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Size = new System.Drawing.Size(732, 35);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
@@ -2020,6 +2027,27 @@
             this.simpleSeparator11.Name = "simpleSeparator11";
             this.simpleSeparator11.Size = new System.Drawing.Size(732, 2);
             // 
+            // btnEliminarAsignacion
+            // 
+            this.btnEliminarAsignacion.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.btnEliminarAsignacion.Appearance.Options.UseFont = true;
+            this.btnEliminarAsignacion.Location = new System.Drawing.Point(12, 374);
+            this.btnEliminarAsignacion.Name = "btnEliminarAsignacion";
+            this.btnEliminarAsignacion.Size = new System.Drawing.Size(728, 31);
+            this.btnEliminarAsignacion.StyleController = this.layoutControl5;
+            this.btnEliminarAsignacion.TabIndex = 4;
+            this.btnEliminarAsignacion.Text = "Eliminar Asignación";
+            this.btnEliminarAsignacion.Click += new System.EventHandler(this.btnEliminarAsignacion_Click);
+            // 
+            // layoutControlItem36
+            // 
+            this.layoutControlItem36.Control = this.btnEliminarAsignacion;
+            this.layoutControlItem36.Location = new System.Drawing.Point(0, 362);
+            this.layoutControlItem36.Name = "layoutControlItem36";
+            this.layoutControlItem36.Size = new System.Drawing.Size(732, 35);
+            this.layoutControlItem36.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem36.TextVisible = false;
+            // 
             // EnrollForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2165,6 +2193,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2315,5 +2344,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn InicioVigencia;
         private DevExpress.XtraGrid.Columns.GridColumn FinVigencia;
         private DevExpress.XtraGrid.Columns.GridColumn TipoAccion2;
+        private DevExpress.XtraEditors.SimpleButton btnEliminarAsignacion;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem36;
     }
 }
