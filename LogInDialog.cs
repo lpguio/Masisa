@@ -69,10 +69,10 @@ namespace EnroladorStandAlone
             if (!error) {
                 if (online) {
                     try {
-                        var res = await new EnroladorWebServices.EnroladorWebServicesClient().LoginAsync(user, pass);
+                        Tuple<Guid, string> res = await new EnroladorWebServices.EnroladorWebServicesClient().Login2Async(user, pass);
 
-                        if (res.HasValue) {
-                            _loggedUser = new Tuple<Guid, string, string>(res.Value, user, PassVerifier.StorePassword(pass, res.Value));
+                        if (res != null) {
+                            _loggedUser = new Tuple<Guid, string, string>(res.Item1, user, res.Item2);
                             DialogResult = DialogResult.OK;
                             return;
                         }

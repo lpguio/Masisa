@@ -54,7 +54,7 @@ namespace EnroladorStandAlone
 
         private void ActualizaLabels() {
             lblTotal.Text = string.Format("Paso {0} de {1}: {2}", numeroPaso, pgbTotal.Maximum / 10, nombrePaso);
-            lblActual.Text = string.Format("{0}%", 100 * pgbActual.Value / pgbActual.Maximum);
+            lblActual.Text = (100 * pgbActual.Value / pgbActual.Maximum).ToString() + "%";
             lblTotal.Location = new Point((panel.Width - lblTotal.Width) / 2, lblTotal.Location.Y);
             lblActual.Location = new Point((panel.Width - lblActual.Width) / 2, lblActual.Location.Y);
         }

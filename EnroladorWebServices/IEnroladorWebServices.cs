@@ -39,6 +39,9 @@ namespace EnroladorWebServices
         Guid? Login(string user, string pass);
 
         [OperationContract]
+        Tuple<Guid, string> Login2(string user, string pass);
+
+        [OperationContract]
         Tuple<string,string> Revalidar(Guid loggedUser);
 
         [OperationContract]

@@ -885,6 +885,36 @@ namespace EnroladorWebServices
             }
         }
 
+        public Tuple<Guid, string> Login2(string user, string pass) {
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString()))
+                using (SqlCommand comm = new SqlCommand("ESA_Login", conn) { CommandType = CommandType.StoredProcedure }) {
+                    conn.Open();
+
+                    comm.Parameters.Add("@User", SqlDbType.NVarChar).Value = user;
+                    comm.Parameters.Add("@Pass", SqlDbType.NVarChar).Value = pass;
+                    SqlParameter outParam1 = new SqlParameter("@OidUsuario", SqlDbType.UniqueIdentifier);
+                    outParam1.Direction = ParameterDirection.Output;
+                    comm.Parameters.Add(outParam1);
+                    SqlParameter outParam2 = new SqlParameter("@SHAPassword", SqlDbType.NVarChar, -1);
+                    //SqlParameter outParam2 = new SqlParameter("@Pass", SqlDbType.VarBinary, -1);
+                    outParam2.Direction = ParameterDirection.Output;
+                    comm.Parameters.Add(outParam2);
+
+                    comm.ExecuteNonQuery();
+
+                    if (!(outParam1.Value is DBNull) && !(outParam2.Value is DBNull)) {
+                        //return new Tuple<string, string>((string)outParam1.Value, ByteArrayToString((byte[])outParam2.Value));
+                        return new Tuple<Guid, string>((Guid)outParam1.Value, (string)outParam2.Value);
+                    } else {
+                        return null;
+                    }
+                }
+            } catch (Exception XD) {
+                return null;
+            }
+        }
+
         public Tuple<string, string> Revalidar(Guid loggedUser)
         {
             try
@@ -898,7 +928,8 @@ namespace EnroladorWebServices
                     SqlParameter outParam1 = new SqlParameter("@User", SqlDbType.NVarChar, -1);
                     outParam1.Direction = ParameterDirection.Output;
                     comm.Parameters.Add(outParam1);
-                    SqlParameter outParam2 = new SqlParameter("@Pass", SqlDbType.VarBinary, -1);
+                    SqlParameter outParam2 = new SqlParameter("@Pass", SqlDbType.NVarChar, -1);
+                    //SqlParameter outParam2 = new SqlParameter("@Pass", SqlDbType.VarBinary, -1);
                     outParam2.Direction = ParameterDirection.Output;
                     comm.Parameters.Add(outParam2);
 
@@ -906,7 +937,8 @@ namespace EnroladorWebServices
 
                     if (!(outParam1.Value is DBNull) && !(outParam2.Value is DBNull))
                     {
-                        return new Tuple<string, string>((string)outParam1.Value, ByteArrayToString((byte[])outParam2.Value));
+                        //return new Tuple<string, string>((string)outParam1.Value, ByteArrayToString((byte[])outParam2.Value));
+                        return new Tuple<string, string>((string)outParam1.Value, (string)outParam2.Value);
                     }
                     else
                     {
