@@ -744,7 +744,7 @@ namespace EnroladorStandAlone
                 {
                     return false;
                 }
-
+                
                 loggedUser = returnedUser;
                 huellaUserTable = await LeeHuellaUser();
 
