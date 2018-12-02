@@ -338,6 +338,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="logo BA.png" />
+    <Content Include="ScriptsCreadosModificados\Modificar_ESA_Contrato.sql" />
+    <Content Include="ScriptsCreadosModificados\Modificar_ESA_Crear_Contrato.sql" />
     <None Include="Service References\EnroladorWebServices\EnroladorWebServices11.disco" />
     <None Include="Service References\EnroladorWebServices\EnroladorWebServices11.wsdl" />
     <None Include="Service References\EnroladorWebServices\EnroladorWebServices33.xsd">
@@ -416,6 +418,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\EnroladorWebServices\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

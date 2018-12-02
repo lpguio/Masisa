@@ -66,6 +66,7 @@
             this.cmbNuevoCargo = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbNuevoEmpresa = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbNuevoCuenta = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtCodigoContrato = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -74,6 +75,7 @@
             this.simpleSeparator4 = new DevExpress.XtraLayout.SimpleSeparator();
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.simpleSeparator10 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.layoutControlItem37 = new DevExpress.XtraLayout.LayoutControlItem();
             this.wpMostrarContratos = new DevExpress.XtraWizard.WizardPage();
             this.layoutControl7 = new DevExpress.XtraLayout.LayoutControl();
             this.btnEditarContrato = new DevExpress.XtraEditors.SimpleButton();
@@ -88,6 +90,7 @@
             this.FinVigencia = new DevExpress.XtraGrid.Columns.GridColumn();
             this.OidContrato = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TipoAccion2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnNuevoContrato = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup7 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -125,6 +128,7 @@
             this.DispositivoOidNueva = new DevExpress.XtraGrid.Columns.GridColumn();
             this.wpMostrarAsignaciones = new DevExpress.XtraWizard.WizardPage();
             this.layoutControl5 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnEliminarAsignacion = new DevExpress.XtraEditors.SimpleButton();
             this.gdcAsignaciones = new DevExpress.XtraGrid.GridControl();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Cadena = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -134,6 +138,7 @@
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem36 = new DevExpress.XtraLayout.LayoutControlItem();
             this.wpResumen = new DevExpress.XtraWizard.WizardPage();
             this.layoutControl12 = new DevExpress.XtraLayout.LayoutControl();
             this.btnAutorizar = new DevExpress.XtraEditors.SimpleButton();
@@ -173,8 +178,6 @@
             this.simpleSeparator9 = new DevExpress.XtraLayout.SimpleSeparator();
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
             this.simpleSeparator11 = new DevExpress.XtraLayout.SimpleSeparator();
-            this.btnEliminarAsignacion = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem36 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.wzrEnroll)).BeginInit();
             this.wzrEnroll.SuspendLayout();
             this.wpRUT.SuspendLayout();
@@ -218,6 +221,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbNuevoCargo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNuevoEmpresa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNuevoCuenta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCodigoContrato.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
@@ -226,6 +230,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).BeginInit();
             this.wpMostrarContratos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl7)).BeginInit();
             this.layoutControl7.SuspendLayout();
@@ -264,6 +269,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).BeginInit();
             this.wpResumen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl12)).BeginInit();
             this.layoutControl12.SuspendLayout();
@@ -308,7 +314,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).BeginInit();
             this.SuspendLayout();
             // 
             // wzrEnroll
@@ -716,6 +721,7 @@
             this.layoutControl3.Controls.Add(this.cmbNuevoCargo);
             this.layoutControl3.Controls.Add(this.cmbNuevoEmpresa);
             this.layoutControl3.Controls.Add(this.cmbNuevoCuenta);
+            this.layoutControl3.Controls.Add(this.txtCodigoContrato);
             this.layoutControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl3.Location = new System.Drawing.Point(0, 0);
             this.layoutControl3.Name = "layoutControl3";
@@ -728,7 +734,7 @@
             // dteNuevoInicioVigencia
             // 
             this.dteNuevoInicioVigencia.EditValue = new System.DateTime(((long)(0)));
-            this.dteNuevoInicioVigencia.Location = new System.Drawing.Point(144, 120);
+            this.dteNuevoInicioVigencia.Location = new System.Drawing.Point(159, 120);
             this.dteNuevoInicioVigencia.Name = "dteNuevoInicioVigencia";
             this.dteNuevoInicioVigencia.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.dteNuevoInicioVigencia.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -738,14 +744,14 @@
             this.dteNuevoInicioVigencia.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.False;
             this.dteNuevoInicioVigencia.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dteNuevoInicioVigencia.Size = new System.Drawing.Size(596, 30);
+            this.dteNuevoInicioVigencia.Size = new System.Drawing.Size(581, 30);
             this.dteNuevoInicioVigencia.StyleController = this.layoutControl3;
             this.dteNuevoInicioVigencia.TabIndex = 6;
             // 
             // cmbNuevoCargo
             // 
             this.cmbNuevoCargo.Enabled = false;
-            this.cmbNuevoCargo.Location = new System.Drawing.Point(144, 84);
+            this.cmbNuevoCargo.Location = new System.Drawing.Point(159, 84);
             this.cmbNuevoCargo.Name = "cmbNuevoCargo";
             this.cmbNuevoCargo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.cmbNuevoCargo.Properties.Appearance.Options.UseFont = true;
@@ -753,13 +759,13 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbNuevoCargo.Properties.DropDownRows = 10;
             this.cmbNuevoCargo.Properties.Sorted = true;
-            this.cmbNuevoCargo.Size = new System.Drawing.Size(596, 30);
+            this.cmbNuevoCargo.Size = new System.Drawing.Size(581, 30);
             this.cmbNuevoCargo.StyleController = this.layoutControl3;
             this.cmbNuevoCargo.TabIndex = 5;
             // 
             // cmbNuevoEmpresa
             // 
-            this.cmbNuevoEmpresa.Location = new System.Drawing.Point(144, 12);
+            this.cmbNuevoEmpresa.Location = new System.Drawing.Point(159, 12);
             this.cmbNuevoEmpresa.Name = "cmbNuevoEmpresa";
             this.cmbNuevoEmpresa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.cmbNuevoEmpresa.Properties.Appearance.Options.UseFont = true;
@@ -767,7 +773,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbNuevoEmpresa.Properties.DropDownRows = 10;
             this.cmbNuevoEmpresa.Properties.Sorted = true;
-            this.cmbNuevoEmpresa.Size = new System.Drawing.Size(596, 30);
+            this.cmbNuevoEmpresa.Size = new System.Drawing.Size(581, 30);
             this.cmbNuevoEmpresa.StyleController = this.layoutControl3;
             this.cmbNuevoEmpresa.TabIndex = 1;
             this.cmbNuevoEmpresa.SelectedIndexChanged += new System.EventHandler(this.cmbNuevoEmpresa_SelectedIndexChanged);
@@ -775,7 +781,7 @@
             // cmbNuevoCuenta
             // 
             this.cmbNuevoCuenta.Enabled = false;
-            this.cmbNuevoCuenta.Location = new System.Drawing.Point(144, 48);
+            this.cmbNuevoCuenta.Location = new System.Drawing.Point(159, 48);
             this.cmbNuevoCuenta.Name = "cmbNuevoCuenta";
             this.cmbNuevoCuenta.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.cmbNuevoCuenta.Properties.Appearance.Options.UseFont = true;
@@ -783,9 +789,19 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbNuevoCuenta.Properties.DropDownRows = 10;
             this.cmbNuevoCuenta.Properties.Sorted = true;
-            this.cmbNuevoCuenta.Size = new System.Drawing.Size(596, 30);
+            this.cmbNuevoCuenta.Size = new System.Drawing.Size(581, 30);
             this.cmbNuevoCuenta.StyleController = this.layoutControl3;
             this.cmbNuevoCuenta.TabIndex = 3;
+            // 
+            // txtCodigoContrato
+            // 
+            this.txtCodigoContrato.Location = new System.Drawing.Point(159, 154);
+            this.txtCodigoContrato.Name = "txtCodigoContrato";
+            this.txtCodigoContrato.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtCodigoContrato.Properties.Appearance.Options.UseFont = true;
+            this.txtCodigoContrato.Size = new System.Drawing.Size(581, 30);
+            this.txtCodigoContrato.StyleController = this.layoutControl3;
+            this.txtCodigoContrato.TabIndex = 7;
             // 
             // layoutControlGroup3
             // 
@@ -799,7 +815,8 @@
             this.simpleSeparator3,
             this.simpleSeparator4,
             this.layoutControlItem31,
-            this.simpleSeparator10});
+            this.simpleSeparator10,
+            this.layoutControlItem37});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "Root";
             this.layoutControlGroup3.Size = new System.Drawing.Size(752, 417);
@@ -815,7 +832,7 @@
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(732, 34);
             this.layoutControlItem5.Text = "Empresa";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(129, 24);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(144, 24);
             // 
             // layoutControlItem6
             // 
@@ -827,7 +844,7 @@
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(732, 34);
             this.layoutControlItem6.Text = "Cuenta";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(129, 24);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(144, 24);
             // 
             // layoutControlItem7
             // 
@@ -839,7 +856,7 @@
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(732, 34);
             this.layoutControlItem7.Text = "Cargo";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(129, 24);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(144, 24);
             // 
             // simpleSeparator3
             // 
@@ -864,9 +881,9 @@
             this.layoutControlItem31.Control = this.dteNuevoInicioVigencia;
             this.layoutControlItem31.Location = new System.Drawing.Point(0, 108);
             this.layoutControlItem31.Name = "layoutControlItem31";
-            this.layoutControlItem31.Size = new System.Drawing.Size(732, 289);
+            this.layoutControlItem31.Size = new System.Drawing.Size(732, 34);
             this.layoutControlItem31.Text = "Inicio Vigencia";
-            this.layoutControlItem31.TextSize = new System.Drawing.Size(129, 24);
+            this.layoutControlItem31.TextSize = new System.Drawing.Size(144, 24);
             // 
             // simpleSeparator10
             // 
@@ -874,6 +891,18 @@
             this.simpleSeparator10.Location = new System.Drawing.Point(0, 106);
             this.simpleSeparator10.Name = "simpleSeparator10";
             this.simpleSeparator10.Size = new System.Drawing.Size(732, 2);
+            // 
+            // layoutControlItem37
+            // 
+            this.layoutControlItem37.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.layoutControlItem37.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem37.Control = this.txtCodigoContrato;
+            this.layoutControlItem37.CustomizationFormText = "Código Contrato:";
+            this.layoutControlItem37.Location = new System.Drawing.Point(0, 142);
+            this.layoutControlItem37.Name = "layoutControlItem37";
+            this.layoutControlItem37.Size = new System.Drawing.Size(732, 255);
+            this.layoutControlItem37.Text = "Código Contrato";
+            this.layoutControlItem37.TextSize = new System.Drawing.Size(144, 24);
             // 
             // wpMostrarContratos
             // 
@@ -964,7 +993,8 @@
             this.InicioVigencia,
             this.FinVigencia,
             this.OidContrato,
-            this.TipoAccion2});
+            this.TipoAccion2,
+            this.gridColumn1});
             this.gridView1.GridControl = this.gdcContratos;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -1035,6 +1065,14 @@
             this.TipoAccion2.Caption = "TipoAccionCol";
             this.TipoAccion2.FieldName = "Item7";
             this.TipoAccion2.Name = "TipoAccion2";
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Código Contrato";
+            this.gridColumn1.FieldName = "Rest";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 5;
             // 
             // btnNuevoContrato
             // 
@@ -1457,6 +1495,18 @@
             this.layoutControl5.TabIndex = 2;
             this.layoutControl5.Text = "layoutControl5";
             // 
+            // btnEliminarAsignacion
+            // 
+            this.btnEliminarAsignacion.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.btnEliminarAsignacion.Appearance.Options.UseFont = true;
+            this.btnEliminarAsignacion.Location = new System.Drawing.Point(12, 374);
+            this.btnEliminarAsignacion.Name = "btnEliminarAsignacion";
+            this.btnEliminarAsignacion.Size = new System.Drawing.Size(728, 31);
+            this.btnEliminarAsignacion.StyleController = this.layoutControl5;
+            this.btnEliminarAsignacion.TabIndex = 4;
+            this.btnEliminarAsignacion.Text = "Eliminar Asignación";
+            this.btnEliminarAsignacion.Click += new System.EventHandler(this.btnEliminarAsignacion_Click);
+            // 
             // gdcAsignaciones
             // 
             this.gdcAsignaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1574,6 +1624,15 @@
             this.layoutControlItem10.Size = new System.Drawing.Size(732, 35);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
+            // 
+            // layoutControlItem36
+            // 
+            this.layoutControlItem36.Control = this.btnEliminarAsignacion;
+            this.layoutControlItem36.Location = new System.Drawing.Point(0, 362);
+            this.layoutControlItem36.Name = "layoutControlItem36";
+            this.layoutControlItem36.Size = new System.Drawing.Size(732, 35);
+            this.layoutControlItem36.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem36.TextVisible = false;
             // 
             // wpResumen
             // 
@@ -2027,27 +2086,6 @@
             this.simpleSeparator11.Name = "simpleSeparator11";
             this.simpleSeparator11.Size = new System.Drawing.Size(732, 2);
             // 
-            // btnEliminarAsignacion
-            // 
-            this.btnEliminarAsignacion.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.btnEliminarAsignacion.Appearance.Options.UseFont = true;
-            this.btnEliminarAsignacion.Location = new System.Drawing.Point(12, 374);
-            this.btnEliminarAsignacion.Name = "btnEliminarAsignacion";
-            this.btnEliminarAsignacion.Size = new System.Drawing.Size(728, 31);
-            this.btnEliminarAsignacion.StyleController = this.layoutControl5;
-            this.btnEliminarAsignacion.TabIndex = 4;
-            this.btnEliminarAsignacion.Text = "Eliminar Asignación";
-            this.btnEliminarAsignacion.Click += new System.EventHandler(this.btnEliminarAsignacion_Click);
-            // 
-            // layoutControlItem36
-            // 
-            this.layoutControlItem36.Control = this.btnEliminarAsignacion;
-            this.layoutControlItem36.Location = new System.Drawing.Point(0, 362);
-            this.layoutControlItem36.Name = "layoutControlItem36";
-            this.layoutControlItem36.Size = new System.Drawing.Size(732, 35);
-            this.layoutControlItem36.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem36.TextVisible = false;
-            // 
             // EnrollForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2103,6 +2141,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbNuevoCargo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNuevoEmpresa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNuevoCuenta.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCodigoContrato.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
@@ -2111,6 +2150,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).EndInit();
             this.wpMostrarContratos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl7)).EndInit();
             this.layoutControl7.ResumeLayout(false);
@@ -2149,6 +2189,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).EndInit();
             this.wpResumen.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl12)).EndInit();
             this.layoutControl12.ResumeLayout(false);
@@ -2193,7 +2234,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2346,5 +2386,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn TipoAccion2;
         private DevExpress.XtraEditors.SimpleButton btnEliminarAsignacion;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem36;
+        private DevExpress.XtraEditors.TextEdit txtCodigoContrato;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem37;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }
 }

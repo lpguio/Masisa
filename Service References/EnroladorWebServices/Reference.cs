@@ -36,10 +36,10 @@ namespace EnroladorStandAlone.EnroladorWebServices {
         System.Threading.Tasks.Task<string> AccionCrearAsignacionAsync(System.Guid responsable, System.Guid oid, System.Guid empleado, System.Guid dispositivo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionCrearContrato", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionCrearContratoResponse")]
-        string AccionCrearContrato(System.Guid responsable, System.Guid oid, System.Guid empleado, System.Guid empresa, System.Guid cuenta, System.Guid cargo, System.DateTime inicioVigencia, System.Nullable<System.DateTime> finVigencia);
+        string AccionCrearContrato(System.Guid responsable, System.Guid oid, System.Guid empleado, System.Guid empresa, System.Guid cuenta, System.Guid cargo, System.DateTime inicioVigencia, System.Nullable<System.DateTime> finVigencia, string CodigoContrato);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionCrearContrato", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionCrearContratoResponse")]
-        System.Threading.Tasks.Task<string> AccionCrearContratoAsync(System.Guid responsable, System.Guid oid, System.Guid empleado, System.Guid empresa, System.Guid cuenta, System.Guid cargo, System.DateTime inicioVigencia, System.Nullable<System.DateTime> finVigencia);
+        System.Threading.Tasks.Task<string> AccionCrearContratoAsync(System.Guid responsable, System.Guid oid, System.Guid empleado, System.Guid empresa, System.Guid cuenta, System.Guid cargo, System.DateTime inicioVigencia, System.Nullable<System.DateTime> finVigencia, string CodigoContrato);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleado", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleadoResponse")]
         string AccionCrearEmpleado(System.Guid responsable, System.Guid oid, string RUT, string firstName, string lastName, int enrollID, string contraseña);
@@ -138,10 +138,10 @@ namespace EnroladorStandAlone.EnroladorWebServices {
         System.Threading.Tasks.Task<System.Tuple<System.Guid, System.Guid>[]> LeeEmpleadosDispositivosAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeContrato", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeContratoResponse")]
-        System.Tuple<System.Guid, System.Guid, System.Guid, System.Guid, System.DateTime, System.Nullable<System.DateTime>, System.Guid>[] LeeContrato(System.Guid loggedUser);
+        System.Tuple<System.Guid, System.Guid, System.Guid, System.Guid, System.DateTime, System.Nullable<System.DateTime>, System.Guid, System.Tuple<string>>[] LeeContrato(System.Guid loggedUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeContrato", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeContratoResponse")]
-        System.Threading.Tasks.Task<System.Tuple<System.Guid, System.Guid, System.Guid, System.Guid, System.DateTime, System.Nullable<System.DateTime>, System.Guid>[]> LeeContratoAsync(System.Guid loggedUser);
+        System.Threading.Tasks.Task<System.Tuple<System.Guid, System.Guid, System.Guid, System.Guid, System.DateTime, System.Nullable<System.DateTime>, System.Guid, System.Tuple<string>>[]> LeeContratoAsync(System.Guid loggedUser);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -195,12 +195,12 @@ namespace EnroladorStandAlone.EnroladorWebServices {
             return base.Channel.AccionCrearAsignacionAsync(responsable, oid, empleado, dispositivo);
         }
         
-        public string AccionCrearContrato(System.Guid responsable, System.Guid oid, System.Guid empleado, System.Guid empresa, System.Guid cuenta, System.Guid cargo, System.DateTime inicioVigencia, System.Nullable<System.DateTime> finVigencia) {
-            return base.Channel.AccionCrearContrato(responsable, oid, empleado, empresa, cuenta, cargo, inicioVigencia, finVigencia);
+        public string AccionCrearContrato(System.Guid responsable, System.Guid oid, System.Guid empleado, System.Guid empresa, System.Guid cuenta, System.Guid cargo, System.DateTime inicioVigencia, System.Nullable<System.DateTime> finVigencia, string CodigoContrato) {
+            return base.Channel.AccionCrearContrato(responsable, oid, empleado, empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato);
         }
         
-        public System.Threading.Tasks.Task<string> AccionCrearContratoAsync(System.Guid responsable, System.Guid oid, System.Guid empleado, System.Guid empresa, System.Guid cuenta, System.Guid cargo, System.DateTime inicioVigencia, System.Nullable<System.DateTime> finVigencia) {
-            return base.Channel.AccionCrearContratoAsync(responsable, oid, empleado, empresa, cuenta, cargo, inicioVigencia, finVigencia);
+        public System.Threading.Tasks.Task<string> AccionCrearContratoAsync(System.Guid responsable, System.Guid oid, System.Guid empleado, System.Guid empresa, System.Guid cuenta, System.Guid cargo, System.DateTime inicioVigencia, System.Nullable<System.DateTime> finVigencia, string CodigoContrato) {
+            return base.Channel.AccionCrearContratoAsync(responsable, oid, empleado, empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato);
         }
         
         public string AccionCrearEmpleado(System.Guid responsable, System.Guid oid, string RUT, string firstName, string lastName, int enrollID, string contraseña) {
@@ -331,11 +331,11 @@ namespace EnroladorStandAlone.EnroladorWebServices {
             return base.Channel.LeeEmpleadosDispositivosAsync();
         }
         
-        public System.Tuple<System.Guid, System.Guid, System.Guid, System.Guid, System.DateTime, System.Nullable<System.DateTime>, System.Guid>[] LeeContrato(System.Guid loggedUser) {
+        public System.Tuple<System.Guid, System.Guid, System.Guid, System.Guid, System.DateTime, System.Nullable<System.DateTime>, System.Guid, System.Tuple<string>>[] LeeContrato(System.Guid loggedUser) {
             return base.Channel.LeeContrato(loggedUser);
         }
         
-        public System.Threading.Tasks.Task<System.Tuple<System.Guid, System.Guid, System.Guid, System.Guid, System.DateTime, System.Nullable<System.DateTime>, System.Guid>[]> LeeContratoAsync(System.Guid loggedUser) {
+        public System.Threading.Tasks.Task<System.Tuple<System.Guid, System.Guid, System.Guid, System.Guid, System.DateTime, System.Nullable<System.DateTime>, System.Guid, System.Tuple<string>>[]> LeeContratoAsync(System.Guid loggedUser) {
             return base.Channel.LeeContratoAsync(loggedUser);
         }
     }

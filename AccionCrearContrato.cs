@@ -17,14 +17,16 @@ namespace EnroladorStandAlone
         Guid cargo;
         DateTime inicioVigencia;
         DateTime? finVigencia;
+        string codigoContrato;
         public Guid Empleado { get { return empleado; } }
         public Guid Empresa { get { return empresa; } }
         public Guid Cuenta { get { return cuenta; } }
         public Guid Cargo { get { return cargo; } }
         public DateTime InicioVigencia { get { return inicioVigencia; } }
         public DateTime? FinVigencia { get { return finVigencia; } }
+        public string CodigoContrato { get { return codigoContrato; } }
 
-        public AccionCrearContrato(Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, Form1 parent)
+        public AccionCrearContrato(Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string pcodigoContrato, Form1 parent)
             : base(parent.LoggedUser.Item1, DateTime.Now, Guid.NewGuid())
         {
             this.empleado = empleado;
@@ -33,6 +35,7 @@ namespace EnroladorStandAlone
             this.cargo = cargo;
             this.inicioVigencia = inicioVigencia;
             this.finVigencia = finVigencia;
+            this.codigoContrato = pcodigoContrato;
             descripcion = string.Format("Crear contrato al empleado con RUT {0} con la empresa {1}, cuenta {2} y cargo {3}. Inicio de vigencia {4}{5}", parent.EmpleadoTable[empleado].Item2, parent.EmpresaTable[empresa].Item1, parent.CuentaTable[cuenta], parent.CargoTable[cargo], inicioVigencia.ToString("dd/MM/yyyy"), finVigencia.HasValue ? ". Fin de vigencia " + finVigencia.Value.ToString("dd/MM/yyyy") : "");
 
             Aplicar(parent);
@@ -48,6 +51,7 @@ namespace EnroladorStandAlone
             inicioVigencia = original.inicioVigencia;
             finVigencia = original.finVigencia;
             descripcion = original.descripcion;
+            codigoContrato = original.codigoContrato;
         }
 
         public override Accion Clonar()
@@ -55,7 +59,7 @@ namespace EnroladorStandAlone
             return new AccionCrearContrato(this);
         }
 
-        public bool Editar(Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, Form1 parent)
+        public bool Editar(Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string pcodigoContrato, Form1 parent)
         {
             if (this.empresa.Equals(empresa) && this.cuenta.Equals(cuenta) && this.cargo.Equals(cargo) && this.inicioVigencia.Equals(inicioVigencia) && this.finVigencia.Equals(finVigencia))
             {
@@ -66,9 +70,10 @@ namespace EnroladorStandAlone
             this.cargo = cargo;
             this.inicioVigencia = inicioVigencia;
             this.finVigencia = finVigencia;
-            descripcion = string.Format("Crear contrato al empleado con RUT {0} con la empresa {1}, cuenta {2} y cargo {3}. Inicio de vigencia {4}{5}", parent.EmpleadoTable[empleado].Item2, parent.EmpresaTable[empresa].Item1, parent.CuentaTable[cuenta], parent.CargoTable[cargo], inicioVigencia.ToString("dd/MM/yyyy"), finVigencia.HasValue ? ". Fin de vigencia " + finVigencia.Value.ToString("dd/MM/yyyy") : "");
+            this.codigoContrato = pcodigoContrato;
+            descripcion = string.Format("Crear contrato al empleado con RUT {0} con la empresa {1}, cuenta {2} y cargo {3}. Inicio de vigencia {4}{5}. Codigo Contrato {6}", parent.EmpleadoTable[empleado].Item2, parent.EmpresaTable[empresa].Item1, parent.CuentaTable[cuenta], parent.CargoTable[cargo], inicioVigencia.ToString("dd/MM/yyyy"), finVigencia.HasValue ? ". Fin de vigencia " + finVigencia.Value.ToString("dd/MM/yyyy") : "", CodigoContrato);
 
-            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?>(empresa, cuenta, cargo, inicioVigencia, finVigencia);
+            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato);
             return true;
         }
 
@@ -76,7 +81,7 @@ namespace EnroladorStandAlone
         {
             try
             {
-                string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionCrearContratoAsync(responsable, oid, empleado, empresa, cuenta, cargo, inicioVigencia, finVigencia);
+                string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionCrearContratoAsync(responsable, oid, empleado, empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato);
                 if (!string.IsNullOrEmpty(error))
                 {
                     throw new Exception("Contrato no creado: " + error);
@@ -105,7 +110,7 @@ namespace EnroladorStandAlone
                 {
                     parent.EmpleadoTable[empleado].Item6.Item3.Add(oid);
                 }
-                parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?>(empresa, cuenta, cargo, inicioVigencia, finVigencia);
+                parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato);
             }
         }
     }

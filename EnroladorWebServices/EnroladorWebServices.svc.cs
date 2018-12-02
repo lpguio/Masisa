@@ -19,8 +19,6 @@ namespace EnroladorWebServices
 			return  Properties.Settings.Default.ConnectionString;
 		}
 
-		
-
         public string AccionActualizarHuella(Guid responsable, Guid oid, string data)
         {
             try
@@ -122,7 +120,7 @@ namespace EnroladorWebServices
             }
         }
 
-        public string AccionCrearContrato(Guid responsable, Guid oid, Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia)
+        public string AccionCrearContrato(Guid responsable, Guid oid, Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string CodigoContrato)
         {
             try
             {
@@ -138,6 +136,8 @@ namespace EnroladorWebServices
                     comm.Parameters.Add("@Cuenta", SqlDbType.UniqueIdentifier).Value = cuenta;
                     comm.Parameters.Add("@Cargo", SqlDbType.UniqueIdentifier).Value = cargo;
                     comm.Parameters.Add("@InicioVigencia", SqlDbType.DateTime).Value = inicioVigencia;
+                    comm.Parameters.Add("@CodigoContrato", SqlDbType.VarChar).Value = CodigoContrato.Length > 100 ? CodigoContrato.Substring(0,100) : CodigoContrato;
+
                     if (finVigencia.HasValue)
                     {
                         comm.Parameters.Add("@FinVigencia", SqlDbType.DateTime).Value = finVigencia.Value;
@@ -419,9 +419,9 @@ namespace EnroladorWebServices
             }
         }
 
-        public List<Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid>> LeeContrato(Guid loggedUser)
+        public List<Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid, Tuple<string>>> LeeContrato(Guid loggedUser)
         {
-            string sql = string.Format("SELECT Oid, Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, Empleado FROM ESA_Contrato WHERE /*(GETDATE() BETWEEN ISNULL(InicioVigencia, GETDATE()) AND ISNULL(FinVigencia, GETDATE())) AND */ Usuario = '{0}'", loggedUser);
+            string sql = string.Format("SELECT Oid, Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, Empleado, Codigo FROM ESA_Contrato WHERE /*(GETDATE() BETWEEN ISNULL(InicioVigencia, GETDATE()) AND ISNULL(FinVigencia, GETDATE())) AND */ Usuario = '{0}'", loggedUser);
 
             try
             {
@@ -429,7 +429,7 @@ namespace EnroladorWebServices
                 using (SqlCommand comm = new SqlCommand("", conn))
                 {
                     conn.Open();
-                    List<Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid>> res;
+                    List<Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid, Tuple<string>>> res;
 
                     comm.CommandText = string.Format("SELECT COUNT(*) FROM ({0}) AS Tabla", sql);
                     int filas = (int)comm.ExecuteScalar();
@@ -440,21 +440,33 @@ namespace EnroladorWebServices
                     {
                         reader = comm.ExecuteReader();
 
-                        res = new List<Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid>>(filas);
+                        res = new List<Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid, Tuple<string>>>(filas);
+                        int i = 0;
                         while (reader.Read())
                         {
-                            Guid Oid = reader.GetFieldValue<Guid>(0);
-                            Guid Empresa = reader.GetFieldValue<Guid>(1);
-                            Guid Cuenta = reader.GetFieldValue<Guid>(2);
-                            Guid Cargo = reader.GetFieldValue<Guid>(3);
-                            DateTime InicioVigencia = reader.IsDBNull(4) ? DateTime.Today : reader.GetFieldValue<DateTime>(4);
-                            DateTime? FinVigencia = null;
-                            if (!reader.IsDBNull(5))
+                            try
                             {
-                                FinVigencia = reader.GetFieldValue<DateTime>(5);
+                                Guid Oid = reader.GetFieldValue<Guid>(0);
+                                Guid Empresa = reader.GetFieldValue<Guid>(1);
+                                Guid Cuenta = reader.GetFieldValue<Guid>(2);
+                                Guid Cargo = reader.GetFieldValue<Guid>(3);
+                                DateTime InicioVigencia = reader.IsDBNull(4) ? DateTime.Today : reader.GetFieldValue<DateTime>(4);
+                                DateTime? FinVigencia = null;
+                                if (!reader.IsDBNull(5))
+                                {
+                                    FinVigencia = reader.GetFieldValue<DateTime>(5);
+                                }
+                                Guid Empleado = reader.GetFieldValue<Guid>(6);
+                                var CodigoContrato = reader.IsDBNull(7) ? "SIN_CODIGO_CONTRATO" : reader.GetFieldValue<string>(7).ToString();
+
+                                var tplContrato = new Tuple<string>(CodigoContrato);
+                                res.Add(new Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid, Tuple<string>>(Oid, Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, Empleado, tplContrato));
+                                i++;
                             }
-                            Guid Empleado = reader.GetFieldValue<Guid>(6);
-                            res.Add(new Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid>(Oid, Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, Empleado));
+                            catch (Exception Ex)
+                            {
+                                throw new Exception("Error cargando contratos", Ex);
+                            }
                         }
                     }
                     finally
@@ -919,6 +931,7 @@ namespace EnroladorWebServices
                 return null;
             }
         }
+
         private string ByteArrayToString(byte[] ba)
         {
             StringBuilder hex = new StringBuilder(ba.Length * 2);

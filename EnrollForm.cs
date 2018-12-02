@@ -15,7 +15,7 @@ namespace EnroladorStandAlone
     {
         private Form1 parent;
         private string RUT;
-        private BindingList<Tuple<string, string, string, DateTime, DateTime?, Guid, TipoAccion?>> bnlContratos = new BindingList<Tuple<string, string, string, DateTime, DateTime?, Guid, EnrollForm.TipoAccion?>>();
+        private BindingList<Tuple<string, string, string, DateTime, DateTime?, Guid, TipoAccion?, Tuple<string>>> bnlContratos = new BindingList<Tuple<string, string, string, DateTime, DateTime?, Guid, EnrollForm.TipoAccion?, Tuple<string>>>();
         private BindingList<Tuple<string, bool, TipoHuella, Guid?>> bnlHuellas = new BindingList<Tuple<string, bool, TipoHuella, Guid?>>();
         private BindingList<Tuple<string, string, string>> bnlAsignaciones = new BindingList<Tuple<string, string, string>>();
         private BindingList<Guid> bnlAsignacionesTemporales = new BindingList<Guid>();
@@ -424,6 +424,7 @@ namespace EnroladorStandAlone
                         Guid cargo = contratoItem.Item3;
                         DateTime inicio = contratoItem.Item4;
                         DateTime? fin = contratoItem.Item5;
+                        var tplCodigoContrato = new Tuple<string>(contratoItem.Item6);
                         if (parent.EmpresaTable.ContainsKey(empresa) && parent.CuentaTable.ContainsKey(cuenta) && parent.CargoTable.ContainsKey(cargo))
                         {
                             TipoAccion? tipoAccion = null;
@@ -444,7 +445,12 @@ namespace EnroladorStandAlone
                                     }
                                 }
                             }
-                            bnlContratos.Add(new Tuple<string, string, string, DateTime, DateTime?, Guid, TipoAccion?>(parent.EmpresaTable[empresa].Item1, parent.CuentaTable[cuenta].Item1, parent.CargoTable[cargo], inicio, fin, contrato, tipoAccion));
+                            try
+                            {
+                                bnlContratos.Add(new Tuple<string, string, string, DateTime, DateTime?, Guid, TipoAccion?, Tuple<string>>(parent.EmpresaTable[empresa].Item1, parent.CuentaTable[cuenta].Item1, parent.CargoTable[cargo], inicio, fin, contrato, tipoAccion, tplCodigoContrato));
+                            }
+                            catch(Exception Ex)
+                            { }
                         }
                     }
                 }
@@ -508,10 +514,10 @@ namespace EnroladorStandAlone
                 if (parent.ContratoTable[caducandoContrato].Item5.HasValue)
                 {
                     AccionCrearContrato accionCrearContrato = ContratoRecienCreado(caducandoContrato);
-                    //dteCaducarContrato.Properties.MinValue = Cuenta.Name accionCrearContrato.Cuenta. accionCrearContrato.InicioVigencia; 
+
                     if (accionCrearContrato != null)
                     {
-                        if (accionCrearContrato.Editar(accionCrearContrato.Empresa, accionCrearContrato.Cuenta, accionCrearContrato.Cargo, accionCrearContrato.InicioVigencia, null, parent))
+                        if (accionCrearContrato.Editar(accionCrearContrato.Empresa, accionCrearContrato.Cuenta, accionCrearContrato.Cargo, accionCrearContrato.InicioVigencia, null, accionCrearContrato.CodigoContrato, parent))
                         {
                             ModificarAccion(accionCrearContrato);
                         }
@@ -1124,7 +1130,7 @@ namespace EnroladorStandAlone
         {
             if (parent.EmpleadoRUTIndex.ContainsKey(RUT) && parent.EmpleadoTable.ContainsKey(parent.EmpleadoRUTIndex[RUT]))
             {
-                Accion accion = new AccionCrearContrato(parent.EmpleadoRUTIndex[RUT], ((ComboBoxItem)cmbNuevoEmpresa.SelectedItem).Oid, ((ComboBoxItem)cmbNuevoCuenta.SelectedItem).Oid, ((ComboBoxItem)cmbNuevoCargo.SelectedItem).Oid, dteNuevoInicioVigencia.DateTime, null, parent);
+                Accion accion = new AccionCrearContrato(parent.EmpleadoRUTIndex[RUT], ((ComboBoxItem)cmbNuevoEmpresa.SelectedItem).Oid, ((ComboBoxItem)cmbNuevoCuenta.SelectedItem).Oid, ((ComboBoxItem)cmbNuevoCargo.SelectedItem).Oid, dteNuevoInicioVigencia.DateTime, null, txtCodigoContrato.Text, parent);
                 acciones.Add(accion);
                 accionesActuales.Push(new Tuple<Accion, TipoAccion>(accion, TipoAccion.Nueva));
             }
@@ -1137,7 +1143,7 @@ namespace EnroladorStandAlone
         private void wpEditarContrato_PageCommit(object sender, EventArgs e)
         {
             AccionCrearContrato accionEditadaCrearContrato = (AccionCrearContrato)accionEditada;
-            if (accionEditadaCrearContrato.Editar(((ComboBoxItem)cmbEditarEmpresa.SelectedItem).Oid, ((ComboBoxItem)cmbEditarCuenta.SelectedItem).Oid, ((ComboBoxItem)cmbEditarCargo.SelectedItem).Oid, dteEditarInicioVigencia.DateTime, accionEditadaCrearContrato.FinVigencia, parent))
+            if (accionEditadaCrearContrato.Editar(((ComboBoxItem)cmbEditarEmpresa.SelectedItem).Oid, ((ComboBoxItem)cmbEditarCuenta.SelectedItem).Oid, ((ComboBoxItem)cmbEditarCargo.SelectedItem).Oid, dteEditarInicioVigencia.DateTime, accionEditadaCrearContrato.FinVigencia, txtCodigoContrato.Text, parent))
             {
                 ModificarAccion(accionEditadaCrearContrato);
             }
@@ -1154,7 +1160,7 @@ namespace EnroladorStandAlone
             else if (accionEditada is AccionCrearContrato)
             {
                 AccionCrearContrato accionEditadaCrearContrato = (AccionCrearContrato)accionEditada;
-                if (accionEditadaCrearContrato.Editar(accionEditadaCrearContrato.Empresa, accionEditadaCrearContrato.Cuenta, accionEditadaCrearContrato.Cargo, accionEditadaCrearContrato.InicioVigencia, dteCaducarContrato.DateTime, parent))
+                if (accionEditadaCrearContrato.Editar(accionEditadaCrearContrato.Empresa, accionEditadaCrearContrato.Cuenta, accionEditadaCrearContrato.Cargo, accionEditadaCrearContrato.InicioVigencia, dteCaducarContrato.DateTime, txtCodigoContrato.Text, parent))
                 {
                     ModificarAccion(accionEditadaCrearContrato);
                 }
@@ -1676,7 +1682,7 @@ namespace EnroladorStandAlone
 
             int rowHandle = gridView3.GetSelectedRows().First<int>();
 
-            var nombreDispositivo = gridView3.GetRowCellValue(rowHandle, "Item3".ToString());
+            var nombreDispositivo = gridView3.GetRowCellValue(rowHandle, "Item3").ToString();
 
             var dispositivo = parent.DispositivoTable.FirstOrDefault(p => p.Value.Item1 == nombreDispositivo);
 

@@ -14,6 +14,7 @@ namespace EnroladorStandAlone
         DateTime? finVigencia;
         DateTime? oldFinVigencia;
         Guid empleado;
+        string CodigoContrato;
         public DateTime? FinVigencia { get { return finVigencia; } }
         public Guid Empleado { get { return empleado; } }
 
@@ -65,7 +66,7 @@ namespace EnroladorStandAlone
                 descripcion = string.Format("Eliminar caducidad de contrato al empleado con RUT {0} con la empresa {1}, cuenta {2} y cargo {3}", parent.EmpleadoTable[empleado].Item2, parent.EmpresaTable[parent.ContratoTable[oid].Item1].Item1, parent.CuentaTable[parent.ContratoTable[oid].Item2], parent.CargoTable[parent.ContratoTable[oid].Item3]);
             }
 
-            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?>(parent.ContratoTable[oid].Item1, parent.ContratoTable[oid].Item2, parent.ContratoTable[oid].Item3, parent.ContratoTable[oid].Item4, finVigencia);
+            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(parent.ContratoTable[oid].Item1, parent.ContratoTable[oid].Item2, parent.ContratoTable[oid].Item3, parent.ContratoTable[oid].Item4, finVigencia, CodigoContrato);
             return true;
         }
 
@@ -87,12 +88,12 @@ namespace EnroladorStandAlone
 
         public override void Cancelar(Form1 parent)
         {
-            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?>(parent.ContratoTable[oid].Item1, parent.ContratoTable[oid].Item2, parent.ContratoTable[oid].Item3, parent.ContratoTable[oid].Item4, oldFinVigencia);
+            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(parent.ContratoTable[oid].Item1, parent.ContratoTable[oid].Item2, parent.ContratoTable[oid].Item3, parent.ContratoTable[oid].Item4, oldFinVigencia, CodigoContrato);
         }
 
         public override void Aplicar(Form1 parent)
         {
-            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?>(parent.ContratoTable[oid].Item1, parent.ContratoTable[oid].Item2, parent.ContratoTable[oid].Item3, parent.ContratoTable[oid].Item4, finVigencia);
+            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(parent.ContratoTable[oid].Item1, parent.ContratoTable[oid].Item2, parent.ContratoTable[oid].Item3, parent.ContratoTable[oid].Item4, finVigencia, CodigoContrato);
         }
     }
 }
