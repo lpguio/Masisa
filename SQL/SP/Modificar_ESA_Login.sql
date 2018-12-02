@@ -1,11 +1,3 @@
-USE [SCCSPArauco]
-GO
-/****** Object:  StoredProcedure [dbo].[ESA_Login]    Script Date: 1/12/2018 10:54:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
 ALTER PROCEDURE [dbo].[ESA_Login]
 	@User NVARCHAR(50),
 	@Pass VARCHAR(50),
