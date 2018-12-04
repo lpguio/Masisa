@@ -9,7 +9,217 @@
 //------------------------------------------------------------------------------
 
 namespace EnroladorStandAlone.EnroladorWebServices {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServicioCasino", Namespace="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer")]
+    [System.SerializableAttribute()]
+    public partial class ServicioCasino : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private System.Guid Casinok__BackingFieldField;
+        
+        private string Nombrek__BackingFieldField;
+        
+        private System.Guid Oidk__BackingFieldField;
+        
+        private bool Vigentek__BackingFieldField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<Casino>k__BackingField", IsRequired=true)]
+        public System.Guid Casinok__BackingField {
+            get {
+                return this.Casinok__BackingFieldField;
+            }
+            set {
+                if ((this.Casinok__BackingFieldField.Equals(value) != true)) {
+                    this.Casinok__BackingFieldField = value;
+                    this.RaisePropertyChanged("Casinok__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<Nombre>k__BackingField", IsRequired=true)]
+        public string Nombrek__BackingField {
+            get {
+                return this.Nombrek__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Nombrek__BackingFieldField, value) != true)) {
+                    this.Nombrek__BackingFieldField = value;
+                    this.RaisePropertyChanged("Nombrek__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<Oid>k__BackingField", IsRequired=true)]
+        public System.Guid Oidk__BackingField {
+            get {
+                return this.Oidk__BackingFieldField;
+            }
+            set {
+                if ((this.Oidk__BackingFieldField.Equals(value) != true)) {
+                    this.Oidk__BackingFieldField = value;
+                    this.RaisePropertyChanged("Oidk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<Vigente>k__BackingField", IsRequired=true)]
+        public bool Vigentek__BackingField {
+            get {
+                return this.Vigentek__BackingFieldField;
+            }
+            set {
+                if ((this.Vigentek__BackingFieldField.Equals(value) != true)) {
+                    this.Vigentek__BackingFieldField = value;
+                    this.RaisePropertyChanged("Vigentek__BackingField");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TurnoServicio", Namespace="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer")]
+    [System.SerializableAttribute()]
+    public partial class TurnoServicio : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private System.TimeSpan HoraFink__BackingFieldField;
+        
+        private System.TimeSpan HoraIniciok__BackingFieldField;
+        
+        private string Nombrek__BackingFieldField;
+        
+        private System.Guid Oidk__BackingFieldField;
+        
+        private System.Guid Serviciok__BackingFieldField;
+        
+        private bool Vigentek__BackingFieldField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<HoraFin>k__BackingField", IsRequired=true)]
+        public System.TimeSpan HoraFink__BackingField {
+            get {
+                return this.HoraFink__BackingFieldField;
+            }
+            set {
+                if ((this.HoraFink__BackingFieldField.Equals(value) != true)) {
+                    this.HoraFink__BackingFieldField = value;
+                    this.RaisePropertyChanged("HoraFink__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<HoraInicio>k__BackingField", IsRequired=true)]
+        public System.TimeSpan HoraIniciok__BackingField {
+            get {
+                return this.HoraIniciok__BackingFieldField;
+            }
+            set {
+                if ((this.HoraIniciok__BackingFieldField.Equals(value) != true)) {
+                    this.HoraIniciok__BackingFieldField = value;
+                    this.RaisePropertyChanged("HoraIniciok__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<Nombre>k__BackingField", IsRequired=true)]
+        public string Nombrek__BackingField {
+            get {
+                return this.Nombrek__BackingFieldField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Nombrek__BackingFieldField, value) != true)) {
+                    this.Nombrek__BackingFieldField = value;
+                    this.RaisePropertyChanged("Nombrek__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<Oid>k__BackingField", IsRequired=true)]
+        public System.Guid Oidk__BackingField {
+            get {
+                return this.Oidk__BackingFieldField;
+            }
+            set {
+                if ((this.Oidk__BackingFieldField.Equals(value) != true)) {
+                    this.Oidk__BackingFieldField = value;
+                    this.RaisePropertyChanged("Oidk__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<Servicio>k__BackingField", IsRequired=true)]
+        public System.Guid Serviciok__BackingField {
+            get {
+                return this.Serviciok__BackingFieldField;
+            }
+            set {
+                if ((this.Serviciok__BackingFieldField.Equals(value) != true)) {
+                    this.Serviciok__BackingFieldField = value;
+                    this.RaisePropertyChanged("Serviciok__BackingField");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<Vigente>k__BackingField", IsRequired=true)]
+        public bool Vigentek__BackingField {
+            get {
+                return this.Vigentek__BackingFieldField;
+            }
+            set {
+                if ((this.Vigentek__BackingFieldField.Equals(value) != true)) {
+                    this.Vigentek__BackingFieldField = value;
+                    this.RaisePropertyChanged("Vigentek__BackingField");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="EnroladorWebServices.IEnroladorWebServices")]
@@ -146,6 +356,18 @@ namespace EnroladorStandAlone.EnroladorWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeContrato", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeContratoResponse")]
         System.Threading.Tasks.Task<System.Tuple<System.Guid, System.Guid, System.Guid, System.Guid, System.DateTime, System.Nullable<System.DateTime>, System.Guid, System.Tuple<string>>[]> LeeContratoAsync(System.Guid loggedUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeServicioCasino", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeServicioCasinoResponse")]
+        EnroladorStandAlone.EnroladorWebServices.ServicioCasino[] LeeServicioCasino(System.Guid loggedUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeServicioCasino", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeServicioCasinoResponse")]
+        System.Threading.Tasks.Task<EnroladorStandAlone.EnroladorWebServices.ServicioCasino[]> LeeServicioCasinoAsync(System.Guid loggedUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeTurnoServicio", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeTurnoServicioResponse")]
+        EnroladorStandAlone.EnroladorWebServices.TurnoServicio[] LeeTurnoServicio(System.Guid loggedUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeTurnoServicio", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeTurnoServicioResponse")]
+        System.Threading.Tasks.Task<EnroladorStandAlone.EnroladorWebServices.TurnoServicio[]> LeeTurnoServicioAsync(System.Guid loggedUser);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -349,6 +571,22 @@ namespace EnroladorStandAlone.EnroladorWebServices {
         
         public System.Threading.Tasks.Task<System.Tuple<System.Guid, System.Guid, System.Guid, System.Guid, System.DateTime, System.Nullable<System.DateTime>, System.Guid, System.Tuple<string>>[]> LeeContratoAsync(System.Guid loggedUser) {
             return base.Channel.LeeContratoAsync(loggedUser);
+        }
+        
+        public EnroladorStandAlone.EnroladorWebServices.ServicioCasino[] LeeServicioCasino(System.Guid loggedUser) {
+            return base.Channel.LeeServicioCasino(loggedUser);
+        }
+        
+        public System.Threading.Tasks.Task<EnroladorStandAlone.EnroladorWebServices.ServicioCasino[]> LeeServicioCasinoAsync(System.Guid loggedUser) {
+            return base.Channel.LeeServicioCasinoAsync(loggedUser);
+        }
+        
+        public EnroladorStandAlone.EnroladorWebServices.TurnoServicio[] LeeTurnoServicio(System.Guid loggedUser) {
+            return base.Channel.LeeTurnoServicio(loggedUser);
+        }
+        
+        public System.Threading.Tasks.Task<EnroladorStandAlone.EnroladorWebServices.TurnoServicio[]> LeeTurnoServicioAsync(System.Guid loggedUser) {
+            return base.Channel.LeeTurnoServicioAsync(loggedUser);
         }
     }
 }

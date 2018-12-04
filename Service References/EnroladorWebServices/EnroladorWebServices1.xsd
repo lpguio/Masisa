@@ -210,16 +210,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TupleOfguidguid" nillable="true" type="tns:TupleOfguidguid" />
-  <xs:complexType name="ArrayOfTupleOfguidguidguidguiddateTimeNullableOfdateTimeguid_PLLsHC1b">
+  <xs:complexType name="ArrayOfTupleOfguidguidguidguiddateTimeNullableOfdateTimeguidTupleOfstring2_P2_SPaFE">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="TupleOfguidguidguidguiddateTimeNullableOfdateTimeguid_PLLsHC1b" nillable="true" type="tns:TupleOfguidguidguidguiddateTimeNullableOfdateTimeguid_PLLsHC1b" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TupleOfguidguidguidguiddateTimeNullableOfdateTimeguidTupleOfstring2_P2_SPaFE" nillable="true" type="tns:TupleOfguidguidguidguiddateTimeNullableOfdateTimeguidTupleOfstring2_P2_SPaFE" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfTupleOfguidguidguidguiddateTimeNullableOfdateTimeguid_PLLsHC1b" nillable="true" type="tns:ArrayOfTupleOfguidguidguidguiddateTimeNullableOfdateTimeguid_PLLsHC1b" />
-  <xs:complexType name="TupleOfguidguidguidguiddateTimeNullableOfdateTimeguid_PLLsHC1b">
+  <xs:element name="ArrayOfTupleOfguidguidguidguiddateTimeNullableOfdateTimeguidTupleOfstring2_P2_SPaFE" nillable="true" type="tns:ArrayOfTupleOfguidguidguidguiddateTimeNullableOfdateTimeguidTupleOfstring2_P2_SPaFE" />
+  <xs:complexType name="TupleOfguidguidguidguiddateTimeNullableOfdateTimeguidTupleOfstring2_P2_SPaFE">
     <xs:annotation>
       <xs:appinfo>
-        <GenericType Name="TupleOf{0}{1}{2}{3}{4}{5}{6}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+        <GenericType Name="TupleOf{0}{1}{2}{3}{4}{5}{6}{7}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
           <GenericParameter Name="guid" Namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
           <GenericParameter Name="guid" Namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
           <GenericParameter Name="guid" Namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
@@ -229,6 +229,9 @@
             <GenericParameter Name="dateTime" Namespace="http://www.w3.org/2001/XMLSchema" />
           </GenericParameter>
           <GenericParameter Name="guid" Namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+          <GenericParameter Name="TupleOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/System">
+            <GenericParameter Name="string" Namespace="http://www.w3.org/2001/XMLSchema" />
+          </GenericParameter>
         </GenericType>
       </xs:appinfo>
     </xs:annotation>
@@ -240,7 +243,21 @@
       <xs:element name="m_Item5" type="xs:dateTime" />
       <xs:element name="m_Item6" nillable="true" type="xs:dateTime" />
       <xs:element name="m_Item7" type="ser:guid" />
+      <xs:element name="m_Rest" nillable="true" type="tns:TupleOfstring" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="TupleOfguidguidguidguiddateTimeNullableOfdateTimeguid_PLLsHC1b" nillable="true" type="tns:TupleOfguidguidguidguiddateTimeNullableOfdateTimeguid_PLLsHC1b" />
+  <xs:element name="TupleOfguidguidguidguiddateTimeNullableOfdateTimeguidTupleOfstring2_P2_SPaFE" nillable="true" type="tns:TupleOfguidguidguidguiddateTimeNullableOfdateTimeguidTupleOfstring2_P2_SPaFE" />
+  <xs:complexType name="TupleOfstring">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TupleOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="string" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="m_Item1" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TupleOfstring" nillable="true" type="tns:TupleOfstring" />
 </xs:schema>

@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:import schemaLocation="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:import schemaLocation="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" />
   <xs:element name="AccionActualizarHuella">
     <xs:complexType>
       <xs:sequence>
@@ -62,6 +63,7 @@
         <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="cargo" type="q14:guid" />
         <xs:element minOccurs="0" name="inicioVigencia" type="xs:dateTime" />
         <xs:element minOccurs="0" name="finVigencia" nillable="true" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="CodigoContrato" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -328,7 +330,35 @@
   <xs:element name="LeeContratoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="LeeContratoResult" nillable="true" type="q45:ArrayOfTupleOfguidguidguidguiddateTimeNullableOfdateTimeguid_PLLsHC1b" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="LeeContratoResult" nillable="true" type="q45:ArrayOfTupleOfguidguidguidguiddateTimeNullableOfdateTimeguidTupleOfstring2_P2_SPaFE" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LeeServicioCasino">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="loggedUser" type="q46:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LeeServicioCasinoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" minOccurs="0" name="LeeServicioCasinoResult" nillable="true" type="q47:ArrayOfServicioCasino" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LeeTurnoServicio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="loggedUser" type="q48:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LeeTurnoServicioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" minOccurs="0" name="LeeTurnoServicioResult" nillable="true" type="q49:ArrayOfTurnoServicio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enrolador.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -971,5 +972,157 @@ namespace EnroladorWebServices
                 hex.AppendFormat("{0:X2}", b);
             return hex.ToString();
         }
+
+        #region Casinos
+
+        /// <summary>
+        /// Devuelve todos los servicios del todos los casinos
+        /// </summary>
+        /// <param name="loggedUser">Usuario logueado</param>
+        /// <returns>Listado con todos los servicios de los casinos</returns>
+        public List<ServicioCasino> LeeServicioCasino(Guid loggedUser)
+        {
+            string sql = string.Format(@"SELECT SC.Oid, SC.Casino, SC.Nombre, SC.Vigente	FROM ServicioCasino SC
+									INNER JOIN ESA_Instalacion EI ON SC.Oid = EI.Oid
+									WHERE EI.Usuario = '{0}'", loggedUser);
+            var res = new List<ServicioCasino>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString()))
+                using (SqlCommand comm = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    SqlDataReader reader = null;
+                    try
+                    {
+                        reader = comm.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            var servicioCasino = new ServicioCasino()
+                            {
+                                Oid = reader.GetFieldValue<Guid>(0),
+                                Casino = reader.GetFieldValue<Guid>(1),
+                                Nombre = reader.GetFieldValue<string>(2),
+                                Vigente = reader.GetFieldValue<Boolean>(3)
+                        };
+                            res.Add(servicioCasino);
+                        }
+                    }
+                    finally
+                    {
+                        reader.Close();
+                    }
+                    return res;
+                }
+            }
+            catch
+            {
+                return res;
+            }
+        }
+        
+        /// <summary>
+        /// Listado de los turnos de servicio a los que tiene acceso el usuario
+        /// </summary>
+        /// <param name="loggedUser">Usuario logueado</param>
+        /// <returns>Lista con los turnos de servicio</returns>
+        public List<TurnoServicio> LeeTurnoServicio(Guid loggedUser)
+        {
+            string sql = string.Format(@"SELECT TS.Oid
+                                                  ,TS.Servicio
+                                                  ,TS.Nombre
+                                                  ,TS.Vigente
+                                                  ,TS.HoraInicio
+                                                  ,TS.HoraFin
+                                            FROM TurnoServicio TS INNER JOIN ServicioCasino SC ON TS.Servicio = SC.Oid
+                                                                    INNER JOIN ESA_Instalacion EI ON SC.Oid = EI.Oid
+                                            WHERE EI.Usuario = '{0}'", loggedUser);
+            var res = new List<TurnoServicio>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString()))
+                using (SqlCommand comm = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    SqlDataReader reader = null;
+                    try
+                    {
+                        reader = comm.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            var turnoServicio = new TurnoServicio()
+                            {
+                                Oid = reader.GetFieldValue<Guid>(0),
+                                Servicio = reader.GetFieldValue<Guid>(1),
+                                Nombre = reader.GetFieldValue<string>(2),
+                                Vigente = reader.GetFieldValue<Boolean>(3),
+                                HoraInicio = reader.GetFieldValue<TimeSpan>(4),
+                                HoraFin = reader.GetFieldValue<TimeSpan>(5)
+                            };
+                            res.Add(turnoServicio);
+                        }
+                    }
+                    finally
+                    {
+                        reader.Close();
+                    }
+                    return res;
+                }
+            }
+            catch
+            {
+                return res;
+            }
+        }
+
+        /// <summary>
+        /// Listado de los Servicios casino a los que tiene acceso el usuario
+        /// </summary>
+        /// <param name="loggedUser">Usuario logueado</param>
+        /// <returns>Lista con los servicios de casino que tiene el empleado asociado</returns>
+        public List<EmpleadoTurnoServicioCasino> LeeEmpleadoTurnoServicioCasino(Guid loggedUser)
+        {
+            string sql = string.Format(@"SELECT ETSC.Empleado, ETSC.TurnoServicio FROM EmpleadoTurnoServicioCasino ETSC 
+												INNER JOIN TurnoServicio TS ON ETSC.TurnoServicio = TS.Servicio
+												INNER JOIN ServicioCasino SC ON TS.Servicio = SC.Oid
+                                                INNER JOIN ESA_Instalacion EI ON SC.Oid = EI.Oid
+                                            WHERE EI.Usuario = '{0}'", loggedUser);
+            var res = new List<EmpleadoTurnoServicioCasino>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString()))
+                using (SqlCommand comm = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    SqlDataReader reader = null;
+                    try
+                    {
+                        reader = comm.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            var turnoServicio = new EmpleadoTurnoServicioCasino()
+                            {
+                                Empleado = reader.GetFieldValue<Guid>(0),
+                                TurnoServicio = reader.GetFieldValue<Guid>(1)
+                            };
+                            res.Add(turnoServicio);
+                        }
+                    }
+                    finally
+                    {
+                        reader.Close();
+                    }
+                    return res;
+                }
+            }
+            catch
+            {
+                return res;
+            }
+        }
+        #endregion
     }
 }

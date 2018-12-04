@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IEnroladorWebServices_AccionActualizarHuella_InputMessage">
@@ -139,6 +140,18 @@
   <wsdl:message name="IEnroladorWebServices_LeeContrato_OutputMessage">
     <wsdl:part name="parameters" element="tns:LeeContratoResponse" />
   </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeServicioCasino_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeServicioCasino" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeServicioCasino_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeServicioCasinoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeTurnoServicio_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeTurnoServicio" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeTurnoServicio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeTurnoServicioResponse" />
+  </wsdl:message>
   <wsdl:portType name="IEnroladorWebServices">
     <wsdl:operation name="AccionActualizarHuella">
       <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionActualizarHuella" message="tns:IEnroladorWebServices_AccionActualizarHuella_InputMessage" />
@@ -227,6 +240,14 @@
     <wsdl:operation name="LeeContrato">
       <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeContrato" message="tns:IEnroladorWebServices_LeeContrato_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeContratoResponse" message="tns:IEnroladorWebServices_LeeContrato_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeServicioCasino">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeServicioCasino" message="tns:IEnroladorWebServices_LeeServicioCasino_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeServicioCasinoResponse" message="tns:IEnroladorWebServices_LeeServicioCasino_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeTurnoServicio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeTurnoServicio" message="tns:IEnroladorWebServices_LeeTurnoServicio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeTurnoServicioResponse" message="tns:IEnroladorWebServices_LeeTurnoServicio_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IEnroladorWebServices" type="tns:IEnroladorWebServices">
@@ -422,6 +443,24 @@
     </wsdl:operation>
     <wsdl:operation name="LeeContrato">
       <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeContrato" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeServicioCasino">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeServicioCasino" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeTurnoServicio">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeTurnoServicio" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

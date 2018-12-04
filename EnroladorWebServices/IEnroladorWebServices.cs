@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enrolador.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -77,5 +78,14 @@ namespace EnroladorWebServices
         [OperationContract]
         List<Tuple<Guid,Guid,Guid,Guid,DateTime,DateTime?,Guid, Tuple<string>>> LeeContrato(Guid loggedUser);
 
+        #region Casinos
+        [OperationContract]
+        List<ServicioCasino> LeeServicioCasino(Guid loggedUser);
+
+        [OperationContract]
+        List<TurnoServicio> LeeTurnoServicio(Guid loggedUser);
+
+        List<EmpleadoTurnoServicioCasino> LeeEmpleadoTurnoServicioCasino(Guid loggedUser);
+        #endregion
     }
 }

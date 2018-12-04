@@ -27,6 +27,7 @@
     <MetadataFile FileName="EnroladorWebServices2.xsd" MetadataType="Schema" ID="ccae0436-8d6f-4393-8e93-8da18f853169" SourceId="1" SourceUrl="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd0" />
     <MetadataFile FileName="EnroladorWebServices.disco" MetadataType="Disco" ID="acef25fb-3cba-42e4-b394-773a94e194e1" SourceId="1" SourceUrl="http://localhost:50119/EnroladorWebServices.svc?disco" />
     <MetadataFile FileName="EnroladorWebServices.wsdl" MetadataType="Wsdl" ID="c93e8bbf-e35b-4269-8985-36aa813f45df" SourceId="1" SourceUrl="http://localhost:50119/EnroladorWebServices.svc?wsdl" />
+    <MetadataFile FileName="EnroladorWebServices33.xsd" MetadataType="Schema" ID="0e006d14-27a2-4cc0-805b-f4043d70527f" SourceId="1" SourceUrl="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

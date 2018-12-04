@@ -179,14 +179,15 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accion.cs" />
-    <Compile Include="AccionActualizarHuella.cs" />
-    <Compile Include="AccionCaducarContrato.cs" />
-    <Compile Include="AccionCrearAsignacion.cs" />
-    <Compile Include="AccionModificarContraseña.cs" />
-    <Compile Include="AccionCrearContrato.cs" />
-    <Compile Include="AccionCrearEmpleado.cs" />
-    <Compile Include="AccionCrearHuella.cs" />
+    <Compile Include="Acciones\Accion.cs" />
+    <Compile Include="Acciones\AccionActualizarHuella.cs" />
+    <Compile Include="Acciones\AccionCaducarContrato.cs" />
+    <Compile Include="Acciones\AccionCrearAsignacion.cs" />
+    <Compile Include="Acciones\AccionEmpleadoTurnoServicioCasino.cs" />
+    <Compile Include="Acciones\AccionModificarContraseña.cs" />
+    <Compile Include="Acciones\AccionCrearContrato.cs" />
+    <Compile Include="Acciones\AccionCrearEmpleado.cs" />
+    <Compile Include="Acciones\AccionCrearHuella.cs" />
     <Compile Include="EnrolledEventArgs.cs" />
     <Compile Include="EnrollForm.cs">
       <SubType>Form</SubType>
@@ -341,10 +342,17 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="logo BA.png" />
+    <Content Include="SQL\SP\CREAR_ESA_Crear_EmpleadoTurnoServicioCasino.sql" />
     <Content Include="SQL\SP\Modificar_ESA_Crear_Contrato.sql" />
     <Content Include="SQL\SP\Modificar_ESA_Login.sql" />
     <Content Include="SQL\SP\Modificar_ESA_Revalidar.sql" />
     <Content Include="SQL\VIEW\Modificar_ESA_Contrato.sql" />
+    <None Include="Service References\EnroladorWebServices\EnroladorStandAlone.EnroladorWebServices.ServicioCasino.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EnroladorWebServices\EnroladorStandAlone.EnroladorWebServices.TurnoServicio.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\EnroladorWebServices\EnroladorWebServices.disco" />
     <None Include="Service References\EnroladorWebServices\EnroladorWebServices.wsdl" />
     <None Include="Service References\EnroladorWebServices\EnroladorWebServices.xsd">
@@ -354,6 +362,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\EnroladorWebServices\EnroladorWebServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EnroladorWebServices\EnroladorWebServices33.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\EnroladorWebServices\Reference.svcmap">
