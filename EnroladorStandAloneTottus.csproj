@@ -188,56 +188,56 @@
     <Compile Include="Acciones\AccionCrearContrato.cs" />
     <Compile Include="Acciones\AccionCrearEmpleado.cs" />
     <Compile Include="Acciones\AccionCrearHuella.cs" />
-    <Compile Include="EnrolledEventArgs.cs" />
-    <Compile Include="EnrollForm.cs">
+    <Compile Include="Tools\EnrolledEventArgs.cs" />
+    <Compile Include="UI\EnrollForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EnrollForm.Designer.cs">
+    <Compile Include="UI\EnrollForm.Designer.cs">
       <DependentUpon>EnrollForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EnumDisplayNameAttribute.cs" />
-    <Compile Include="ErroresDialog.cs">
+    <Compile Include="UI\ErroresDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ErroresDialog.Designer.cs">
+    <Compile Include="UI\ErroresDialog.Designer.cs">
       <DependentUpon>ErroresDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="FingerFeatureEventArgs.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Tools\ExtensionMethods.cs" />
+    <Compile Include="Tools\FingerFeatureEventArgs.cs" />
+    <Compile Include="UI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.designer.cs">
+    <Compile Include="UI\Form1.designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="HardwareID.cs" />
+    <Compile Include="Tools\HardwareID.cs" />
     <Compile Include="Helper\SingleGlobalInstance.cs" />
-    <Compile Include="Historia.cs" />
-    <Compile Include="Huellero.cs" />
-    <Compile Include="AuthDialog.cs">
+    <Compile Include="Tools\Historia.cs" />
+    <Compile Include="Tools\Huellero.cs" />
+    <Compile Include="UI\AuthDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AuthDialog.Designer.cs">
+    <Compile Include="UI\AuthDialog.Designer.cs">
       <DependentUpon>AuthDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="PassVerifier.cs" />
+    <Compile Include="Tools\PassVerifier.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="PuntoAccesoErrores.cs" />
-    <Compile Include="PuntoAccesoException.cs" />
-    <Compile Include="HuelleroSonidos.cs" />
-    <Compile Include="ILoadingDialog.cs" />
-    <Compile Include="LoadingDialog.cs">
+    <Compile Include="Tools\PuntoAccesoErrores.cs" />
+    <Compile Include="Tools\PuntoAccesoException.cs" />
+    <Compile Include="Tools\HuelleroSonidos.cs" />
+    <Compile Include="Tools\ILoadingDialog.cs" />
+    <Compile Include="UI\LoadingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoadingDialog.Designer.cs">
+    <Compile Include="UI\LoadingDialog.Designer.cs">
       <DependentUpon>LoadingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="LogInDialog.cs">
+    <Compile Include="UI\LogInDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LogInDialog.designer.cs">
+    <Compile Include="UI\LogInDialog.designer.cs">
       <DependentUpon>LogInDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -247,27 +247,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="TipoDispositivo.cs" />
-    <Compile Include="ResultadoAutorizacion.cs" />
-    <Compile Include="TipoHuella.cs" />
-    <Compile Include="ValidadorRUT.cs" />
-    <EmbeddedResource Include="EnrollForm.resx">
+    <Compile Include="Tools\TipoDispositivo.cs" />
+    <Compile Include="Tools\ResultadoAutorizacion.cs" />
+    <Compile Include="Tools\TipoHuella.cs" />
+    <Compile Include="Tools\ValidadorRUT.cs" />
+    <EmbeddedResource Include="UI\EnrollForm.resx">
       <DependentUpon>EnrollForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ErroresDialog.resx">
+    <EmbeddedResource Include="UI\ErroresDialog.resx">
       <DependentUpon>ErroresDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="UI\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="AuthDialog.resx">
+    <EmbeddedResource Include="UI\AuthDialog.resx">
       <DependentUpon>AuthDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoadingDialog.resx">
+    <EmbeddedResource Include="UI\LoadingDialog.resx">
       <DependentUpon>LoadingDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LogInDialog.resx">
+    <EmbeddedResource Include="UI\LogInDialog.resx">
       <DependentUpon>LogInDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

@@ -79,6 +79,7 @@ namespace EnroladorWebServices
         List<Tuple<Guid,Guid,Guid,Guid,DateTime,DateTime?,Guid, Tuple<string>>> LeeContrato(Guid loggedUser);
 
         #region Casinos
+
         [OperationContract]
         List<ServicioCasino> LeeServicioCasino(Guid loggedUser);
 
@@ -86,6 +87,11 @@ namespace EnroladorWebServices
         List<TurnoServicio> LeeTurnoServicio(Guid loggedUser);
 
         List<EmpleadoTurnoServicioCasino> LeeEmpleadoTurnoServicioCasino(Guid loggedUser);
+
+        string AccionInsertarEmpleadoTurnoServicioCasino(EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino);
+
+        string AccionEliminarEmpleadoTurnoServicioCasino(EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino);
+
         #endregion
     }
 }
