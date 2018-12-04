@@ -974,7 +974,6 @@ namespace EnroladorWebServices
         }
 
         #region Casinos
-
         /// <summary>
         /// Devuelve todos los servicios del todos los casinos
         /// </summary>
