@@ -47,18 +47,18 @@ namespace EnroladorStandAlone
 
         public override async Task Enviar()
         {
-            try
-            {
-                string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionInsertarEmpleadoTurnoServicioCasinoAsync(EmpleadoTurno);
-                if (!string.IsNullOrEmpty(error))
-                {
-                    throw new Exception("Empleado adicionado a servicio de casino no creado: " + error);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Empleado adicionado a servicio de casino no creado: " + ex.Message);
-            }
+            //try
+            //{
+            //    string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionInsertarEmpleadoTurnoServicioCasinoAsync(EmpleadoTurno);
+            //    if (!string.IsNullOrEmpty(error))
+            //    {
+            //        throw new Exception("Empleado adicionado a servicio de casino no creado: " + error);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception("Empleado adicionado a servicio de casino no creado: " + ex.Message);
+            //}
         }
 
         public override void Cancelar(Form1 parent)

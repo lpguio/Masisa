@@ -97,7 +97,7 @@ namespace EnroladorStandAlone
         {
             if (parent.EmpleadoTable.ContainsKey(empleado))
             {
-                parent.EmpleadoTable[empleado].Item6.Item3.Remove(oid);
+                parent.EmpleadoTable[empleado].Item5.Item3.Remove(oid);
             }
             parent.ContratoTable.Remove(oid);
         }
@@ -106,9 +106,9 @@ namespace EnroladorStandAlone
         {
             if (parent.EmpleadoTable.ContainsKey(empleado))
             {
-                if (!parent.EmpleadoTable[empleado].Item6.Item3.Contains(oid))
+                if (!parent.EmpleadoTable[empleado].Item5.Item3.Contains(oid))
                 {
-                    parent.EmpleadoTable[empleado].Item6.Item3.Add(oid);
+                    parent.EmpleadoTable[empleado].Item5.Item3.Add(oid);
                 }
                 parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato);
             }

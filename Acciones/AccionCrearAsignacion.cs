@@ -58,7 +58,7 @@ namespace EnroladorStandAlone
         {
             if (parent.EmpleadoTable.ContainsKey(empleado))
             {
-                parent.EmpleadoTable[empleado].Item6.Item2.Remove(dispositivo);
+                parent.EmpleadoTable[empleado].Item5.Item2.Remove(dispositivo);
             }
             if (parent.DispositivoTable.ContainsKey(dispositivo))
             {
@@ -70,9 +70,9 @@ namespace EnroladorStandAlone
         {
             if (parent.EmpleadoTable.ContainsKey(empleado) && parent.DispositivoTable.ContainsKey(dispositivo))
             {
-                if (!parent.EmpleadoTable[empleado].Item6.Item2.Contains(dispositivo))
+                if (!parent.EmpleadoTable[empleado].Item5.Item2.Contains(dispositivo))
                 {
-                    parent.EmpleadoTable[empleado].Item6.Item2.Add(dispositivo);
+                    parent.EmpleadoTable[empleado].Item5.Item2.Add(dispositivo);
                 }
                 if (!parent.DispositivoTable[dispositivo].Item5.Contains(empleado))
                 {

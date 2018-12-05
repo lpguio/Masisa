@@ -33,4 +33,38 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TurnoServicio" nillable="true" type="tns:TurnoServicio" />
+  <xs:complexType name="ArrayOfEmpleadoTurnoServicioCasino">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmpleadoTurnoServicioCasino" nillable="true" type="tns:EmpleadoTurnoServicioCasino" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEmpleadoTurnoServicioCasino" nillable="true" type="tns:ArrayOfEmpleadoTurnoServicioCasino" />
+  <xs:complexType name="EmpleadoTurnoServicioCasino">
+    <xs:sequence>
+      <xs:element name="_x003C_Empleado_x003E_k__BackingField" type="ser:guid" />
+      <xs:element name="_x003C_TurnoServicio_x003E_k__BackingField" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmpleadoTurnoServicioCasino" nillable="true" type="tns:EmpleadoTurnoServicioCasino" />
+  <xs:complexType name="ArrayOfPOCOEmpleado">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="POCOEmpleado" nillable="true" type="tns:POCOEmpleado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPOCOEmpleado" nillable="true" type="tns:ArrayOfPOCOEmpleado" />
+  <xs:complexType name="POCOEmpleado">
+    <xs:sequence>
+      <xs:element name="_x003C_Apellidos_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Contraseña_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Correo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EnrollId_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_ManejaCasino_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Nombres_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_NumeroTelefono_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Oid_x003E_k__BackingField" type="ser:guid" />
+      <xs:element name="_x003C_RUT_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TieneContraseña_x003E_k__BackingField" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="POCOEmpleado" nillable="true" type="tns:POCOEmpleado" />
 </xs:schema>

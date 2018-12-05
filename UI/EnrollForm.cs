@@ -107,10 +107,14 @@ namespace EnroladorStandAlone
         {
             txtEditarNombre.Focus();
             var empleado = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]];
-            txtEditarNombre.Text = empleado.Item4;
-            txtEditarApellidos.Text = empleado.Item5;
+            txtEditarNombre.Text = empleado.Item4.Item1;
+            txtEditarApellidos.Text = empleado.Item4.Item2;
+            textEditarEmail.Text = empleado.Item4.Item3;
+            textEditarTelefono.Text = empleado.Item4.Item4;
+            checkEditManejaEditarCasino.Checked = empleado.Item4.Item5;
 
             chkEditarClave.CheckedChanged -= chkEditarClave_CheckedChanged;
+
             if (empleado.Item3)
             {
                 chkEditarClave.Checked = true;
@@ -150,8 +154,11 @@ namespace EnroladorStandAlone
         {
             txtMostrarNombre.Focus();
             var empleado = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]];
-            txtMostrarNombre.Text = empleado.Item4;
-            txtMostrarApellidos.Text = empleado.Item5;
+            txtMostrarNombre.Text = empleado.Item4.Item1;
+            txtMostrarApellidos.Text = empleado.Item4.Item2;
+            textEditMostrarEmail.Text = empleado.Item4.Item3;
+            textEditMostarTelefono.Text = empleado.Item4.Item4;
+            checkEditMostrarManejaCasino.Checked = empleado.Item4.Item5;
 
             chkMostrarClave.CheckedChanged -= chkMostrarClave_CheckedChanged;
             if (empleado.Item3)
@@ -414,7 +421,7 @@ namespace EnroladorStandAlone
             bnlContratos.Clear();
             if (parent.EmpleadoRUTIndex.ContainsKey(RUT) && parent.EmpleadoTable.ContainsKey(parent.EmpleadoRUTIndex[RUT]))
             {
-                foreach (Guid contrato in parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item3)
+                foreach (Guid contrato in parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item5.Item3)
                 {
                     if (parent.ContratoTable.ContainsKey(contrato))
                     {
@@ -635,7 +642,7 @@ namespace EnroladorStandAlone
             if (parent.EmpleadoRUTIndex.ContainsKey(RUT) && parent.EmpleadoTable.ContainsKey(parent.EmpleadoRUTIndex[RUT]))
             {
                 Dictionary<TipoHuella, Guid> huellas = new Dictionary<TipoHuella, Guid>();
-                foreach (Guid huella in parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item1)
+                foreach (Guid huella in parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item5.Item1)
                 {
                     if (parent.HuellaTable.ContainsKey(huella))
                     {
@@ -669,7 +676,7 @@ namespace EnroladorStandAlone
             bnlNuevaAsignacion.Clear();
             if (parent.EmpleadoRUTIndex.ContainsKey(RUT) && parent.EmpleadoTable.ContainsKey(parent.EmpleadoRUTIndex[RUT]))
             {
-                List<Guid> asignaciones = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item2;
+                List<Guid> asignaciones = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item5.Item2;
                 foreach (KeyValuePair<Guid, Tuple<string, List<Guid>>> cadena in parent.CadenaTable)
                 {
                     foreach (Guid instalacionOid in cadena.Value.Item2)
@@ -707,7 +714,7 @@ namespace EnroladorStandAlone
             if (parent.EmpleadoRUTIndex.ContainsKey(RUT) && parent.EmpleadoTable.ContainsKey(parent.EmpleadoRUTIndex[RUT]))
             {
                 //foreach (Guid contrato in parent. EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item3)
-                foreach (Guid dispositivo in parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item2)
+                foreach (Guid dispositivo in parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item5.Item2)
                 {
                     if (parent.DispositivoTable.ContainsKey(dispositivo))
                     {
@@ -1284,7 +1291,7 @@ namespace EnroladorStandAlone
                 else if (e.PrevPage == wpEditarEmpleado || e.PrevPage == wpMostrarEmpleado)
                 {
                     // Revisar si el empleado tiene contratos
-                    if (parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item3.Count > 0)
+                    if (parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item5.Item3.Count > 0)
                     {
                         // El empleado ya tiene contratos. Mostrar contratos
                         e.Page = wpMostrarContratos;
@@ -1306,7 +1313,7 @@ namespace EnroladorStandAlone
                     if (parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item3)
                     {
                         // Tiene clave creada. Revisar si el empleado tiene asignaciones
-                        if (parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item2.Count > 0)
+                        if (parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item5.Item2.Count > 0)
                         {
                             // Mostrar asignaciones
                             e.Page = wpMostrarAsignaciones;
@@ -1331,7 +1338,7 @@ namespace EnroladorStandAlone
                 else if (e.PrevPage == wpMostrarHuellas)
                 {
                     // Revisar si el empleado tiene asignaciones
-                    if (parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item2.Count > 0)
+                    if (parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item5.Item2.Count > 0)
                     {
                         // Mostrar asignaciones
                         e.Page = wpMostrarAsignaciones;
@@ -1364,7 +1371,7 @@ namespace EnroladorStandAlone
                 else if (e.PrevPage == wpNuevoContrato)
                 {
                     // Tiene contratos?
-                    if (parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item3.Count > 0)
+                    if (parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item5.Item3.Count > 0)
                     {
                         // Mostrar contratos
                         e.Page = wpMostrarContratos;
@@ -1425,7 +1432,7 @@ namespace EnroladorStandAlone
                 else if (e.PrevPage == wpNuevaAsignacion)
                 {
                     // Tiene asignaciones?
-                    if (parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item2.Count > 0)
+                    if (parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item5.Item2.Count > 0)
                     {
                         // Mostrar asignaciones
                         e.Page = wpMostrarAsignaciones;
@@ -1664,7 +1671,7 @@ namespace EnroladorStandAlone
                                     && p.Item3 == gridView3.GetRowCellValue(rowHandle, "Item3").ToString()));
 
                         dispositivo.Value.Item5.Remove(parent.EmpleadoRUTIndex[RUT]);
-                        parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item6.Item2.Remove(dispositivo.Key);
+                        parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item5.Item2.Remove(dispositivo.Key);
                         //parent.EmpleadoTable[]
                     }
                 }

@@ -169,7 +169,7 @@ namespace EnroladorWebServices
             }
         }
 
-        public string AccionCrearEmpleado(Guid responsable, Guid oid, string RUT, string firstName, string lastName, int enrollID, string contraseña)
+        public string AccionCrearEmpleado(Guid responsable, Guid oid, string RUT, string firstName, string lastName, string Correo, string Telefono, bool ManejaCasino, int enrollID, string contraseña)
         {
             try
             {
@@ -183,6 +183,9 @@ namespace EnroladorWebServices
                     comm.Parameters.Add("@RUT", SqlDbType.VarChar).Value = RUT;
                     comm.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = firstName;
                     comm.Parameters.Add("@LastName", SqlDbType.VarChar).Value = lastName;
+                    comm.Parameters.Add("@Correo", SqlDbType.VarChar).Value = Correo;
+                    comm.Parameters.Add("@Telefono", SqlDbType.VarChar).Value = Telefono;
+                    comm.Parameters.Add("@ManejaCasino", SqlDbType.Bit).Value = ManejaCasino;
                     comm.Parameters.Add("@EnrollID", SqlDbType.Int).Value = enrollID;
                     comm.Parameters.Add("@Contraseña", SqlDbType.NVarChar).Value = contraseña;
                     SqlParameter outParam = new SqlParameter("@Error", SqlDbType.NVarChar, -1);
@@ -195,13 +198,33 @@ namespace EnroladorWebServices
                     {
                         return (string)outParam.Value;
                     }
-                    return null;
+                    return "";
                 }
             }
             catch (Exception ex)
             {
                 return ex.Message;
             }
+        }
+
+        /// <summary>
+        /// Ejecuta la accion para crear el empleado con todos los datos
+        /// </summary>
+        /// <param name="Responsable">Guid</param>
+        /// <param name="Empleado">POCOEmpleado</param>
+        /// <returns>string</returns>
+        public string AccionCrearEmpleadoYOtroDatos(Guid Responsable, POCOEmpleado Empleado) {
+            return AccionCrearEmpleado(Responsable, Empleado.Oid, Empleado.RUT, Empleado.Nombres, Empleado.Apellidos, Empleado.Correo, Empleado.NumeroTelefono, Empleado.ManejaCasino, Empleado.EnrollId, Empleado.Contraseña);
+        }
+
+        /// <summary>
+        /// Modifica los datos del empleado
+        /// </summary>
+        /// <param name="Responsable">Guid</param>
+        /// <param name="Empleado">POCOEmpleado</param>
+        /// <returns>string</returns>
+        public string AccionModificarEmpleado(Guid Responsable, POCOEmpleado Empleado) {
+            return "";
         }
 
         public string AccionCrearHuella(Guid responsable, Guid oid, Guid empleado, int tipoHuella, string data)
@@ -579,57 +602,57 @@ namespace EnroladorWebServices
             }
         }
 
-        public List<Tuple<Guid, int, string, bool, string, string>> LeeEmpleado()
-        {
-            //lpg
-            string sql = "SELECT TOP 3000 Oid, EnrollID, RUT, Contraseña, Firstname, LastName FROM ESA_Empleado";
+        //public List<Tuple<Guid, int, string, bool, string, string>> LeeEmpleado()
+        //{
+        //    //lpg
+        //    string sql = "SELECT TOP 3000 Oid, EnrollID, RUT, Contraseña, Firstname, LastName FROM ESA_Empleado";
 
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString()))
-                using (SqlCommand comm = new SqlCommand("", conn))
-                {
-                    conn.Open();
-                    List<Tuple<Guid, int, string, bool, string, string>> res;
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connectionString()))
+        //        using (SqlCommand comm = new SqlCommand("", conn))
+        //        {
+        //            conn.Open();
+        //            List<Tuple<Guid, int, string, bool, string, string>> res;
 
-                    comm.CommandText = string.Format("SELECT COUNT(*) FROM ({0}) AS Tabla", sql);
-                    int filas = (int)comm.ExecuteScalar();
+        //            comm.CommandText = string.Format("SELECT COUNT(*) FROM ({0}) AS Tabla", sql);
+        //            int filas = (int)comm.ExecuteScalar();
 
-                    comm.CommandText = sql;
-                    SqlDataReader reader = null;
-                    try
-                    {
-                        reader = comm.ExecuteReader();
+        //            comm.CommandText = sql;
+        //            SqlDataReader reader = null;
+        //            try
+        //            {
+        //                reader = comm.ExecuteReader();
 
-                        res = new List<Tuple<Guid, int, string, bool, string, string>>(filas);
-                        while (reader.Read())
-                        {
-                            Guid Oid = reader.GetFieldValue<Guid>(0);
-                            int EnrollID = reader.GetFieldValue<int>(1);
-                            string RUT = reader.GetFieldValue<string>(2);
-                            bool Contraseña = reader.GetFieldValue<int>(3) == 1;
-                            string FirstName = reader.GetFieldValue<string>(4);
-                            string LastName = reader.GetFieldValue<string>(5);
-                            res.Add(new Tuple<Guid, int, string, bool, string, string>(Oid, EnrollID, RUT, Contraseña, FirstName, LastName));
-                        }
-                    }
-                    finally
-                    {
-                        reader.Close();
-                    }
+        //                res = new List<Tuple<Guid, int, string, bool, string, string>>(filas);
+        //                while (reader.Read())
+        //                {
+        //                    Guid Oid = reader.GetFieldValue<Guid>(0);
+        //                    int EnrollID = reader.GetFieldValue<int>(1);
+        //                    string RUT = reader.GetFieldValue<string>(2);
+        //                    bool Contraseña = reader.GetFieldValue<int>(3) == 1;
+        //                    string FirstName = reader.GetFieldValue<string>(4);
+        //                    string LastName = reader.GetFieldValue<string>(5);
+        //                    res.Add(new Tuple<Guid, int, string, bool, string, string>(Oid, EnrollID, RUT, Contraseña, FirstName, LastName));
+        //                }
+        //            }
+        //            finally
+        //            {
+        //                reader.Close();
+        //            }
 
-                    if (res.Count == 0)
-                    {
-                        return null;
-                    }
-                    return res;
-                }
-            }
-            catch (Exception XD)
-            {
-                return null;
-            }
-        }
+        //            if (res.Count == 0)
+        //            {
+        //                return null;
+        //            }
+        //            return res;
+        //        }
+        //    }
+        //    catch (Exception XD)
+        //    {
+        //        return null;
+        //    }
+        //}
 
         public List<Tuple<Guid, Guid>> LeeEmpleadosDispositivos()
         {
@@ -1136,10 +1159,48 @@ namespace EnroladorWebServices
         }
         #endregion
 
-        #region Empleado con Email, Telefono
-        public List<POCOEmpleado> LeeDatosEmpleadoTelefonoEmailMarcaCasino(Guid loggedUser){
-            string sql = string.Format(@"SELECT E.RUT, P.Email Correo, P.FirstName Nombre, P.LastName Apellidos, PN.Number NumeroTelefono, P.MarcaCasino
-                                        FROM Empleado E
+        #region Empleado con Email, Telefono, MarcaCasino
+        public List<POCOEmpleado> LeeEmpleados() {
+            string sql = string.Format(@"SELECT E.Oid, E.EnrollID, E.RUT, P.FirstName, P.LastName, P.Email, PN.Number, P.MarcaCasino, E.Contraseña 
+            FROM ESA_Empleado E
+            INNER JOIN Person P ON E.Oid = P.Oid
+            FULL JOIN PhoneNumber PN ON PN.Oid = P.Oid");
+            var res = new List<POCOEmpleado>();
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString()))
+                using (SqlCommand comm = new SqlCommand(sql, conn)) {
+                    conn.Open();
+                    SqlDataReader reader = null;
+                    try {
+                        reader = comm.ExecuteReader();
+
+                        while (reader.Read()) {
+                            var pEmpleado = new POCOEmpleado() {
+                                Oid = reader.GetFieldValue<Guid>(0),
+                                EnrollId = reader.GetFieldValue<int>(1),
+                                RUT = reader.GetFieldValue<string>(2),
+                                Nombres = reader.GetFieldValue<string>(3),
+                                Apellidos = reader.GetFieldValue<string>(4),
+                                Correo = reader.IsDBNull(5) ? "" : reader.GetFieldValue<string>(5),
+                                NumeroTelefono = reader.IsDBNull(6) ? "" : reader.GetFieldValue<string>(6),
+                                ManejaCasino = reader.IsDBNull(7) ? false : reader.GetFieldValue<Boolean>(7),
+                                TieneContraseña = reader.GetFieldValue<int>(8) == 0 ? false : true
+                            };
+                            res.Add(pEmpleado);
+                        }
+                    } finally {
+                        reader.Close();
+                    }
+                    return res;
+                }
+            } catch {
+                return res;
+            }
+        }
+
+        public List<POCOEmpleado> LeeDatosEmpleadoTelefonoEmailMarcaCasino(Guid loggedUser) {
+            string sql = string.Format(@"SELECT E.Oid, E.EnrollID EnrollId, E.RUT, P.FirstName Nombre, P.LastName Apellidos, P.Email Correo, PN.Number NumeroTelefono, P.MarcaCasino, E.Contraseña
+                                        FROM ESA_Empleado E
                                         INNER JOIN Person P ON E.Oid = P.Oid
                                         FULL JOIN PhoneNumber PN ON PN.Oid = P.Oid
                                         WHERE P.Oid = '{0}'", loggedUser);
@@ -1155,12 +1216,14 @@ namespace EnroladorWebServices
                         while (reader.Read()) {
                             var pEmpleado = new POCOEmpleado() {
                                 Oid = reader.GetFieldValue<Guid>(0),
-                                RUT = reader.GetFieldValue<string>(1),
-                                Correo = reader.GetFieldValue<string>(2),
+                                EnrollId = reader.GetFieldValue<int>(1),
+                                RUT = reader.GetFieldValue<string>(2),
                                 Nombres = reader.GetFieldValue<string>(3),
                                 Apellidos = reader.GetFieldValue<string>(4),
-                                NumeroTelefono = reader.GetFieldValue<string>(5),
-                                MarcaCasino = reader.GetFieldValue<Boolean>(6)
+                                Correo = reader.IsDBNull(5) ? "" : reader.GetFieldValue<string>(5),
+                                NumeroTelefono = reader.IsDBNull(6) ? "" : reader.GetFieldValue<string>(6),
+                                ManejaCasino = reader.IsDBNull(7) ? false : reader.GetFieldValue<Boolean>(7),
+                                TieneContraseña = reader.GetFieldValue<int>(8) == 0 ? false : true
                             };
                             res.Add(pEmpleado);
                         }

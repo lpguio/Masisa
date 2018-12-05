@@ -25,7 +25,7 @@ namespace EnroladorWebServices
         string AccionCrearContrato(Guid responsable, Guid oid, Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string CodigoContrato);
 
         [OperationContract]
-        string AccionCrearEmpleado(Guid responsable, Guid oid, string RUT, string firstName, string lastName, int enrollID, string contraseña);
+        string AccionCrearEmpleado(Guid responsable, Guid oid, string RUT, string firstName, string lastName, string Correo, string Telefono, bool ManejaCasino, int enrollID, string contraseña);
 
         [OperationContract]
         string AccionCrearHuella(Guid responsable, Guid oid, Guid empleado, int tipoHuella, string data);
@@ -66,8 +66,8 @@ namespace EnroladorWebServices
         [OperationContract]
         List<Tuple<Guid,string,Guid,DateTime?>> LeeCuenta(Guid loggedUser);
 
-        [OperationContract]
-        List<Tuple<Guid,int,string,bool,string,string>> LeeEmpleado();
+        //[OperationContract]
+        //List<Tuple<Guid,int,string,bool,string,string>> LeeEmpleado();
 
         [OperationContract]
         List<Tuple<Guid,int,Guid>> LeeHuella();
@@ -95,6 +95,17 @@ namespace EnroladorWebServices
         [OperationContract]
         string AccionEliminarEmpleadoTurnoServicioCasino(EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino);
 
+        #endregion
+
+        #region Empleado con Email, Telefono, MarcaCasino
+        [OperationContract]
+        List<POCOEmpleado> LeeEmpleados();
+
+        [OperationContract]
+        string AccionCrearEmpleadoYOtroDatos(Guid loggedUser, POCOEmpleado Empleado);
+
+        [OperationContract]
+        string AccionModificarEmpleado(Guid loggedUser, POCOEmpleado Empleado);
         #endregion
     }
 }
