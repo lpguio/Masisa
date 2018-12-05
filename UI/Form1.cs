@@ -861,7 +861,7 @@ namespace EnroladorStandAlone
                     huellaTable = await LeeHuella(loadingDialog, empleadoTable);
                     await LeeEmpleadosDispositivos(loadingDialog, dispositivoTable, empleadoTable);
                     contratoTable = await LeeContrato(loadingDialog, empleadoTable, empresaTable, cuentaTable, cargoTable);
-                    //ListEmpleadoTurnoServicioCasino = await LeeListEmpleadoTurnoServicioCasino(loadingDialog);
+                    ListEmpleadoTurnoServicioCasino = await LeeListEmpleadoTurnoServicioCasino(loadingDialog);
                     ListServicioCasino = await LeeListServicioCasino(loadingDialog);
                     ListTurnoServicio = await LeeListTurnoServicio(loadingDialog);
 
@@ -1074,7 +1074,7 @@ namespace EnroladorStandAlone
                 newHuellaTable = await LeeHuella(loadingDialog, newEmpleadoTable);
                 await LeeEmpleadosDispositivos(loadingDialog, newDispositivoTable, newEmpleadoTable);
                 newContratoTable = await LeeContrato(loadingDialog, newEmpleadoTable, newEmpresaTable, newCuentaTable, newCargoTable);
-                //newListEmpleadoTurnoServicioCasino = await LeeListEmpleadoTurnoServicioCasino(loadingDialog);
+                newListEmpleadoTurnoServicioCasino = await LeeListEmpleadoTurnoServicioCasino(loadingDialog);
                 newListServicioCasino = await LeeListServicioCasino(loadingDialog);
                 newListTurnoServicio = await LeeListTurnoServicio(loadingDialog);
 
@@ -1088,7 +1088,7 @@ namespace EnroladorStandAlone
                 empleadoRUTIndex = newEmpleadoRUTIndex;
                 huellaTable = newHuellaTable;
                 contratoTable = newContratoTable;
-                //ListEmpleadoTurnoServicioCasino = newListEmpleadoTurnoServicioCasino;
+                ListEmpleadoTurnoServicioCasino = newListEmpleadoTurnoServicioCasino;
                 ListServicioCasino = newListServicioCasino;
                 ListTurnoServicio = newListTurnoServicio;
 
@@ -1340,20 +1340,20 @@ namespace EnroladorStandAlone
             return newContratoTable;
         }
 
-        //private async Task<List<EmpleadoTurnoServicioCasino>> LeeListEmpleadoTurnoServicioCasino(ILoadingDialog loading)
-        //{
-        //    //List<EmpleadoTurnoServicioCasino> newListEmpleadoTurnoServicioCasino;
-        //    //var res = await new EnroladorWebServices.EnroladorWebServicesClient().LeeEmpleadoTurnoServicioCasinoAsync(loggedUser.Item1);
-        //    //loading.SiguientePaso(res.Length, "Cargando accesos a casinos");
-        //    //newListEmpleadoTurnoServicioCasino = new List<EmpleadoTurnoServicioCasino>();
-        //    //foreach (var item in res)
-        //    //{
-        //    //    newListEmpleadoTurnoServicioCasino.Add(item);
-        //    //    loading.AvanzarActual();
-        //    //}
+        private async Task<List<EmpleadoTurnoServicioCasino>> LeeListEmpleadoTurnoServicioCasino(ILoadingDialog loading)
+        {
+            List<EmpleadoTurnoServicioCasino> newListEmpleadoTurnoServicioCasino;
+            var res = await new EnroladorWebServices.EnroladorWebServicesClient().LeeEmpleadoTurnoServicioCasinoAsync(loggedUser.Item1);
+            loading.SiguientePaso(res.Length, "Cargando accesos a casinos");
+            newListEmpleadoTurnoServicioCasino = new List<EmpleadoTurnoServicioCasino>();
+            foreach (var item in res)
+            {
+                newListEmpleadoTurnoServicioCasino.Add(item);
+                loading.AvanzarActual();
+            }
 
-        //    //return newListEmpleadoTurnoServicioCasino;
-        //}
+            return newListEmpleadoTurnoServicioCasino;
+        }
 
         private async Task<List<ServicioCasino>> LeeListServicioCasino(ILoadingDialog loading)
         {
