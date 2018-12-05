@@ -1031,7 +1031,7 @@ namespace EnroladorStandAlone
         #region PageCommits
         private void wpNuevoEmpleado_PageCommit(object sender, EventArgs e)
         {
-            Accion accion = new AccionCrearEmpleado(int.Parse(RUT.Substring(0, RUT.Length - 2).Replace(".", "")), RUT, txtNuevoClave.Text, txtNuevoNombre.Text, txtNuevoApellidos.Text, parent);
+            Accion accion = new AccionCrearEmpleado(int.Parse(RUT.Substring(0, RUT.Length - 2).Replace(".", "")), RUT, txtNuevoClave.Text, txtNuevoNombre.Text, txtNuevoApellidos.Text, textEditNuevoEmail.Text, textEditNuevoTelefono.Text, checkEditManejaNuevoCasino.Checked, parent);
             acciones.Add(accion);
             accionesActuales.Push(new Tuple<Accion, TipoAccion>(accion, TipoAccion.Nueva));
         }
@@ -1043,7 +1043,7 @@ namespace EnroladorStandAlone
             {
                 EliminarHuellasRecienCreadas(accionEditadaCrearEmpleado.Oid);
             }
-            if (accionEditadaCrearEmpleado.Editar(txtEditarClave.Text, txtEditarNombre.Text, txtEditarApellidos.Text, parent))
+            if (accionEditadaCrearEmpleado.Editar(txtEditarClave.Text, txtEditarNombre.Text, txtEditarApellidos.Text, textEditarEmail.Text, textEditarTelefono.Text, checkEditManejaEditarCasino.Checked ,parent))
             {
                 ModificarAccion(accionEditadaCrearEmpleado);
             }
