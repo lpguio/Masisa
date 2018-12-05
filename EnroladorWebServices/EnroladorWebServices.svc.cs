@@ -857,14 +857,13 @@ namespace EnroladorWebServices
                 return null;
             }
         }
+        #endregion
 
-        public Guid? Login(string user, string pass)
-        {
-            try
-            {
+        #region Logins y Revalidaciones
+        public Guid? Login(string user, string pass) {
+            try {
                 using (SqlConnection conn = new SqlConnection(connectionString()))
-                using (SqlCommand comm = new SqlCommand("ESA_Login", conn) { CommandType = CommandType.StoredProcedure })
-                {
+                using (SqlCommand comm = new SqlCommand("ESA_Login", conn) { CommandType = CommandType.StoredProcedure }) {
                     conn.Open();
 
                     comm.Parameters.Add("@User", SqlDbType.NVarChar).Value = user;
@@ -875,15 +874,12 @@ namespace EnroladorWebServices
 
                     comm.ExecuteNonQuery();
 
-                    if (!(outParam.Value is DBNull))
-                    {
+                    if (!(outParam.Value is DBNull)) {
                         return (Guid)outParam.Value;
                     }
                     return null;
                 }
-            }
-            catch (Exception XD)
-            {
+            } catch (Exception XD) {
                 return null;
             }
         }
@@ -918,13 +914,10 @@ namespace EnroladorWebServices
             }
         }
 
-        public Tuple<string, string> Revalidar(Guid loggedUser)
-        {
-            try
-            {
+        public Tuple<string, string> Revalidar(Guid loggedUser) {
+            try {
                 using (SqlConnection conn = new SqlConnection(connectionString()))
-                using (SqlCommand comm = new SqlCommand("ESA_Revalidar", conn) { CommandType = CommandType.StoredProcedure })
-                {
+                using (SqlCommand comm = new SqlCommand("ESA_Revalidar", conn) { CommandType = CommandType.StoredProcedure }) {
                     conn.Open();
 
                     comm.Parameters.Add("@LoggedUserOid", SqlDbType.UniqueIdentifier).Value = loggedUser;
@@ -938,30 +931,52 @@ namespace EnroladorWebServices
 
                     comm.ExecuteNonQuery();
 
-                    if (!(outParam1.Value is DBNull) && !(outParam2.Value is DBNull))
-                    {
+                    if (!(outParam1.Value is DBNull) && !(outParam2.Value is DBNull)) {
                         //return new Tuple<string, string>((string)outParam1.Value, ByteArrayToString((byte[])outParam2.Value));
                         return new Tuple<string, string>((string)outParam1.Value, (string)outParam2.Value);
-                    }
-                    else
-                    {
+                    } else {
                         return null;
                     }
                 }
-            }
-            catch (Exception XD)
-            {
+            } catch (Exception XD) {
                 return null;
             }
         }
 
-        private string ByteArrayToString(byte[] ba)
-        {
+        private string ByteArrayToString(byte[] ba) {
             StringBuilder hex = new StringBuilder(ba.Length * 2);
             foreach (byte b in ba)
                 hex.AppendFormat("{0:X2}", b);
             return hex.ToString();
         }
+
+        public bool Identificar(Guid HWID) {
+            try {
+                using (SqlConnection conn = new SqlConnection(connectionString()))
+                using (SqlCommand comm = new SqlCommand("ESA_Identificar", conn) { CommandType = CommandType.StoredProcedure }) {
+                    conn.Open();
+
+                    comm.Parameters.Add("@HWID", SqlDbType.UniqueIdentifier).Value = HWID;
+                    SqlParameter outParam = new SqlParameter("@Identificado", SqlDbType.Bit);
+                    outParam.Direction = ParameterDirection.Output;
+                    comm.Parameters.Add(outParam);
+
+                    comm.ExecuteNonQuery();
+
+                    if (!(outParam.Value is DBNull)) {
+                        //lpg
+                        return true;
+                        //return (bool)outParam.Value;
+                    } else {
+                        return false;
+                    }
+                }
+            } catch (Exception XD) {
+                return false;
+            }
+
+        }
+        #endregion
 
         #region Casinos
         /// <summary>
@@ -1114,153 +1129,43 @@ namespace EnroladorWebServices
         }
         #endregion
 
-        #region Otras funciones
-        public bool Identificar(Guid HWID)
-        {
-            try
-            {
+        #region Empleado con Email, Telefono
+        public List<POCOEmpleado> LeeDatosEmpleadoTelefonoEmailMarcaCasino(Guid loggedUser) {
+            string sql = string.Format(@"SELECT E.RUT, P.Email Correo, P.FirstName Nombre, P.LastName Apellidos, PN.Number NumeroTelefono, P.MarcaCasino
+                                        FROM Empleado E
+                                        INNER JOIN Person P ON E.Oid = P.Oid
+                                        FULL JOIN PhoneNumber PN ON PN.Oid = P.Oid
+                                        WHERE P.Oid = '{0}'", loggedUser);
+            var res = new List<POCOEmpleado>();
+            try {
                 using (SqlConnection conn = new SqlConnection(connectionString()))
-                using (SqlCommand comm = new SqlCommand("ESA_Identificar", conn) { CommandType = CommandType.StoredProcedure })
-                {
+                using (SqlCommand comm = new SqlCommand(sql, conn)) {
                     conn.Open();
+                    SqlDataReader reader = null;
+                    try {
+                        reader = comm.ExecuteReader();
 
-                    comm.Parameters.Add("@HWID", SqlDbType.UniqueIdentifier).Value = HWID;
-                    SqlParameter outParam = new SqlParameter("@Identificado", SqlDbType.Bit);
-                    outParam.Direction = ParameterDirection.Output;
-                    comm.Parameters.Add(outParam);
-
-                    comm.ExecuteNonQuery();
-
-                    if (!(outParam.Value is DBNull))
-                    {
-                        //lpg
-                        return true;
-                        //return (bool)outParam.Value;
+                        while (reader.Read()) {
+                            var pEmpleado = new POCOEmpleado() {
+                                Oid = reader.GetFieldValue<Guid>(0),
+                                RUT = reader.GetFieldValue<string>(1),
+                                Correo = reader.GetFieldValue<string>(2),
+                                Nombres = reader.GetFieldValue<string>(3),
+                                Apellidos = reader.GetFieldValue<string>(4),
+                                NumeroTelefono = reader.GetFieldValue<string>(5),
+                                MarcaCasino = reader.GetFieldValue<Boolean>(6)
+                            };
+                            res.Add(pEmpleado);
+                        }
+                    } finally {
+                        reader.Close();
                     }
-                    else
-                    {
-                        return false;
-                    }
+                    return res;
                 }
-            }
-            catch (Exception XD)
-            {
-                return false;
-            }
-
-        }
-        public Guid? Login(string user, string pass)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString()))
-                using (SqlCommand comm = new SqlCommand("ESA_Login", conn) { CommandType = CommandType.StoredProcedure })
-                {
-                    conn.Open();
-
-                    comm.Parameters.Add("@User", SqlDbType.NVarChar).Value = user;
-                    comm.Parameters.Add("@Pass", SqlDbType.NVarChar).Value = pass;
-                    SqlParameter outParam = new SqlParameter("@OidUsuario", SqlDbType.UniqueIdentifier);
-                    outParam.Direction = ParameterDirection.Output;
-                    comm.Parameters.Add(outParam);
-
-                    comm.ExecuteNonQuery();
-
-                    if (!(outParam.Value is DBNull))
-                    {
-                        return (Guid)outParam.Value;
-                    }
-                    return null;
-                }
-            }
-            catch (Exception XD)
-            {
-                return null;
+            } catch {
+                return res;
             }
         }
-
-        public Tuple<Guid, string> Login2(string user, string pass)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString()))
-                using (SqlCommand comm = new SqlCommand("ESA_Login", conn) { CommandType = CommandType.StoredProcedure })
-                {
-                    conn.Open();
-
-                    comm.Parameters.Add("@User", SqlDbType.NVarChar).Value = user;
-                    comm.Parameters.Add("@Pass", SqlDbType.NVarChar).Value = pass;
-                    SqlParameter outParam1 = new SqlParameter("@OidUsuario", SqlDbType.UniqueIdentifier);
-                    outParam1.Direction = ParameterDirection.Output;
-                    comm.Parameters.Add(outParam1);
-                    SqlParameter outParam2 = new SqlParameter("@SHAPassword", SqlDbType.NVarChar, -1);
-                    //SqlParameter outParam2 = new SqlParameter("@Pass", SqlDbType.VarBinary, -1);
-                    outParam2.Direction = ParameterDirection.Output;
-                    comm.Parameters.Add(outParam2);
-
-                    comm.ExecuteNonQuery();
-
-                    if (!(outParam1.Value is DBNull) && !(outParam2.Value is DBNull))
-                    {
-                        //return new Tuple<string, string>((string)outParam1.Value, ByteArrayToString((byte[])outParam2.Value));
-                        return new Tuple<Guid, string>((Guid)outParam1.Value, (string)outParam2.Value);
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-            }
-            catch (Exception XD)
-            {
-                return null;
-            }
-        }
-
-        public Tuple<string, string> Revalidar(Guid loggedUser)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString()))
-                using (SqlCommand comm = new SqlCommand("ESA_Revalidar", conn) { CommandType = CommandType.StoredProcedure })
-                {
-                    conn.Open();
-
-                    comm.Parameters.Add("@LoggedUserOid", SqlDbType.UniqueIdentifier).Value = loggedUser;
-                    SqlParameter outParam1 = new SqlParameter("@User", SqlDbType.NVarChar, -1);
-                    outParam1.Direction = ParameterDirection.Output;
-                    comm.Parameters.Add(outParam1);
-                    SqlParameter outParam2 = new SqlParameter("@Pass", SqlDbType.NVarChar, -1);
-                    //SqlParameter outParam2 = new SqlParameter("@Pass", SqlDbType.VarBinary, -1);
-                    outParam2.Direction = ParameterDirection.Output;
-                    comm.Parameters.Add(outParam2);
-
-                    comm.ExecuteNonQuery();
-
-                    if (!(outParam1.Value is DBNull) && !(outParam2.Value is DBNull))
-                    {
-                        //return new Tuple<string, string>((string)outParam1.Value, ByteArrayToString((byte[])outParam2.Value));
-                        return new Tuple<string, string>((string)outParam1.Value, (string)outParam2.Value);
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-            }
-            catch (Exception XD)
-            {
-                return null;
-            }
-        }
-
-        private string ByteArrayToString(byte[] ba)
-        {
-            StringBuilder hex = new StringBuilder(ba.Length * 2);
-            foreach (byte b in ba)
-                hex.AppendFormat("{0:X2}", b);
-            return hex.ToString();
-        } 
         #endregion
     }
 }
