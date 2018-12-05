@@ -44,18 +44,18 @@ namespace EnroladorStandAlone
 
         public override async Task Enviar()
         {
-            try
-            {
-                string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionEliminarEmpleadoTurnoServicioCasinoAsync(EmpleadoTurno);
-                if (!string.IsNullOrEmpty(error))
-                {
-                    throw new Exception("Eliminando a servicio de casino a un empleado no procesado: " + error);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Eliminando a servicio de casino a un empleado no procesado: " + ex.Message);
-            }
+            //try
+            //{
+            //    string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionEliminarEmpleadoTurnoServicioCasinoAsync(EmpleadoTurno);
+            //    if (!string.IsNullOrEmpty(error))
+            //    {
+            //        throw new Exception("Eliminando a servicio de casino a un empleado no procesado: " + error);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception("Eliminando a servicio de casino a un empleado no procesado: " + ex.Message);
+            //}
         }
 
         public override void Cancelar(Form1 parent)

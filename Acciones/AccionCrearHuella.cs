@@ -61,7 +61,7 @@ namespace EnroladorStandAlone
         {
             if (parent.EmpleadoTable.ContainsKey(empleado))
             {
-                parent.EmpleadoTable[empleado].Item6.Item1.Remove(oid);
+                parent.EmpleadoTable[empleado].Item5.Item1.Remove(oid);
             }
             parent.HuellaTable.Remove(oid);
         }
@@ -70,9 +70,9 @@ namespace EnroladorStandAlone
         {
             if (parent.EmpleadoTable.ContainsKey(empleado))
             {
-                if (!parent.EmpleadoTable[empleado].Item6.Item1.Contains(oid))
+                if (!parent.EmpleadoTable[empleado].Item5.Item1.Contains(oid))
                 {
-                    parent.EmpleadoTable[empleado].Item6.Item1.Add(oid);
+                    parent.EmpleadoTable[empleado].Item5.Item1.Add(oid);
                 }
                 parent.HuellaTable[oid] = tipoHuella;
             }

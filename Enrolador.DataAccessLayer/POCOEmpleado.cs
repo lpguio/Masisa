@@ -12,10 +12,13 @@ namespace Enrolador.DataAccessLayer {
     public class POCOEmpleado {
         public Guid Oid { get; set; }
         public string RUT { get; set; }
+        public int EnrollId { get; set; }
         public string Correo { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
+        public bool TieneContraseña { get; set; }
+        public string Contraseña { get; set; }
         public string NumeroTelefono { get; set; }
-        public Boolean MarcaCasino { get; set; }
+        public Boolean ManejaCasino { get; set; }
     }
 }

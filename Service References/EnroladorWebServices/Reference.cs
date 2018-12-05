@@ -40,10 +40,10 @@ namespace EnroladorStandAlone.EnroladorWebServices {
         System.Threading.Tasks.Task<string> AccionCrearContratoAsync(System.Guid responsable, System.Guid oid, System.Guid empleado, System.Guid empresa, System.Guid cuenta, System.Guid cargo, System.DateTime inicioVigencia, System.Nullable<System.DateTime> finVigencia, string CodigoContrato);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleado", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleadoResponse")]
-        string AccionCrearEmpleado(System.Guid responsable, System.Guid oid, string RUT, string firstName, string lastName, int enrollID, string contraseña);
+        string AccionCrearEmpleado(System.Guid responsable, System.Guid oid, string RUT, string firstName, string lastName, string Correo, string Telefono, bool ManejaCasino, int enrollID, string contraseña);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleado", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleadoResponse")]
-        System.Threading.Tasks.Task<string> AccionCrearEmpleadoAsync(System.Guid responsable, System.Guid oid, string RUT, string firstName, string lastName, int enrollID, string contraseña);
+        System.Threading.Tasks.Task<string> AccionCrearEmpleadoAsync(System.Guid responsable, System.Guid oid, string RUT, string firstName, string lastName, string Correo, string Telefono, bool ManejaCasino, int enrollID, string contraseña);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionCrearHuella", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionCrearHuellaResponse")]
         string AccionCrearHuella(System.Guid responsable, System.Guid oid, System.Guid empleado, int tipoHuella, string data);
@@ -123,12 +123,6 @@ namespace EnroladorStandAlone.EnroladorWebServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeCuenta", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeCuentaResponse")]
         System.Threading.Tasks.Task<System.Tuple<System.Guid, string, System.Guid, System.Nullable<System.DateTime>>[]> LeeCuentaAsync(System.Guid loggedUser);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleado", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeEmpleadoResponse")]
-        System.Tuple<System.Guid, int, string, bool, string, string>[] LeeEmpleado();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleado", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeEmpleadoResponse")]
-        System.Threading.Tasks.Task<System.Tuple<System.Guid, int, string, bool, string, string>[]> LeeEmpleadoAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeHuella", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeHuellaResponse")]
         System.Tuple<System.Guid, int, System.Guid>[] LeeHuella();
         
@@ -158,24 +152,50 @@ namespace EnroladorStandAlone.EnroladorWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeTurnoServicio", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeTurnoServicioResponse")]
         System.Threading.Tasks.Task<Enrolador.DataAccessLayer.TurnoServicio[]> LeeTurnoServicioAsync(System.Guid loggedUser);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasino", ReplyAction = "http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasino")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasino", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasinoResponse")]
         Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino[] LeeEmpleadoTurnoServicioCasino(System.Guid loggedUser);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasino", ReplyAction = "http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasino")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasino", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasinoResponse")]
         System.Threading.Tasks.Task<Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino[]> LeeEmpleadoTurnoServicioCasinoAsync(System.Guid loggedUser);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasino", ReplyAction = "http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasino")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasin" +
+            "o", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasin" +
+            "oResponse")]
         string AccionInsertarEmpleadoTurnoServicioCasino(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasino", ReplyAction = "http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasino")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasin" +
+            "o", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasin" +
+            "oResponse")]
         System.Threading.Tasks.Task<string> AccionInsertarEmpleadoTurnoServicioCasinoAsync(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEnroladorWebServices/AccionEliminarEmpleadoTurnoServicioCasino", ReplyAction = "http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasino")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionEliminarEmpleadoTurnoServicioCasin" +
+            "o", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionEliminarEmpleadoTurnoServicioCasin" +
+            "oResponse")]
         string AccionEliminarEmpleadoTurnoServicioCasino(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEnroladorWebServices/AccionEliminarEmpleadoTurnoServicioCasino", ReplyAction = "http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasino")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionEliminarEmpleadoTurnoServicioCasin" +
+            "o", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionEliminarEmpleadoTurnoServicioCasin" +
+            "oResponse")]
         System.Threading.Tasks.Task<string> AccionEliminarEmpleadoTurnoServicioCasinoAsync(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleados", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeEmpleadosResponse")]
+        Enrolador.DataAccessLayer.POCOEmpleado[] LeeEmpleados();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleados", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeEmpleadosResponse")]
+        System.Threading.Tasks.Task<Enrolador.DataAccessLayer.POCOEmpleado[]> LeeEmpleadosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleadoYOtroDatos", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleadoYOtroDatosResponse")]
+        string AccionCrearEmpleadoYOtroDatos(System.Guid loggedUser, Enrolador.DataAccessLayer.POCOEmpleado Empleado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleadoYOtroDatos", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleadoYOtroDatosResponse")]
+        System.Threading.Tasks.Task<string> AccionCrearEmpleadoYOtroDatosAsync(System.Guid loggedUser, Enrolador.DataAccessLayer.POCOEmpleado Empleado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionModificarEmpleado", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionModificarEmpleadoResponse")]
+        string AccionModificarEmpleado(System.Guid loggedUser, Enrolador.DataAccessLayer.POCOEmpleado Empleado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionModificarEmpleado", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionModificarEmpleadoResponse")]
+        System.Threading.Tasks.Task<string> AccionModificarEmpleadoAsync(System.Guid loggedUser, Enrolador.DataAccessLayer.POCOEmpleado Empleado);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -237,12 +257,12 @@ namespace EnroladorStandAlone.EnroladorWebServices {
             return base.Channel.AccionCrearContratoAsync(responsable, oid, empleado, empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato);
         }
         
-        public string AccionCrearEmpleado(System.Guid responsable, System.Guid oid, string RUT, string firstName, string lastName, int enrollID, string contraseña) {
-            return base.Channel.AccionCrearEmpleado(responsable, oid, RUT, firstName, lastName, enrollID, contraseña);
+        public string AccionCrearEmpleado(System.Guid responsable, System.Guid oid, string RUT, string firstName, string lastName, string Correo, string Telefono, bool ManejaCasino, int enrollID, string contraseña) {
+            return base.Channel.AccionCrearEmpleado(responsable, oid, RUT, firstName, lastName, Correo, Telefono, ManejaCasino, enrollID, contraseña);
         }
         
-        public System.Threading.Tasks.Task<string> AccionCrearEmpleadoAsync(System.Guid responsable, System.Guid oid, string RUT, string firstName, string lastName, int enrollID, string contraseña) {
-            return base.Channel.AccionCrearEmpleadoAsync(responsable, oid, RUT, firstName, lastName, enrollID, contraseña);
+        public System.Threading.Tasks.Task<string> AccionCrearEmpleadoAsync(System.Guid responsable, System.Guid oid, string RUT, string firstName, string lastName, string Correo, string Telefono, bool ManejaCasino, int enrollID, string contraseña) {
+            return base.Channel.AccionCrearEmpleadoAsync(responsable, oid, RUT, firstName, lastName, Correo, Telefono, ManejaCasino, enrollID, contraseña);
         }
         
         public string AccionCrearHuella(System.Guid responsable, System.Guid oid, System.Guid empleado, int tipoHuella, string data) {
@@ -349,14 +369,6 @@ namespace EnroladorStandAlone.EnroladorWebServices {
             return base.Channel.LeeCuentaAsync(loggedUser);
         }
         
-        public System.Tuple<System.Guid, int, string, bool, string, string>[] LeeEmpleado() {
-            return base.Channel.LeeEmpleado();
-        }
-        
-        public System.Threading.Tasks.Task<System.Tuple<System.Guid, int, string, bool, string, string>[]> LeeEmpleadoAsync() {
-            return base.Channel.LeeEmpleadoAsync();
-        }
-        
         public System.Tuple<System.Guid, int, System.Guid>[] LeeHuella() {
             return base.Channel.LeeHuella();
         }
@@ -396,35 +408,53 @@ namespace EnroladorStandAlone.EnroladorWebServices {
         public System.Threading.Tasks.Task<Enrolador.DataAccessLayer.TurnoServicio[]> LeeTurnoServicioAsync(System.Guid loggedUser) {
             return base.Channel.LeeTurnoServicioAsync(loggedUser);
         }
-
-        public Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino[] LeeEmpleadoTurnoServicioCasino(System.Guid loggedUser)
-        {
+        
+        public Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino[] LeeEmpleadoTurnoServicioCasino(System.Guid loggedUser) {
             return base.Channel.LeeEmpleadoTurnoServicioCasino(loggedUser);
         }
-
-        public System.Threading.Tasks.Task<Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino[]> LeeEmpleadoTurnoServicioCasinoAsync(System.Guid loggedUser)
-        {
+        
+        public System.Threading.Tasks.Task<Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino[]> LeeEmpleadoTurnoServicioCasinoAsync(System.Guid loggedUser) {
             return base.Channel.LeeEmpleadoTurnoServicioCasinoAsync(loggedUser);
         }
-
-        public string AccionInsertarEmpleadoTurnoServicioCasino(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino)
-        {
+        
+        public string AccionInsertarEmpleadoTurnoServicioCasino(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino) {
             return base.Channel.AccionInsertarEmpleadoTurnoServicioCasino(empleadoTurnoServicioCasino);
         }
-
-        public System.Threading.Tasks.Task<string> AccionInsertarEmpleadoTurnoServicioCasinoAsync(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino)
-        {
+        
+        public System.Threading.Tasks.Task<string> AccionInsertarEmpleadoTurnoServicioCasinoAsync(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino) {
             return base.Channel.AccionInsertarEmpleadoTurnoServicioCasinoAsync(empleadoTurnoServicioCasino);
         }
-
-        public string AccionEliminarEmpleadoTurnoServicioCasino(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino)
-        {
+        
+        public string AccionEliminarEmpleadoTurnoServicioCasino(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino) {
             return base.Channel.AccionEliminarEmpleadoTurnoServicioCasino(empleadoTurnoServicioCasino);
         }
-
-        public  System.Threading.Tasks.Task<string> AccionEliminarEmpleadoTurnoServicioCasinoAsync(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino)
-        {
+        
+        public System.Threading.Tasks.Task<string> AccionEliminarEmpleadoTurnoServicioCasinoAsync(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino) {
             return base.Channel.AccionEliminarEmpleadoTurnoServicioCasinoAsync(empleadoTurnoServicioCasino);
+        }
+        
+        public Enrolador.DataAccessLayer.POCOEmpleado[] LeeEmpleados() {
+            return base.Channel.LeeEmpleados();
+        }
+        
+        public System.Threading.Tasks.Task<Enrolador.DataAccessLayer.POCOEmpleado[]> LeeEmpleadosAsync() {
+            return base.Channel.LeeEmpleadosAsync();
+        }
+        
+        public string AccionCrearEmpleadoYOtroDatos(System.Guid loggedUser, Enrolador.DataAccessLayer.POCOEmpleado Empleado) {
+            return base.Channel.AccionCrearEmpleadoYOtroDatos(loggedUser, Empleado);
+        }
+        
+        public System.Threading.Tasks.Task<string> AccionCrearEmpleadoYOtroDatosAsync(System.Guid loggedUser, Enrolador.DataAccessLayer.POCOEmpleado Empleado) {
+            return base.Channel.AccionCrearEmpleadoYOtroDatosAsync(loggedUser, Empleado);
+        }
+        
+        public string AccionModificarEmpleado(System.Guid loggedUser, Enrolador.DataAccessLayer.POCOEmpleado Empleado) {
+            return base.Channel.AccionModificarEmpleado(loggedUser, Empleado);
+        }
+        
+        public System.Threading.Tasks.Task<string> AccionModificarEmpleadoAsync(System.Guid loggedUser, Enrolador.DataAccessLayer.POCOEmpleado Empleado) {
+            return base.Channel.AccionModificarEmpleadoAsync(loggedUser, Empleado);
         }
     }
 }

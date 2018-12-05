@@ -282,6 +282,8 @@
     </None>
     <None Include="EnroladorStandalone_ClaveTemporal.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino.datasource" />
+    <None Include="Properties\DataSources\Enrolador.DataAccessLayer.POCOEmpleado.datasource" />
     <None Include="Properties\DataSources\Enrolador.DataAccessLayer.ServicioCasino.datasource" />
     <None Include="Properties\DataSources\Enrolador.DataAccessLayer.TurnoServicio.datasource" />
     <None Include="Properties\Settings.settings">

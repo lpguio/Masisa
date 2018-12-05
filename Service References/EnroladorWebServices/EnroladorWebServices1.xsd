@@ -137,35 +137,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TupleOfguidstringguidNullableOfdateTimeNrJYEgPU" nillable="true" type="tns:TupleOfguidstringguidNullableOfdateTimeNrJYEgPU" />
-  <xs:complexType name="ArrayOfTupleOfguidintstringbooleanstringstring">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="TupleOfguidintstringbooleanstringstring" nillable="true" type="tns:TupleOfguidintstringbooleanstringstring" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfTupleOfguidintstringbooleanstringstring" nillable="true" type="tns:ArrayOfTupleOfguidintstringbooleanstringstring" />
-  <xs:complexType name="TupleOfguidintstringbooleanstringstring">
-    <xs:annotation>
-      <xs:appinfo>
-        <GenericType Name="TupleOf{0}{1}{2}{3}{4}{5}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-          <GenericParameter Name="guid" Namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-          <GenericParameter Name="int" Namespace="http://www.w3.org/2001/XMLSchema" />
-          <GenericParameter Name="string" Namespace="http://www.w3.org/2001/XMLSchema" />
-          <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
-          <GenericParameter Name="string" Namespace="http://www.w3.org/2001/XMLSchema" />
-          <GenericParameter Name="string" Namespace="http://www.w3.org/2001/XMLSchema" />
-        </GenericType>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="m_Item1" type="ser:guid" />
-      <xs:element name="m_Item2" type="xs:int" />
-      <xs:element name="m_Item3" nillable="true" type="xs:string" />
-      <xs:element name="m_Item4" type="xs:boolean" />
-      <xs:element name="m_Item5" nillable="true" type="xs:string" />
-      <xs:element name="m_Item6" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="TupleOfguidintstringbooleanstringstring" nillable="true" type="tns:TupleOfguidintstringbooleanstringstring" />
   <xs:complexType name="ArrayOfTupleOfguidintguid">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="TupleOfguidintguid" nillable="true" type="tns:TupleOfguidintguid" />

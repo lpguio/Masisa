@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Enrolador.DataAccessLayer;
 
 namespace EnroladorStandAlone
 {
@@ -17,36 +18,21 @@ namespace EnroladorStandAlone
         string firstName;
         string lastName;
 
-        public string Email { get; set; }
-        public string Telefono { get; set; }
+        public string Correo { get; set; }
+        public string NumeroTelefono { get; set; }
         public bool ManejaCasino { get; set; }
-
-
         public string RUT { get { return rut; } }
         public string Contraseña { get { return contraseña; } }
 
-        public AccionCrearEmpleado(int enrollId, string rut, string contraseña, string firstName, string lastName, Form1 parent)
-            : base(parent.LoggedUser.Item1, DateTime.Now, Guid.NewGuid())
-        {
-            this.enrollId = enrollId;
-            this.rut = rut;
-            this.contraseña = contraseña;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            descripcion = string.Format("Crear empleado {0} {1} con RUT {2}{3}", firstName, lastName, rut, !string.IsNullOrEmpty(contraseña) ? " con contraseña" : "");
-
-            Aplicar(parent);
-        }
-
-        public AccionCrearEmpleado(int enrollId, string rut, string contraseña, string firstName, string lastName, string Email, string Telefono, bool ManejaCasino, Form1 parent)
+        public AccionCrearEmpleado(int enrollId, string rut, string contraseña, string firstName, string lastName, string Correo, string NumeroTelefono, bool ManejaCasino, Form1 parent)
             : base(parent.LoggedUser.Item1, DateTime.Now, Guid.NewGuid()) {
             this.enrollId = enrollId;
             this.rut = rut;
             this.contraseña = contraseña;
             this.firstName = firstName;
             this.lastName = lastName;
-            this.Email = Email;
-            this.Telefono = Telefono;
+            this.Correo = Correo;
+            this.NumeroTelefono = NumeroTelefono;
             this.ManejaCasino = ManejaCasino;
             descripcion = string.Format("Crear empleado {0} {1} con RUT {2}{3}", firstName, lastName, rut, !string.IsNullOrEmpty(contraseña) ? " con contraseña" : "");
 
@@ -61,6 +47,9 @@ namespace EnroladorStandAlone
             contraseña = original.contraseña;
             firstName = original.firstName;
             lastName = original.lastName;
+            Correo = original.Correo;
+            NumeroTelefono = original.NumeroTelefono;
+            ManejaCasino = original.ManejaCasino;
             descripcion = original.descripcion;
         }
 
@@ -69,34 +58,19 @@ namespace EnroladorStandAlone
             return new AccionCrearEmpleado(this);
         }
 
-        public bool Editar(string contraseña, string firstName, string lastName, Form1 parent)
-        {
-            if (((string.IsNullOrEmpty(this.contraseña) && string.IsNullOrEmpty(contraseña)) || this.contraseña.Equals(contraseña)) && this.firstName.Equals(firstName) && this.lastName.Equals(lastName))
-            {
-                return false;
-            }
-            this.contraseña = contraseña;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            descripcion = string.Format("Crear empleado {0} {1} con RUT {2}{3}", firstName, lastName, rut, !string.IsNullOrEmpty(contraseña) ? " con contraseña" : "");
-
-            parent.EmpleadoTable[oid] = new Tuple<int, string, bool, string, string, Tuple<List<Guid>, List<Guid>, List<Guid>>>(parent.EmpleadoTable[oid].Item1, parent.EmpleadoTable[oid].Item2, !string.IsNullOrEmpty(contraseña), firstName, lastName, parent.EmpleadoTable[oid].Item6);
-            return true;
-        }
-
-        public bool Editar(string contraseña, string firstName, string lastName, string Email, string Telefono, bool ManejaCasino, Form1 parent) {
+        public bool Editar(string contraseña, string firstName, string lastName, string Correo, string NumeroTelefono, bool ManejaCasino, Form1 parent) {
             if (((string.IsNullOrEmpty(this.contraseña) && string.IsNullOrEmpty(contraseña)) || this.contraseña.Equals(contraseña)) && this.firstName.Equals(firstName) && this.lastName.Equals(lastName)) {
                 return false;
             }
             this.contraseña = contraseña;
             this.firstName = firstName;
             this.lastName = lastName;
-            this.Email = Email;
-            this.Telefono = Telefono;
+            this.Correo = Correo;
+            this.NumeroTelefono = NumeroTelefono;
             this.ManejaCasino = ManejaCasino;
             descripcion = string.Format("Crear empleado {0} {1} con RUT {2}{3}", firstName, lastName, rut, !string.IsNullOrEmpty(contraseña) ? " con contraseña" : "");
 
-            parent.EmpleadoTable[oid] = new Tuple<int, string, bool, string, string, Tuple<List<Guid>, List<Guid>, List<Guid>>>(parent.EmpleadoTable[oid].Item1, parent.EmpleadoTable[oid].Item2, !string.IsNullOrEmpty(contraseña), firstName, lastName, parent.EmpleadoTable[oid].Item6);
+            parent.EmpleadoTable[oid] = new Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>(parent.EmpleadoTable[oid].Item1, parent.EmpleadoTable[oid].Item2, !string.IsNullOrEmpty(contraseña), new Tuple<string, string, string, string, bool>(firstName, lastName, Correo, NumeroTelefono, ManejaCasino), parent.EmpleadoTable[oid].Item5);
             return true;
         }
 
@@ -104,7 +78,18 @@ namespace EnroladorStandAlone
         {
             try
             {
-                string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionCrearEmpleadoAsync(responsable, oid, rut, firstName, lastName, enrollId, contraseña);
+                POCOEmpleado Empleado = new POCOEmpleado() {
+                    Oid = oid,
+                    RUT = rut,
+                    EnrollId = enrollId,
+                    Nombres = firstName,
+                    Apellidos = lastName,
+                    Correo = Correo,
+                    NumeroTelefono = NumeroTelefono,
+                    ManejaCasino = ManejaCasino,
+                    Contraseña = contraseña
+                };
+                string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionCrearEmpleadoYOtroDatosAsync(responsable, Empleado);
                 if (!string.IsNullOrEmpty(error))
                 {
                     throw new Exception("Empleado no creado: " + error);
@@ -124,8 +109,7 @@ namespace EnroladorStandAlone
 
         public override void Aplicar(Form1 parent)
         {
-            //ACCM
-            parent.EmpleadoTable[oid] = new Tuple<int, string, bool, string, string, Tuple<List<Guid>, List<Guid>, List<Guid>>>(enrollId, rut, !string.IsNullOrEmpty(contraseña), firstName, lastName, new Tuple<List<Guid>, List<Guid>, List<Guid>>(new List<Guid>(), new List<Guid>(), new List<Guid>()));
+            parent.EmpleadoTable[oid] = new Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>(enrollId, rut, !string.IsNullOrEmpty(contraseña), new Tuple<string, string, string, string, bool>(firstName, lastName, Correo, NumeroTelefono, ManejaCasino), new Tuple<List<Guid>, List<Guid>, List<Guid>>(new List<Guid>(), new List<Guid>(), new List<Guid>()));
             parent.EmpleadoRUTIndex[rut] = oid;
         }
     }
