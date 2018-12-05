@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 namespace EnroladorStandAlone
 {
     [Serializable()]
-    class AccionEmpleadoTurnoServicioCasino : Accion
+    class AccionEliminarEmpleadoTurnoServicio : Accion
     {
         EmpleadoTurnoServicioCasino EmpleadoTurno { get; set; }
 
-        public AccionEmpleadoTurnoServicioCasino(EmpleadoTurnoServicioCasino empleadoTurno, Form1 parent)
+        public AccionEliminarEmpleadoTurnoServicio(EmpleadoTurnoServicioCasino empleadoTurno, Form1 parent)
             : base(parent.LoggedUser.Item1, DateTime.Now, Guid.NewGuid())
         {
             this.EmpleadoTurno = empleadoTurno;
             Aplicar(parent);
         }
 
-        protected AccionEmpleadoTurnoServicioCasino(AccionEmpleadoTurnoServicioCasino original)
+        protected AccionEliminarEmpleadoTurnoServicio(AccionEliminarEmpleadoTurnoServicio original)
             : base(original.responsable, original.fecha, original.oid)
         {
             this.EmpleadoTurno = original.EmpleadoTurno;
@@ -29,7 +29,7 @@ namespace EnroladorStandAlone
 
         public override Accion Clonar()
         {
-            return new AccionEmpleadoTurnoServicioCasino(this);
+            return new AccionEliminarEmpleadoTurnoServicio(this);
         }
 
         public bool Editar(EmpleadoTurnoServicioCasino empleadoTurno, Form1 parent)
@@ -39,9 +39,6 @@ namespace EnroladorStandAlone
                 return false;
             }
             this.EmpleadoTurno = empleadoTurno;
-            //descripcion = string.Format("Crear contrato al empleado con RUT {0} con la empresa {1}, cuenta {2} y cargo {3}. Inicio de vigencia {4}{5}. Codigo Contrato {6}", parent.EmpleadoTable[empleado].Item2, parent.EmpresaTable[empresa].Item1, parent.CuentaTable[cuenta], parent.CargoTable[cargo], inicioVigencia.ToString("dd/MM/yyyy"), finVigencia.HasValue ? ". Fin de vigencia " + finVigencia.Value.ToString("dd/MM/yyyy") : "", CodigoContrato);
-
-            //parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato);
             return true;
         }
 
@@ -49,15 +46,15 @@ namespace EnroladorStandAlone
         {
             try
             {
-                string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionInsertarEmpleadoTurnoServicioCasinoAsync(EmpleadoTurno);
+                string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionEliminarEmpleadoTurnoServicioCasinoAsync(EmpleadoTurno);
                 if (!string.IsNullOrEmpty(error))
                 {
-                    throw new Exception("Empleado adicionado a servicio de casino no creado: " + error);
+                    throw new Exception("Eliminando a servicio de casino a un empleado no procesado: " + error);
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Empleado adicionado a servicio de casino no creado: " + ex.Message);
+                throw new Exception("Eliminando a servicio de casino a un empleado no procesado: " + ex.Message);
             }
         }
 

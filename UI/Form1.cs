@@ -15,6 +15,7 @@ using System.Data;
 using System.Deployment.Application;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
+using Enrolador.DataAccessLayer;
 
 namespace EnroladorStandAlone
 {
@@ -56,7 +57,10 @@ namespace EnroladorStandAlone
         private bool dataLoaded = false;
         public Huellero Huellero { get { return huellero; } }
         private Huellero huellero;
-        private string programFolder; 
+        private string programFolder;
+        private string ListEmpleadoTurnoServicioCasinoFile;
+        private string ListServicioCasinoFile;
+        private string ListTurnoServicioFile;
         #endregion
 
         #region Propiedades
@@ -71,6 +75,9 @@ namespace EnroladorStandAlone
         public Dictionary<string, Guid> EmpleadoRUTIndex { get { return empleadoRUTIndex; } }
         public Dictionary<Guid, TipoHuella> HuellaTable { get { return huellaTable; } }
         public Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>> ContratoTable { get { return contratoTable; } }
+        public List<EmpleadoTurnoServicioCasino> ListEmpleadoTurnoServicioCasino { get; set; }
+        public List<ServicioCasino> ListServicioCasino { get; set; }
+        public List<TurnoServicio> ListTurnoServicio { get; set; }
         #endregion
 
         #region Constructor
@@ -157,7 +164,9 @@ namespace EnroladorStandAlone
             empleadoFile = baseFile + "-8.dat";
             huellaFile = baseFile + "-9.dat";
             contratoFile = baseFile + "-10.dat";
-
+            ListEmpleadoTurnoServicioCasinoFile = baseFile + "-11.dat";
+            ListServicioCasinoFile = baseFile + "-12.dat";
+            ListTurnoServicioFile = baseFile + "-13.dat";
             bool online = false;
 
             if (!IdentificarOffline())
@@ -828,6 +837,9 @@ namespace EnroladorStandAlone
                     huellaTable = await LeeHuella(loadingDialog, empleadoTable);
                     await LeeEmpleadosDispositivos(loadingDialog, dispositivoTable, empleadoTable);
                     contratoTable = await LeeContrato(loadingDialog, empleadoTable, empresaTable, cuentaTable, cargoTable);
+                    ListEmpleadoTurnoServicioCasino = await LeeListEmpleadoTurnoServicioCasino(loadingDialog);
+                    ListServicioCasino = await LeeListServicioCasino(loadingDialog);
+                    ListTurnoServicio = await LeeListTurnoServicio(loadingDialog);
 
                     if (!SaveLoadedData())
                     {
@@ -949,6 +961,36 @@ namespace EnroladorStandAlone
                     }
                 }
 
+                using (Stream stream = File.Open(ListEmpleadoTurnoServicioCasinoFile, FileMode.Open, FileAccess.Read))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    ListEmpleadoTurnoServicioCasino = (List<EmpleadoTurnoServicioCasino>)bin.Deserialize(stream);
+                    if (ListEmpleadoTurnoServicioCasino == null)
+                    {
+                        return false;
+                    }
+                }
+
+                using (Stream stream = File.Open(ListServicioCasinoFile, FileMode.Open, FileAccess.Read))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    ListServicioCasino = (List<ServicioCasino>)bin.Deserialize(stream);
+                    if (ListServicioCasino == null)
+                    {
+                        return false;
+                    }
+                }
+
+                using (Stream stream = File.Open(ListTurnoServicioFile, FileMode.Open, FileAccess.Read))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    ListTurnoServicio = (List<TurnoServicio>)bin.Deserialize(stream);
+                    if (ListServicioCasino == null)
+                    {
+                        return false;
+                    }
+                }
+
                 ReaplicarAcciones();
 
                 dataLoaded = true;
@@ -985,8 +1027,12 @@ namespace EnroladorStandAlone
             Dictionary<string, Guid> newEmpleadoRUTIndex;
             Dictionary<Guid, TipoHuella> newHuellaTable;
             Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>> newContratoTable;
+            List<EmpleadoTurnoServicioCasino> newListEmpleadoTurnoServicioCasino;
+            List<ServicioCasino> newListServicioCasino;
+            List<TurnoServicio> newListTurnoServicio;  
 
             LoadingDialog loadingDialog = null;
+
             try
             {
                 loadingDialog = new LoadingDialog();
@@ -1004,6 +1050,9 @@ namespace EnroladorStandAlone
                 newHuellaTable = await LeeHuella(loadingDialog, newEmpleadoTable);
                 await LeeEmpleadosDispositivos(loadingDialog, newDispositivoTable, newEmpleadoTable);
                 newContratoTable = await LeeContrato(loadingDialog, newEmpleadoTable, newEmpresaTable, newCuentaTable, newCargoTable);
+                newListEmpleadoTurnoServicioCasino = await LeeListEmpleadoTurnoServicioCasino(loadingDialog);
+                newListServicioCasino = await LeeListServicioCasino(loadingDialog);
+                newListTurnoServicio = await LeeListTurnoServicio(loadingDialog);
 
                 cadenaTable = newCadenaTable;
                 instalacionTable = newInstalacionTable;
@@ -1015,6 +1064,10 @@ namespace EnroladorStandAlone
                 empleadoRUTIndex = newEmpleadoRUTIndex;
                 huellaTable = newHuellaTable;
                 contratoTable = newContratoTable;
+                ListEmpleadoTurnoServicioCasino = newListEmpleadoTurnoServicioCasino;
+                ListServicioCasino = newListServicioCasino;
+                ListTurnoServicio = newListTurnoServicio;
+
 
                 return SaveLoadedData();
             }
@@ -1259,6 +1312,51 @@ namespace EnroladorStandAlone
             return newContratoTable;
         }
 
+        private async Task<List<EmpleadoTurnoServicioCasino>> LeeListEmpleadoTurnoServicioCasino(ILoadingDialog loading)
+        {
+            List<EmpleadoTurnoServicioCasino> newListEmpleadoTurnoServicioCasino;
+            var res = await new EnroladorWebServices.EnroladorWebServicesClient().LeeEmpleadoTurnoServicioCasinoAsync(loggedUser.Item1);
+            loading.SiguientePaso(res.Length, "Cargando accesos a casinos");
+            newListEmpleadoTurnoServicioCasino = new List<EmpleadoTurnoServicioCasino>();
+            foreach (var item in res)
+            {
+                newListEmpleadoTurnoServicioCasino.Add(item);
+                loading.AvanzarActual();
+            }
+
+            return newListEmpleadoTurnoServicioCasino;
+        }
+
+        private async Task<List<ServicioCasino>> LeeListServicioCasino(ILoadingDialog loading)
+        {
+            List<ServicioCasino> newListServicioCasino;
+            var res = await new EnroladorWebServices.EnroladorWebServicesClient().LeeServicioCasinoAsync(loggedUser.Item1);
+            loading.SiguientePaso(res.Length, "Cargando servicios de casinos");
+            newListServicioCasino = new List<ServicioCasino>();
+            foreach (var item in res)
+            {
+                newListServicioCasino.Add(item);
+                loading.AvanzarActual();
+            }
+
+            return newListServicioCasino;
+        }
+
+        private async Task<List<TurnoServicio>> LeeListTurnoServicio(ILoadingDialog loading)
+        {
+            List<TurnoServicio> newListTurnoServicio;
+            var res = await new EnroladorWebServices.EnroladorWebServicesClient().LeeTurnoServicioAsync(loggedUser.Item1);
+            loading.SiguientePaso(res.Length, "Cargando turnos de los servicios de los casinos");
+            newListTurnoServicio = new List<TurnoServicio>();
+            foreach (var item in res)
+            {
+                newListTurnoServicio.Add(item);
+                loading.AvanzarActual();
+            }
+
+            return newListTurnoServicio;
+        }
+
         private bool SaveLoadedData()
         {
             try
@@ -1326,6 +1424,26 @@ namespace EnroladorStandAlone
                     stream.Close();
                 }
 
+                using (Stream stream = File.Open(ListEmpleadoTurnoServicioCasinoFile, FileMode.Create, FileAccess.Write))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    bin.Serialize(stream, ListEmpleadoTurnoServicioCasino);
+                    stream.Close();
+                }
+
+                using (Stream stream = File.Open(ListServicioCasinoFile, FileMode.Create, FileAccess.Write))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    bin.Serialize(stream, ListServicioCasino);
+                    stream.Close();
+                }
+
+                using (Stream stream = File.Open(ListTurnoServicioFile, FileMode.Create, FileAccess.Write))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    bin.Serialize(stream, ListTurnoServicio);
+                    stream.Close();
+                }
                 return true;
             }
             catch (Exception)

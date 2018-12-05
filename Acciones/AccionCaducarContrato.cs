@@ -14,7 +14,7 @@ namespace EnroladorStandAlone
         DateTime? finVigencia;
         DateTime? oldFinVigencia;
         Guid empleado;
-        string CodigoContrato;
+        string CodigoContrato = "SIN CONTRATO";
         public DateTime? FinVigencia { get { return finVigencia; } }
         public Guid Empleado { get { return empleado; } }
 

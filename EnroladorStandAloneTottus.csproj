@@ -183,6 +183,7 @@
     <Compile Include="Acciones\AccionActualizarHuella.cs" />
     <Compile Include="Acciones\AccionCaducarContrato.cs" />
     <Compile Include="Acciones\AccionCrearAsignacion.cs" />
+    <Compile Include="Acciones\AccionEliminarEmpleadoTurnoServicio.cs" />
     <Compile Include="Acciones\AccionEmpleadoTurnoServicioCasino.cs" />
     <Compile Include="Acciones\AccionModificarContraseña.cs" />
     <Compile Include="Acciones\AccionCrearContrato.cs" />
@@ -281,6 +282,8 @@
     </None>
     <None Include="EnroladorStandalone_ClaveTemporal.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Enrolador.DataAccessLayer.ServicioCasino.datasource" />
+    <None Include="Properties\DataSources\Enrolador.DataAccessLayer.TurnoServicio.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -347,12 +350,6 @@
     <Content Include="SQL\SP\Modificar_ESA_Login.sql" />
     <Content Include="SQL\SP\Modificar_ESA_Revalidar.sql" />
     <Content Include="SQL\VIEW\Modificar_ESA_Contrato.sql" />
-    <None Include="Service References\EnroladorWebServices\EnroladorStandAlone.EnroladorWebServices.ServicioCasino.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\EnroladorWebServices\EnroladorStandAlone.EnroladorWebServices.TurnoServicio.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\EnroladorWebServices\EnroladorWebServices.disco" />
     <None Include="Service References\EnroladorWebServices\EnroladorWebServices.wsdl" />
     <None Include="Service References\EnroladorWebServices\EnroladorWebServices.xsd">
@@ -434,7 +431,12 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\EnroladorWebServices\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="Enrolador.DataAccessLayer\Enrolador.DataAccessLayer.csproj">
+      <Project>{7016198B-81CC-4405-B441-30A16824F9CA}</Project>
+      <Name>Enrolador.DataAccessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
