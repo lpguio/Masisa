@@ -16,6 +16,7 @@ using System.Deployment.Application;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using Enrolador.DataAccessLayer;
+using EnroladorStandAlone.UI;
 
 namespace EnroladorStandAlone
 {
@@ -61,6 +62,7 @@ namespace EnroladorStandAlone
         private string ListEmpleadoTurnoServicioCasinoFile;
         private string ListServicioCasinoFile;
         private string ListTurnoServicioFile;
+        public List<POCOCasino> casinos;
         #endregion
 
         #region Propiedades
@@ -78,6 +80,27 @@ namespace EnroladorStandAlone
         public List<EmpleadoTurnoServicioCasino> ListEmpleadoTurnoServicioCasino { get; set; }
         public List<ServicioCasino> ListServicioCasino { get; set; }
         public List<TurnoServicio> ListTurnoServicio { get; set; }
+
+        public List<POCOCasino> Casinos
+        {
+            get
+            {
+                if (casinos != null) return casinos;
+                casinos = new List<POCOCasino>();
+                foreach (var item in InstalacionTable)
+                {
+                    if (ListServicioCasino.Exists(p => p.Casino == item.Key))
+                        casinos.Add(
+                                new POCOCasino()
+                                {
+                                    Oid = item.Key,
+                                    Nombre = item.Value.Item1
+                                }
+                            );
+            }
+            return casinos;
+        }
+        }
         #endregion
 
         #region Constructor
@@ -1425,7 +1448,7 @@ namespace EnroladorStandAlone
                 }
 
                 using (Stream stream = File.Open(ListEmpleadoTurnoServicioCasinoFile, FileMode.Create, FileAccess.Write))
-                {
+                    {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, ListEmpleadoTurnoServicioCasino);
                     stream.Close();
@@ -1765,6 +1788,11 @@ namespace EnroladorStandAlone
 
                 e.DisplayText = string.Concat(listaContratos);
             }
+        }
+
+        private void casinosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCasino.ProcesarCasinos(Casinos, ListEmpleadoTurnoServicioCasino, ListServicioCasino, ListTurnoServicio);
         }
     }
 }

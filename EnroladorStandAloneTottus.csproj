@@ -92,6 +92,9 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Images.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
@@ -252,6 +255,12 @@
     <Compile Include="Tools\ResultadoAutorizacion.cs" />
     <Compile Include="Tools\TipoHuella.cs" />
     <Compile Include="Tools\ValidadorRUT.cs" />
+    <Compile Include="UI\FrmCasino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmCasino.Designer.cs">
+      <DependentUpon>FrmCasino.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="UI\EnrollForm.resx">
       <DependentUpon>EnrollForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,6 +273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AuthDialog.resx">
       <DependentUpon>AuthDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmCasino.resx">
+      <DependentUpon>FrmCasino.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LoadingDialog.resx">
       <DependentUpon>LoadingDialog.cs</DependentUpon>
@@ -282,6 +294,8 @@
     </None>
     <None Include="EnroladorStandalone_ClaveTemporal.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino.datasource" />
+    <None Include="Properties\DataSources\Enrolador.DataAccessLayer.POCOCasino.datasource" />
     <None Include="Properties\DataSources\Enrolador.DataAccessLayer.ServicioCasino.datasource" />
     <None Include="Properties\DataSources\Enrolador.DataAccessLayer.TurnoServicio.datasource" />
     <None Include="Properties\Settings.settings">

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmpleadoTurnoServicioCasino.cs" />
+    <Compile Include="POCOCasino.cs" />
     <Compile Include="POCOEmpleado.cs" />
     <Compile Include="TurnoServicio.cs" />
     <Compile Include="ServicioCasino.cs" />

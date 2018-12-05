@@ -86,10 +86,13 @@ namespace EnroladorWebServices
         [OperationContract]
         List<TurnoServicio> LeeTurnoServicio(Guid loggedUser);
 
+        [OperationContract]
         List<EmpleadoTurnoServicioCasino> LeeEmpleadoTurnoServicioCasino(Guid loggedUser);
 
+        [OperationContract]
         string AccionInsertarEmpleadoTurnoServicioCasino(EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino);
 
+        [OperationContract]
         string AccionEliminarEmpleadoTurnoServicioCasino(EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino);
 
         #endregion

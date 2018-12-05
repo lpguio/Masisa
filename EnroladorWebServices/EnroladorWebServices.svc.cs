@@ -986,8 +986,8 @@ namespace EnroladorWebServices
         /// <returns>Listado con todos los servicios de los casinos</returns>
         public List<ServicioCasino> LeeServicioCasino(Guid loggedUser)
         {
-            string sql = string.Format(@"SELECT SC.Oid, SC.Casino, SC.Nombre, SC.Vigente	FROM ServicioCasino SC
-									INNER JOIN ESA_Instalacion EI ON SC.Oid = EI.Oid
+            string sql = string.Format(@"SELECT SC.Oid, SC.Casino, SC.Nombre, SC.Vigente FROM ServicioCasino SC
+									INNER JOIN ESA_Instalacion EI ON SC.Casino = EI.Oid
 									WHERE EI.Usuario = '{0}'", loggedUser);
             var res = new List<ServicioCasino>();
             try
@@ -1040,7 +1040,7 @@ namespace EnroladorWebServices
                                                   ,TS.HoraInicio
                                                   ,TS.HoraFin
                                             FROM TurnoServicio TS INNER JOIN ServicioCasino SC ON TS.Servicio = SC.Oid
-                                                                    INNER JOIN ESA_Instalacion EI ON SC.Oid = EI.Oid
+                                                                    INNER JOIN ESA_Instalacion EI ON SC.Casino = EI.Oid
                                             WHERE EI.Usuario = '{0}'", loggedUser);
             var res = new List<TurnoServicio>();
             try
@@ -1056,16 +1056,23 @@ namespace EnroladorWebServices
 
                         while (reader.Read())
                         {
-                            var turnoServicio = new TurnoServicio()
+                            try
                             {
-                                Oid = reader.GetFieldValue<Guid>(0),
-                                Servicio = reader.GetFieldValue<Guid>(1),
-                                Nombre = reader.GetFieldValue<string>(2),
-                                Vigente = reader.GetFieldValue<Boolean>(3),
-                                HoraInicio = reader.GetFieldValue<TimeSpan>(4),
-                                HoraFin = reader.GetFieldValue<TimeSpan>(5)
-                            };
-                            res.Add(turnoServicio);
+                                var turnoServicio = new TurnoServicio()
+                                {
+                                    Oid = reader.GetFieldValue<Guid>(0),
+                                    Servicio = reader.GetFieldValue<Guid>(1),
+                                    Nombre = reader.GetFieldValue<string>(2),
+                                    Vigente = reader.GetFieldValue<Boolean>(3),
+                                    HoraInicio = reader.GetFieldValue<TimeSpan>(4),
+                                    HoraFin = reader.GetFieldValue<TimeSpan>(5)
+                                };
+                                res.Add(turnoServicio);
+                            }
+                            catch (Exception ex)
+                            {
+
+                            }
                         }
                     }
                     finally
@@ -1130,7 +1137,7 @@ namespace EnroladorWebServices
         #endregion
 
         #region Empleado con Email, Telefono
-        public List<POCOEmpleado> LeeDatosEmpleadoTelefonoEmailMarcaCasino(Guid loggedUser) {
+        public List<POCOEmpleado> LeeDatosEmpleadoTelefonoEmailMarcaCasino(Guid loggedUser){
             string sql = string.Format(@"SELECT E.RUT, P.Email Correo, P.FirstName Nombre, P.LastName Apellidos, PN.Number NumeroTelefono, P.MarcaCasino
                                         FROM Empleado E
                                         INNER JOIN Person P ON E.Oid = P.Oid

@@ -56,23 +56,26 @@
             this.Identificacion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TipoAcciones = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colContratosActivos = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.panelGeneral = new System.Windows.Forms.Panel();
             this.axZKFPEngX1 = new AxZKFPEngXControl.AxZKFPEngX();
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.cmsMenuContextual = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.casinosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcHistoria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvHistoria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             this.panelGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axZKFPEngX1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            this.cmsMenuContextual.SuspendLayout();
             this.SuspendLayout();
             // 
             // repositoryItemProgressBar3
@@ -237,6 +240,7 @@
             // 
             // gcHistoria
             // 
+            this.gcHistoria.ContextMenuStrip = this.cmsMenuContextual;
             this.gcHistoria.Cursor = System.Windows.Forms.Cursors.Default;
             this.gcHistoria.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcHistoria.Location = new System.Drawing.Point(0, 0);
@@ -411,6 +415,15 @@
             this.colContratosActivos.Visible = true;
             this.colContratosActivos.VisibleIndex = 4;
             // 
+            // repositoryItemMemoEdit2
+            // 
+            this.repositoryItemMemoEdit2.Name = "repositoryItemMemoEdit2";
+            // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
             // panelGeneral
             // 
             this.panelGeneral.Controls.Add(this.axZKFPEngX1);
@@ -442,14 +455,19 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
             // 
-            // repositoryItemMemoEdit2
+            // cmsMenuContextual
             // 
-            this.repositoryItemMemoEdit2.Name = "repositoryItemMemoEdit2";
+            this.cmsMenuContextual.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.casinosToolStripMenuItem});
+            this.cmsMenuContextual.Name = "cmsMenuContextual";
+            this.cmsMenuContextual.Size = new System.Drawing.Size(116, 26);
             // 
-            // repositoryItemTextEdit1
+            // casinosToolStripMenuItem
             // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            this.casinosToolStripMenuItem.Name = "casinosToolStripMenuItem";
+            this.casinosToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.casinosToolStripMenuItem.Text = "Casinos";
+            this.casinosToolStripMenuItem.Click += new System.EventHandler(this.casinosToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -475,11 +493,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcHistoria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvHistoria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             this.panelGeneral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axZKFPEngX1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            this.cmsMenuContextual.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -516,5 +535,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colContratosActivos;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit2;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private System.Windows.Forms.ContextMenuStrip cmsMenuContextual;
+        private System.Windows.Forms.ToolStripMenuItem casinosToolStripMenuItem;
     }
 }
