@@ -313,6 +313,7 @@ namespace EnroladorStandAlone
                     {
                         if (accion is AccionCrearEmpleado && ((AccionCrearEmpleado)accion).Oid.Equals(emp.Key))
                         {
+                            //lpg
                             nuevos.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Nueva, emp.Value.Item4.Item3 + " " + emp.Value.Item4.Item4, emp.Value.Item4.Item5));
                             found = true;
                             break;
@@ -383,6 +384,22 @@ namespace EnroladorStandAlone
                             {
                                 AccionModificarContraseña accion2 = (AccionModificarContraseña)accion;
                                 if (accion2.Oid.Equals(emp.Key))
+                                {
+                                    found = true;
+                                }
+                            }
+                            else if (accion is AccionEmpleadoTurnoServicioCasino)
+                            {
+                                var acc = (AccionEmpleadoTurnoServicioCasino)accion;
+                                if (acc.EmpleadoTurno.Empleado == emp.Key)
+                                {
+                                    found = true;
+                                }
+                            }
+                            else if (accion is AccionEliminarEmpleadoTurnoServicio)
+                            {
+                                var acc = (AccionEmpleadoTurnoServicioCasino)accion;
+                                if (acc.EmpleadoTurno.Empleado == emp.Key)
                                 {
                                     found = true;
                                 }
@@ -1673,6 +1690,7 @@ namespace EnroladorStandAlone
             }
             return false;
         }
+
         private void gvHistoria_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
             if (e.RowHandle >= 0)
@@ -1736,18 +1754,6 @@ namespace EnroladorStandAlone
             }
             catch (Exception) { }
         }
-        #endregion
-
-        private void gcHistoria_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gvHistoria_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
-        {
-            //gvHistoria.selectr
-            //e.
-        }
 
         private void gvHistoria_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
@@ -1773,18 +1779,18 @@ namespace EnroladorStandAlone
                         //Si estan todos los nomencladores
                         if (EmpresaTable.ContainsKey(empresa) && CuentaTable.ContainsKey(cuenta) && CargoTable.ContainsKey(cargo))
                         {
-                            var inicioContrato = ((inicio == null) || (inicio == DateTime.MinValue) || (inicio == new DateTime(1900,1,1))) ? "Contrato Permanente" : Convert.ToDateTime(inicio).Date.ToShortDateString();
+                            var inicioContrato = ((inicio == null) || (inicio == DateTime.MinValue) || (inicio == new DateTime(1900, 1, 1))) ? "Contrato Permanente" : Convert.ToDateTime(inicio).Date.ToShortDateString();
 
                             var finContrato = ((fin == null) || (fin == DateTime.MinValue)) ? "Contrato Permanente" : Convert.ToDateTime(fin).Date.ToShortDateString();
 
                             var rangoContrato = (inicioContrato == finContrato) ? "Contrato Permanente" :
                                                     "(" +
                                                         inicio.Date.ToShortDateString() + "-" +
-                                                        finContrato + 
+                                                        finContrato +
                                                     ")";
                             var descripcionContrato = EmpresaTable[empresa].Item1 + "-" +
                                                     CuentaTable[cuenta].ToString() + "-" +
-                                                    CargoTable[cargo].ToString() + "-" + 
+                                                    CargoTable[cargo].ToString() + "-" +
                                                     rangoContrato + Environment.NewLine;
                             listaContratos.Add(descripcionContrato);
                         }
@@ -1802,8 +1808,16 @@ namespace EnroladorStandAlone
             if ((info.InRow || info.InDataRow || info.InRowCell) && info.RowHandle >= 0)
             {
                 string RUT = (string)gvHistoria.GetRowCellValue(info.RowHandle, "Item1");
+                var cantidadAccionesAntesdeCasinos = accionesPorEnviar.Count;
                 FrmCasino.ProcesarCasinos(accionesPorEnviar, RUT, this, Casinos, ListEmpleadoTurnoServicioCasino, ListServicioCasino, ListTurnoServicio);
+                if (accionesPorEnviar.Count != cantidadAccionesAntesdeCasinos)
+                {
+                    var emp = (Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>)gvHistoria.GetRow(info.RowHandle);
+                    var emp1 = new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Item1, emp.Item2, emp.Item3, emp.Item4, EnrollForm.TipoAccion.Nueva, emp.Item6, emp.Item7);
+                    bnlEmpleados[bnlEmpleados.IndexOf(emp)] = emp1;
+                }
             }
         }
+        #endregion
     }
 }

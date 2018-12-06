@@ -12,7 +12,7 @@ namespace EnroladorStandAlone
     [Serializable()]
     class AccionEliminarEmpleadoTurnoServicio : Accion
     {
-        EmpleadoTurnoServicioCasino EmpleadoTurno { get; set; }
+        public EmpleadoTurnoServicioCasino EmpleadoTurno { get; set; }
 
         public AccionEliminarEmpleadoTurnoServicio(EmpleadoTurnoServicioCasino empleadoTurno, Form1 parent)
             : base(parent.LoggedUser.Item1, DateTime.Now, Guid.NewGuid())
@@ -44,18 +44,18 @@ namespace EnroladorStandAlone
 
         public override async Task Enviar()
         {
-            //try
-            //{
-            //    string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionEliminarEmpleadoTurnoServicioCasinoAsync(EmpleadoTurno);
-            //    if (!string.IsNullOrEmpty(error))
-            //    {
-            //        throw new Exception("Eliminando a servicio de casino a un empleado no procesado: " + error);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("Eliminando a servicio de casino a un empleado no procesado: " + ex.Message);
-            //}
+            try
+            {
+                string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionEliminarEmpleadoTurnoServicioCasinoAsync(EmpleadoTurno, Oid);
+                if (!string.IsNullOrEmpty(error))
+                {
+                    throw new Exception("Eliminando a servicio de casino a un empleado no procesado: " + error);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Eliminando a servicio de casino a un empleado no procesado: " + ex.Message);
+            }
         }
 
         public override void Cancelar(Form1 parent)

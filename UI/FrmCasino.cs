@@ -67,6 +67,7 @@ namespace EnroladorStandAlone.UI
         private void slueCasinos_EditValueChanged(object sender, EventArgs e)
         {
             bdsServiciosCasinos.DataSource = null;
+            bdsTurnosServicios.DataSource = null;
             if (slueCasinos.EditValue == null) return;
             var list = ListServicioCasino.Where(p => p.Casino == (Guid)slueCasinos.EditValue).OrderBy(p => p.Nombre).ToList();
             bdsServiciosCasinos.DataSource = list;
@@ -102,6 +103,8 @@ namespace EnroladorStandAlone.UI
             Accion accion = new AccionEmpleadoTurnoServicioCasino(empleadoTurnoServicioCasino, GlobalForm);
 
             AccionesPorEnviar.Add(accion);
+
+            GlobalForm.GuardarAcciones(AccionesPorEnviar);
 
             RefrescarGrid();
         }
@@ -155,6 +158,8 @@ namespace EnroladorStandAlone.UI
                 Accion accion = new AccionEliminarEmpleadoTurnoServicio(empleadoTurnoServicioCasino, GlobalForm);
 
                 AccionesPorEnviar.Add(accion);
+
+                GlobalForm.GuardarAcciones(AccionesPorEnviar);
 
                 RefrescarGrid();
             }

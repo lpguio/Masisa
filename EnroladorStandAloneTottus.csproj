@@ -361,6 +361,7 @@
     </Content>
     <Content Include="logo BA.png" />
     <Content Include="SQL\SP\CREAR_ESA_Crear_EmpleadoTurnoServicioCasino.sql" />
+    <Content Include="SQL\SP\CREAR_ESA_Eliminar_EmpleadoTurnoServicioCasino.sql" />
     <Content Include="SQL\SP\CREATE_EMPLEADO.sql" />
     <Content Include="SQL\SP\ESA_Crear_Empleado.sql" />
     <Content Include="SQL\SP\Modificar_ESA_Crear_Contrato.sql" />

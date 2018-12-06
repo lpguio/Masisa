@@ -320,20 +320,80 @@ namespace EnroladorWebServices
         /// Elimina un empleado a un servicio de casino
         /// <param name="empleadoTurnoServicioCasino">Empleado en el turno casino a insertar</param>
         /// <returns>El error en caso de que exista</returns>
-        public string AccionEliminarEmpleadoTurnoServicioCasino(EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino)
+        public string AccionEliminarEmpleadoTurnoServicioCasino(EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino, Guid LoggedUserOid)
         {
-            var res = string.Empty;
-            return res;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString()))
+                using (SqlCommand comm = new SqlCommand("", conn) { CommandType = CommandType.StoredProcedure })
+                {
+                    conn.Open();
+
+                    comm.CommandText = "ESA_Eliminar_EmpleadoTurnoServicioCasino";
+
+                    comm.Parameters.Add("@LoggedUserOid", SqlDbType.UniqueIdentifier).Value = LoggedUserOid;
+                    comm.Parameters.Add("@Empleado", SqlDbType.UniqueIdentifier).Value = empleadoTurnoServicioCasino.Empleado;
+                    comm.Parameters.Add("@TurnoServicio", SqlDbType.UniqueIdentifier).Value = empleadoTurnoServicioCasino.TurnoServicio;
+
+                    SqlParameter outParam = new SqlParameter("@Error", SqlDbType.NVarChar);
+
+                    outParam.Direction = ParameterDirection.Output;
+                    outParam.Size = -1; // nvarchar(max)
+                    comm.Parameters.Add(outParam);
+
+                    comm.ExecuteNonQuery();
+
+                    if (!(outParam.Value is DBNull) && !string.IsNullOrEmpty((string)outParam.Value))
+                    {
+                        return (string)outParam.Value;
+                    }
+                    return "";
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         /// <summary>
         /// Inserta un empleado a un servicio de casino
         /// <param name="empleadoTurnoServicioCasino">Empleado en el turno casino a insertar</param>
         /// <returns>El error en caso de que exista</returns>
-        public string AccionInsertarEmpleadoTurnoServicioCasino(EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino)
+        public string AccionInsertarEmpleadoTurnoServicioCasino(EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino, Guid LoggedUserOid)
         {
-            var res = string.Empty;
-            return res;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString()))
+                using (SqlCommand comm = new SqlCommand("", conn) { CommandType = CommandType.StoredProcedure })
+                {
+                    conn.Open();
+
+                    comm.CommandText = "ESA_Crear_EmpleadoTurnoServicioCasino";
+
+                    comm.Parameters.Add("@LoggedUserOid", SqlDbType.UniqueIdentifier).Value = LoggedUserOid;
+                    comm.Parameters.Add("@Empleado", SqlDbType.UniqueIdentifier).Value = empleadoTurnoServicioCasino.Empleado;
+                    comm.Parameters.Add("@TurnoServicio", SqlDbType.UniqueIdentifier).Value = empleadoTurnoServicioCasino.TurnoServicio;
+
+                    SqlParameter outParam = new SqlParameter("@Error", SqlDbType.NVarChar);
+
+                    outParam.Direction = ParameterDirection.Output;
+                    outParam.Size = -1; // nvarchar(max)
+                    comm.Parameters.Add(outParam);
+
+                    comm.ExecuteNonQuery();
+
+                    if (!(outParam.Value is DBNull) && !string.IsNullOrEmpty((string)outParam.Value))
+                    {
+                        return (string)outParam.Value;
+                    }
+                    return "";
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
         #endregion
 

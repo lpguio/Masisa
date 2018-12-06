@@ -253,7 +253,6 @@
             this.gcHistoria.TabIndex = 1;
             this.gcHistoria.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvHistoria});
-            this.gcHistoria.Click += new System.EventHandler(this.gcHistoria_Click);
             // 
             // gvHistoria
             // 
@@ -299,7 +298,6 @@
             this.gvHistoria.OptionsView.RowAutoHeight = true;
             this.gvHistoria.OptionsView.ShowAutoFilterRow = true;
             this.gvHistoria.OptionsView.ShowGroupPanel = false;
-            this.gvHistoria.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gvHistoria_CustomDrawCell);
             this.gvHistoria.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gvHistoria_RowCellStyle);
             this.gvHistoria.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gvHistoria_RowStyle);
             this.gvHistoria.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gvHistoria_CustomColumnDisplayText);
