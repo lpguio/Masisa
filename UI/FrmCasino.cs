@@ -30,7 +30,14 @@ namespace EnroladorStandAlone.UI
         }
         List<Accion> Acciones { get; set; }
         List<POCOCasino> Casinos { get; set; }
-        List<EmpleadoTurnoServicioCasino> ListEmpleadoTurnoServicioCasino { get; set; }
+        List<EmpleadoTurnoServicioCasino> ListEmpleadoTurnoServicioCasino
+        {
+            get
+            {
+                return GlobalForm.ListEmpleadoTurnoServicioCasino;
+            }
+
+        }
         List<ServicioCasino> ListServicioCasino { get; set; }
         List<TurnoServicio> ListTurnoServicio { get; set; }
         private List<Accion> AccionesPorEnviar { get; set; }
@@ -47,14 +54,10 @@ namespace EnroladorStandAlone.UI
 
         #region Metodos
 
-        public static List<Accion> ProcesarCasinos(List<Accion> accionesPorEnviar, string rUT, Form1 globalForm, List<POCOCasino> casinos, List<EmpleadoTurnoServicioCasino> listEmpleadoTurnoServicioCasino, List<ServicioCasino> listServicioCasino, List<TurnoServicio> listTurnoServicio)
+        public static void ProcesarCasinos(List<Accion> accionesPorEnviar, string rUT, Form1 globalForm, List<POCOCasino> casinos, List<ServicioCasino> listServicioCasino, List<TurnoServicio> listTurnoServicio)
         {
-            var frm = new FrmCasino() { AccionesPorEnviar = accionesPorEnviar, RUT = rUT, GlobalForm = globalForm, Casinos = casinos, ListEmpleadoTurnoServicioCasino = listEmpleadoTurnoServicioCasino, ListServicioCasino = listServicioCasino, ListTurnoServicio = listTurnoServicio };
-            if (frm.ShowDialog() == DialogResult.Yes)
-            {
-
-            }
-            return new List<Accion>();
+            var frm = new FrmCasino() { AccionesPorEnviar = accionesPorEnviar, RUT = rUT, GlobalForm = globalForm, Casinos = casinos, ListServicioCasino = listServicioCasino, ListTurnoServicio = listTurnoServicio };
+            frm.ShowDialog();
         }
 
         #endregion
@@ -75,6 +78,7 @@ namespace EnroladorStandAlone.UI
 
         private void FrmCasino_Load(object sender, EventArgs e)
         {
+            this.Text += " " + GlobalForm.EmpleadoTable[GlobalForm.EmpleadoRUTIndex[RUT]].Item4.Item1 + " " + GlobalForm.EmpleadoTable[GlobalForm.EmpleadoRUTIndex[RUT]].Item4.Item2;
             bdsCasinos.DataSource = Casinos;
             RefrescarGrid();
         }
@@ -111,7 +115,17 @@ namespace EnroladorStandAlone.UI
 
         private void RefrescarGrid()
         {
-            bdsTurnosServiciosEmpleado.DataSource = ListEmpleadoTurnoServicioCasino.Where(p => p.Empleado == Empleado).ToList();
+            var lAux = ListEmpleadoTurnoServicioCasino.Where(p => (p.Empleado == Empleado) && 
+            (
+                (
+                    GlobalForm.AccionesPorEnviar.OfType<AccionEliminarEmpleadoTurnoServicio>()
+                                    .ToList<AccionEliminarEmpleadoTurnoServicio>().Where(q => q.EmpleadoTurno.Empleado == Empleado).ToList()
+                                    .Count(z => z.EmpleadoTurno.TurnoServicio == p.TurnoServicio) > 0)
+                )  
+            ).ToList();
+            bdsTurnosServiciosEmpleado.DataSource = lAux;
+
+            var x = GlobalForm.AccionesPorEnviar.OfType<AccionEliminarEmpleadoTurnoServicio>().ToList<AccionEliminarEmpleadoTurnoServicio>().Where(z => z.EmpleadoTurno.Empleado == Empleado).ToList();
         }
 
         private void gridView_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)

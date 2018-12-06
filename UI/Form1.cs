@@ -80,7 +80,6 @@ namespace EnroladorStandAlone
         public List<EmpleadoTurnoServicioCasino> ListEmpleadoTurnoServicioCasino { get; set; }
         public List<ServicioCasino> ListServicioCasino { get; set; }
         public List<TurnoServicio> ListTurnoServicio { get; set; }
-
         public List<POCOCasino> Casinos
         {
             get
@@ -100,6 +99,13 @@ namespace EnroladorStandAlone
             }
             return casinos;
         }
+        }
+        public List<Accion> AccionesPorEnviar
+        {
+            get
+            {
+                return accionesPorEnviar;
+            }
         }
         #endregion
 
@@ -398,7 +404,7 @@ namespace EnroladorStandAlone
                             }
                             else if (accion is AccionEliminarEmpleadoTurnoServicio)
                             {
-                                var acc = (AccionEmpleadoTurnoServicioCasino)accion;
+                                var acc = (AccionEliminarEmpleadoTurnoServicio)accion;
                                 if (acc.EmpleadoTurno.Empleado == emp.Key)
                                 {
                                     found = true;
@@ -1809,13 +1815,25 @@ namespace EnroladorStandAlone
             {
                 string RUT = (string)gvHistoria.GetRowCellValue(info.RowHandle, "Item1");
                 var cantidadAccionesAntesdeCasinos = accionesPorEnviar.Count;
-                FrmCasino.ProcesarCasinos(accionesPorEnviar, RUT, this, Casinos, ListEmpleadoTurnoServicioCasino, ListServicioCasino, ListTurnoServicio);
+                FrmCasino.ProcesarCasinos(accionesPorEnviar, RUT, this, Casinos, ListServicioCasino, ListTurnoServicio);
                 if (accionesPorEnviar.Count != cantidadAccionesAntesdeCasinos)
                 {
                     var emp = (Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>)gvHistoria.GetRow(info.RowHandle);
                     var emp1 = new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Item1, emp.Item2, emp.Item3, emp.Item4, EnrollForm.TipoAccion.Nueva, emp.Item6, emp.Item7);
                     bnlEmpleados[bnlEmpleados.IndexOf(emp)] = emp1;
                 }
+            }
+        }
+
+
+        private void cmsMenuContextual_Opened(object sender, EventArgs e)
+        {
+            Point pt = gvHistoria.GridControl.PointToClient(Control.MousePosition);
+            GridHitInfo info = gvHistoria.CalcHitInfo(pt);
+            if ((info.InRow || info.InDataRow || info.InRowCell) && info.RowHandle >= 0)
+            {
+                string RUT = (string)gvHistoria.GetRowCellValue(info.RowHandle, "Item1");
+                casinosToolStripMenuItem.Text = "Casinos " + EmpleadoTable[EmpleadoRUTIndex[RUT]].Item4.Item1 + " " + EmpleadoTable[EmpleadoRUTIndex[RUT]].Item4.Item2;
             }
         }
         #endregion

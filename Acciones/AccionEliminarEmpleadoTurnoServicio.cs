@@ -72,7 +72,7 @@ namespace EnroladorStandAlone
             var elemento = parent.ListEmpleadoTurnoServicioCasino.FirstOrDefault(p => (p.Empleado == EmpleadoTurno.Empleado) && (p.TurnoServicio == EmpleadoTurno.TurnoServicio));
             if (elemento == null)
             {
-                parent.ListEmpleadoTurnoServicioCasino.Add(EmpleadoTurno);
+                parent.ListEmpleadoTurnoServicioCasino.Remove(EmpleadoTurno);
             }
         }
     }

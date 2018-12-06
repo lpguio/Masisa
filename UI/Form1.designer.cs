@@ -49,6 +49,8 @@
             this.barHeaderItem1 = new DevExpress.XtraBars.BarHeaderItem();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.gcHistoria = new DevExpress.XtraGrid.GridControl();
+            this.cmsMenuContextual = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.casinosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gvHistoria = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.RUT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Nombre = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -62,20 +64,18 @@
             this.axZKFPEngX1 = new AxZKFPEngXControl.AxZKFPEngX();
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.cmsMenuContextual = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.casinosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcHistoria)).BeginInit();
+            this.cmsMenuContextual.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvHistoria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             this.panelGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axZKFPEngX1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
-            this.cmsMenuContextual.SuspendLayout();
             this.SuspendLayout();
             // 
             // repositoryItemProgressBar3
@@ -253,6 +253,21 @@
             this.gcHistoria.TabIndex = 1;
             this.gcHistoria.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvHistoria});
+            // 
+            // cmsMenuContextual
+            // 
+            this.cmsMenuContextual.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.casinosToolStripMenuItem});
+            this.cmsMenuContextual.Name = "cmsMenuContextual";
+            this.cmsMenuContextual.Size = new System.Drawing.Size(153, 48);
+            this.cmsMenuContextual.Opened += new System.EventHandler(this.cmsMenuContextual_Opened);
+            // 
+            // casinosToolStripMenuItem
+            // 
+            this.casinosToolStripMenuItem.Name = "casinosToolStripMenuItem";
+            this.casinosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.casinosToolStripMenuItem.Text = "Casinos";
+            this.casinosToolStripMenuItem.Click += new System.EventHandler(this.casinosToolStripMenuItem_Click);
             // 
             // gvHistoria
             // 
@@ -453,20 +468,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
             // 
-            // cmsMenuContextual
-            // 
-            this.cmsMenuContextual.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.casinosToolStripMenuItem});
-            this.cmsMenuContextual.Name = "cmsMenuContextual";
-            this.cmsMenuContextual.Size = new System.Drawing.Size(116, 26);
-            // 
-            // casinosToolStripMenuItem
-            // 
-            this.casinosToolStripMenuItem.Name = "casinosToolStripMenuItem";
-            this.casinosToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
-            this.casinosToolStripMenuItem.Text = "Casinos";
-            this.casinosToolStripMenuItem.Click += new System.EventHandler(this.casinosToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -490,13 +491,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcHistoria)).EndInit();
+            this.cmsMenuContextual.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvHistoria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             this.panelGeneral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axZKFPEngX1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
-            this.cmsMenuContextual.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
