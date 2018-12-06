@@ -1161,7 +1161,7 @@ namespace EnroladorWebServices
 
         #region Empleado con Email, Telefono, MarcaCasino
         public List<POCOEmpleado> LeeEmpleados() {
-            string sql = string.Format(@"SELECT E.Oid, E.EnrollID, E.RUT, P.FirstName, P.LastName, P.Email, PN.Number, P.MarcaCasino, E.Contraseña 
+            string sql = string.Format(@"SELECT TOP 3000 E.Oid, E.EnrollID, E.RUT, P.FirstName, P.LastName, P.Email, PN.Number, P.MarcaCasino, E.Contraseña 
             FROM ESA_Empleado E
             INNER JOIN Person P ON E.Oid = P.Oid
             FULL JOIN PhoneNumber PN ON PN.Oid = P.Oid");

@@ -28,7 +28,7 @@ namespace EnroladorStandAlone
         private object fileLock = new object();
         private List<Accion> accionesPorEnviar = new List<Accion>();
         private List<string> erroresDeEnvio = new List<string>();
-        private BindingList<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>> bnlEmpleados = new BindingList<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>>();
+        private BindingList<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>> bnlEmpleados = new BindingList<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>>();
         private Guid HWID;
         private DateTime ultimaConexión;
         private string loginFile;
@@ -290,11 +290,11 @@ namespace EnroladorStandAlone
 
         private void LlenaGridEmpleados()
         {
-            bnlEmpleados = new BindingList<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>>();
-            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>> nuevos = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>>();
-            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>> modificados = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>>();
-            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>> eliminados = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>>();
-            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>> otros = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>>();
+            bnlEmpleados = new BindingList<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>>();
+            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>> nuevos = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>>();
+            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>> modificados = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>>();
+            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>> eliminados = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string,  bool>>();
+            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string,  bool>> otros = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>>();
             foreach (var emp in empleadoTable.OrderBy((obj) => { return obj.Value.Item1; }))
             {
                 if (emp.Value.Item5.Item3.Count() > 0)
@@ -313,7 +313,7 @@ namespace EnroladorStandAlone
                     {
                         if (accion is AccionCrearEmpleado && ((AccionCrearEmpleado)accion).Oid.Equals(emp.Key))
                         {
-                            nuevos.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Nueva, emp.Value.Item4.Item3, emp.Value.Item4.Item4, emp.Value.Item4.Item5));
+                            nuevos.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Nueva, emp.Value.Item4.Item3 + " " + emp.Value.Item4.Item4, emp.Value.Item4.Item5));
                             found = true;
                             break;
                         }
@@ -328,7 +328,7 @@ namespace EnroladorStandAlone
                                 AccionCaducarContrato accionCaducarContrato = (AccionCaducarContrato)accion;
                                 if (accionCaducarContrato.Empleado.Equals(emp.Key) && accionCaducarContrato.FinVigencia.HasValue)
                                 {
-                                    eliminados.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Eliminada, emp.Value.Item4.Item3, emp.Value.Item4.Item4, emp.Value.Item4.Item5));
+                                    eliminados.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Eliminada, emp.Value.Item4.Item3 + " " + emp.Value.Item4.Item4, emp.Value.Item4.Item5));
                                     found = true;
                                     break;
                                 }
@@ -389,7 +389,7 @@ namespace EnroladorStandAlone
                             }
                             if (found)
                             {
-                                modificados.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Modificada, emp.Value.Item4.Item3, emp.Value.Item4.Item4, emp.Value.Item4.Item5));
+                                modificados.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Modificada, emp.Value.Item4.Item3+ " " +emp.Value.Item4.Item4, emp.Value.Item4.Item5));
 
                                 break;
                             }
@@ -397,7 +397,7 @@ namespace EnroladorStandAlone
                     }
                     if (!found)
                     {
-                        otros.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, null, emp.Value.Item4.Item3, emp.Value.Item4.Item4, emp.Value.Item4.Item5));
+                        otros.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, null, emp.Value.Item4.Item3 + " " + emp.Value.Item4.Item4, emp.Value.Item4.Item5));
                     }
                 }
             }
