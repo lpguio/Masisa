@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EnroladorWebServices" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IEnroladorWebServices_AccionActualizarHuella_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccionActualizarHuella" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionActualizarHuella_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccionActualizarHuellaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionCaducarContrato_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccionCaducarContrato" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionCaducarContrato_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccionCaducarContratoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionCrearAsignacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccionCrearAsignacion" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionCrearAsignacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccionCrearAsignacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionCrearContrato_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccionCrearContrato" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionCrearContrato_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccionCrearContratoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionCrearEmpleado_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccionCrearEmpleado" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionCrearEmpleado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccionCrearEmpleadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionCrearHuella_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccionCrearHuella" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionCrearHuella_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccionCrearHuellaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionModificarContraseña_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccionModificarContraseña" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_AccionModificarContraseña_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccionModificarContraseñaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_Identificar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Identificar" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_Identificar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IdentificarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_Login2_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login2" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_Login2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Login2Response" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_Revalidar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Revalidar" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_Revalidar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RevalidarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeHuellaUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeHuellaUser" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeHuellaUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeHuellaUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeCadena_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeCadena" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeCadena_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeCadenaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeInstalacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeInstalacion" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeInstalacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeInstalacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeDispositivo_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeDispositivo" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeDispositivo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeDispositivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeCargo_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeCargo" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeCargo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeCargoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeCuenta_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeCuenta" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeCuenta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeCuentaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeEmpleado_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeEmpleado" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeEmpleado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeEmpleadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeHuella_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeHuella" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeHuella_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeHuellaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeEmpleadosDispositivos_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeEmpleadosDispositivos" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeEmpleadosDispositivos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeEmpleadosDispositivosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeContrato_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeeContrato" />
+  </wsdl:message>
+  <wsdl:message name="IEnroladorWebServices_LeeContrato_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeeContratoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IEnroladorWebServices">
+    <wsdl:operation name="AccionActualizarHuella">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionActualizarHuella" message="tns:IEnroladorWebServices_AccionActualizarHuella_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionActualizarHuellaResponse" message="tns:IEnroladorWebServices_AccionActualizarHuella_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccionCaducarContrato">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionCaducarContrato" message="tns:IEnroladorWebServices_AccionCaducarContrato_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionCaducarContratoResponse" message="tns:IEnroladorWebServices_AccionCaducarContrato_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccionCrearAsignacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionCrearAsignacion" message="tns:IEnroladorWebServices_AccionCrearAsignacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionCrearAsignacionResponse" message="tns:IEnroladorWebServices_AccionCrearAsignacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccionCrearContrato">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionCrearContrato" message="tns:IEnroladorWebServices_AccionCrearContrato_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionCrearContratoResponse" message="tns:IEnroladorWebServices_AccionCrearContrato_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccionCrearEmpleado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleado" message="tns:IEnroladorWebServices_AccionCrearEmpleado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleadoResponse" message="tns:IEnroladorWebServices_AccionCrearEmpleado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccionCrearHuella">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionCrearHuella" message="tns:IEnroladorWebServices_AccionCrearHuella_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionCrearHuellaResponse" message="tns:IEnroladorWebServices_AccionCrearHuella_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccionModificarContraseña">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionModificarContraseña" message="tns:IEnroladorWebServices_AccionModificarContraseña_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/AccionModificarContraseñaResponse" message="tns:IEnroladorWebServices_AccionModificarContraseña_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Identificar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/Identificar" message="tns:IEnroladorWebServices_Identificar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/IdentificarResponse" message="tns:IEnroladorWebServices_Identificar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/Login" message="tns:IEnroladorWebServices_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LoginResponse" message="tns:IEnroladorWebServices_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/Login2" message="tns:IEnroladorWebServices_Login2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/Login2Response" message="tns:IEnroladorWebServices_Login2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Revalidar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/Revalidar" message="tns:IEnroladorWebServices_Revalidar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/RevalidarResponse" message="tns:IEnroladorWebServices_Revalidar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeHuellaUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeHuellaUser" message="tns:IEnroladorWebServices_LeeHuellaUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeHuellaUserResponse" message="tns:IEnroladorWebServices_LeeHuellaUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeCadena">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeCadena" message="tns:IEnroladorWebServices_LeeCadena_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeCadenaResponse" message="tns:IEnroladorWebServices_LeeCadena_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeInstalacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeInstalacion" message="tns:IEnroladorWebServices_LeeInstalacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeInstalacionResponse" message="tns:IEnroladorWebServices_LeeInstalacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeDispositivo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeDispositivo" message="tns:IEnroladorWebServices_LeeDispositivo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeDispositivoResponse" message="tns:IEnroladorWebServices_LeeDispositivo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeEmpresa" message="tns:IEnroladorWebServices_LeeEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeEmpresaResponse" message="tns:IEnroladorWebServices_LeeEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeCargo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeCargo" message="tns:IEnroladorWebServices_LeeCargo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeCargoResponse" message="tns:IEnroladorWebServices_LeeCargo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeCuenta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeCuenta" message="tns:IEnroladorWebServices_LeeCuenta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeCuentaResponse" message="tns:IEnroladorWebServices_LeeCuenta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeEmpleado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleado" message="tns:IEnroladorWebServices_LeeEmpleado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleadoResponse" message="tns:IEnroladorWebServices_LeeEmpleado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeHuella">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeHuella" message="tns:IEnroladorWebServices_LeeHuella_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeHuellaResponse" message="tns:IEnroladorWebServices_LeeHuella_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeEmpleadosDispositivos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleadosDispositivos" message="tns:IEnroladorWebServices_LeeEmpleadosDispositivos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleadosDispositivosResponse" message="tns:IEnroladorWebServices_LeeEmpleadosDispositivos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeeContrato">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeContrato" message="tns:IEnroladorWebServices_LeeContrato_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnroladorWebServices/LeeContratoResponse" message="tns:IEnroladorWebServices_LeeContrato_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IEnroladorWebServices" type="tns:IEnroladorWebServices">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AccionActualizarHuella">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/AccionActualizarHuella" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccionCaducarContrato">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/AccionCaducarContrato" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccionCrearAsignacion">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/AccionCrearAsignacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccionCrearContrato">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/AccionCrearContrato" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccionCrearEmpleado">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/AccionCrearEmpleado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccionCrearHuella">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/AccionCrearHuella" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccionModificarContraseña">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/AccionModificarContraseña" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Identificar">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/Identificar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login2">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/Login2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Revalidar">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/Revalidar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeHuellaUser">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeHuellaUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeCadena">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeCadena" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeInstalacion">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeInstalacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeDispositivo">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeDispositivo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeEmpresa">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeCargo">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeCargo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeCuenta">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeCuenta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeEmpleado">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeEmpleado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeHuella">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeHuella" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeEmpleadosDispositivos">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeEmpleadosDispositivos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeeContrato">
+      <soap:operation soapAction="http://tempuri.org/IEnroladorWebServices/LeeContrato" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EnroladorWebServices">
+    <wsdl:port name="BasicHttpBinding_IEnroladorWebServices" binding="tns:BasicHttpBinding_IEnroladorWebServices">
+      <soap:address location="http://localhost:50119/EnroladorWebServices.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="503a28ff-80f3-4544-ade5-420433018a54" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:50119/EnroladorWebServices.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EnroladorWebServices.xsd" MetadataType="Schema" ID="981fbc64-4dfb-44c1-9441-7213acef99bc" SourceId="1" SourceUrl="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="EnroladorWebServices1.xsd" MetadataType="Schema" ID="b7b80691-9050-49d5-92a6-065ab3a47996" SourceId="1" SourceUrl="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="EnroladorWebServices2.xsd" MetadataType="Schema" ID="ccae0436-8d6f-4393-8e93-8da18f853169" SourceId="1" SourceUrl="http://localhost:50119/EnroladorWebServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="EnroladorWebServices.disco" MetadataType="Disco" ID="acef25fb-3cba-42e4-b394-773a94e194e1" SourceId="1" SourceUrl="http://localhost:50119/EnroladorWebServices.svc?disco" />
+    <MetadataFile FileName="EnroladorWebServices.wsdl" MetadataType="Wsdl" ID="c93e8bbf-e35b-4269-8985-36aa813f45df" SourceId="1" SourceUrl="http://localhost:50119/EnroladorWebServices.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
