@@ -40,6 +40,8 @@
             this.recargar = new DevExpress.XtraBars.BarButtonItem();
             this.enrolar = new DevExpress.XtraBars.BarButtonItem();
             this.Version = new DevExpress.XtraBars.BarStaticItem();
+            this.barEditItem2 = new DevExpress.XtraBars.BarEditItem();
+            this.rgTipoContrato = new DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -47,6 +49,7 @@
             this.statusText = new DevExpress.XtraBars.BarStaticItem();
             this.errorText = new DevExpress.XtraBars.BarStaticItem();
             this.barHeaderItem1 = new DevExpress.XtraBars.BarHeaderItem();
+            this.barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.gcHistoria = new DevExpress.XtraGrid.GridControl();
             this.cmsMenuContextual = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -67,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rgTipoContrato)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcHistoria)).BeginInit();
             this.cmsMenuContextual.SuspendLayout();
@@ -105,9 +109,13 @@
             this.errorText,
             this.enrolar,
             this.barHeaderItem1,
-            this.Version});
+            this.Version,
+            this.barToggleSwitchItem1,
+            this.barEditItem2});
             this.barManager.MainMenu = this.bar2;
-            this.barManager.MaxItemId = 47;
+            this.barManager.MaxItemId = 49;
+            this.barManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.rgTipoContrato});
             // 
             // bar2
             // 
@@ -118,7 +126,8 @@
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.recargar),
             new DevExpress.XtraBars.LinkPersistInfo(this.enrolar),
-            new DevExpress.XtraBars.LinkPersistInfo(this.Version)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.Version),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barEditItem2)});
             this.bar2.OptionsBar.AllowQuickCustomization = false;
             this.bar2.OptionsBar.DisableClose = true;
             this.bar2.OptionsBar.DisableCustomization = true;
@@ -180,6 +189,24 @@
             this.Version.SuperTip = superToolTip1;
             this.Version.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
+            // barEditItem2
+            // 
+            this.barEditItem2.Caption = "Contratos";
+            this.barEditItem2.Edit = this.rgTipoContrato;
+            this.barEditItem2.EditValue = "";
+            this.barEditItem2.Id = 48;
+            this.barEditItem2.Name = "barEditItem2";
+            this.barEditItem2.Size = new System.Drawing.Size(500, 0);
+            this.barEditItem2.EditValueChanged += new System.EventHandler(this.barEditItem2_EditValueChanged);
+            // 
+            // rgTipoContrato
+            // 
+            this.rgTipoContrato.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(0)), "Todos los contratos", true, ((short)(0))),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(1)), "Activos", true, ((short)(1))),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(2)), "Desvinculados", true, ((short)(3)))});
+            this.rgTipoContrato.Name = "rgTipoContrato";
+            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -234,6 +261,12 @@
             this.barHeaderItem1.Id = 21;
             this.barHeaderItem1.Name = "barHeaderItem1";
             // 
+            // barToggleSwitchItem1
+            // 
+            this.barToggleSwitchItem1.Caption = "Test";
+            this.barToggleSwitchItem1.Id = 47;
+            this.barToggleSwitchItem1.Name = "barToggleSwitchItem1";
+            // 
             // repositoryItemMemoEdit1
             // 
             this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
@@ -259,13 +292,13 @@
             this.cmsMenuContextual.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.casinosToolStripMenuItem});
             this.cmsMenuContextual.Name = "cmsMenuContextual";
-            this.cmsMenuContextual.Size = new System.Drawing.Size(153, 48);
+            this.cmsMenuContextual.Size = new System.Drawing.Size(116, 26);
             this.cmsMenuContextual.Opened += new System.EventHandler(this.cmsMenuContextual_Opened);
             // 
             // casinosToolStripMenuItem
             // 
             this.casinosToolStripMenuItem.Name = "casinosToolStripMenuItem";
-            this.casinosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.casinosToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.casinosToolStripMenuItem.Text = "Casinos";
             this.casinosToolStripMenuItem.Click += new System.EventHandler(this.casinosToolStripMenuItem_Click);
             // 
@@ -489,6 +522,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rgTipoContrato)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcHistoria)).EndInit();
             this.cmsMenuContextual.ResumeLayout(false);
@@ -536,5 +570,8 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private System.Windows.Forms.ContextMenuStrip cmsMenuContextual;
         private System.Windows.Forms.ToolStripMenuItem casinosToolStripMenuItem;
+        private DevExpress.XtraBars.BarEditItem barEditItem2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup rgTipoContrato;
+        private DevExpress.XtraBars.BarToggleSwitchItem barToggleSwitchItem1;
     }
 }

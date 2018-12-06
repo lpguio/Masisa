@@ -120,12 +120,10 @@ namespace EnroladorStandAlone.UI
                 (
                     GlobalForm.AccionesPorEnviar.OfType<AccionEliminarEmpleadoTurnoServicio>()
                                     .ToList<AccionEliminarEmpleadoTurnoServicio>().Where(q => q.EmpleadoTurno.Empleado == Empleado).ToList()
-                                    .Count(z => z.EmpleadoTurno.TurnoServicio == p.TurnoServicio) > 0)
+                                    .Count(z => z.EmpleadoTurno.TurnoServicio == p.TurnoServicio) == 0)
                 )  
             ).ToList();
             bdsTurnosServiciosEmpleado.DataSource = lAux;
-
-            var x = GlobalForm.AccionesPorEnviar.OfType<AccionEliminarEmpleadoTurnoServicio>().ToList<AccionEliminarEmpleadoTurnoServicio>().Where(z => z.EmpleadoTurno.Empleado == Empleado).ToList();
         }
 
         private void gridView_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)

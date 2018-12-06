@@ -145,6 +145,8 @@ namespace EnroladorStandAlone
                 }
             }
             await IniciarSistema();
+            barEditItem2.EditValue = rgTipoContrato.Items[0].Value;
+           // barEditItem2_EditValueChanged(null, null);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -428,7 +430,28 @@ namespace EnroladorStandAlone
             foreach (var emp in modificados) { bnlEmpleados.Add(emp); }
             foreach (var emp in eliminados) { bnlEmpleados.Add(emp); }
             foreach (var emp in otros) { bnlEmpleados.Add(emp); }
-            gcHistoria.DataSource = bnlEmpleados;
+            //gcHistoria.DataSource = bnlEmpleados;
+            //barEditItem2.EditValue = rgTipoContrato.Items[0].Value;
+        }
+
+        /// <summary>
+        /// 0 Todos, 1 Contratos Vigentes, 2 Desvinculados
+        /// </summary>
+        /// <param name="tipoLlenado"></param>
+        private void ProcesarGrid(int tipoLlenado)
+        {
+            switch (tipoLlenado)
+            {
+                case 0:
+                    gcHistoria.DataSource = bnlEmpleados;
+                    break;
+                case 1:
+                    gcHistoria.DataSource = bnlEmpleados.Where(p => !string.IsNullOrEmpty(ObtenerListaContratosEmpleado(p.Item1))).ToList();
+                    break;
+                default:
+                    gcHistoria.DataSource = bnlEmpleados.Where(p => string.IsNullOrEmpty(ObtenerListaContratosEmpleado(p.Item1))).ToList();
+                    break;
+            }
         }
 
         private void HabilitarSistema(bool habilitar)
@@ -1602,6 +1625,7 @@ namespace EnroladorStandAlone
                 HabilitarSistema(true);
             }
         }
+
         #endregion
 
         #region Otros
@@ -1767,9 +1791,15 @@ namespace EnroladorStandAlone
             var view = sender as ColumnView;
             var rut = (string)view.GetListSourceRowCellValue(e.ListSourceRowIndex, RUT);
             var listaContratos = new List<string>();
-            if (EmpleadoRUTIndex.ContainsKey(rut) && EmpleadoTable.ContainsKey(EmpleadoRUTIndex[rut]))
+            e.DisplayText = ObtenerListaContratosEmpleado(rut);
+        }
+
+        private string ObtenerListaContratosEmpleado(string pRut)
+        {
+            var listaContratos = new List<string>();
+            if (EmpleadoRUTIndex.ContainsKey(pRut) && EmpleadoTable.ContainsKey(EmpleadoRUTIndex[pRut]))
             {
-                foreach (Guid contrato in EmpleadoTable[EmpleadoRUTIndex[rut]].Item5.Item3)
+                foreach (Guid contrato in EmpleadoTable[EmpleadoRUTIndex[pRut]].Item5.Item3)
                 {
                     if (ContratoTable.ContainsKey(contrato))
                     {
@@ -1802,9 +1832,8 @@ namespace EnroladorStandAlone
                         }
                     }
                 }
-
-                e.DisplayText = string.Concat(listaContratos);
             }
+            return string.Concat(listaContratos);
         }
 
         private void casinosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1825,7 +1854,6 @@ namespace EnroladorStandAlone
             }
         }
 
-
         private void cmsMenuContextual_Opened(object sender, EventArgs e)
         {
             Point pt = gvHistoria.GridControl.PointToClient(Control.MousePosition);
@@ -1837,5 +1865,10 @@ namespace EnroladorStandAlone
             }
         }
         #endregion
+
+        private void barEditItem2_EditValueChanged(object sender, EventArgs e)
+        {
+            ProcesarGrid(Convert.ToInt16(barEditItem2.EditValue));
+        }
     }
 }
