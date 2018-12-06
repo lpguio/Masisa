@@ -1178,10 +1178,10 @@ namespace EnroladorWebServices
         /// <returns>Lista con los servicios de casino que tiene el empleado asociado</returns>
         public List<EmpleadoTurnoServicioCasino> LeeEmpleadoTurnoServicioCasino(Guid loggedUser)
         {
-            string sql = string.Format(@"SELECT ETSC.Empleado, ETSC.TurnoServicio FROM EmpleadoTurnoServicioCasino ETSC 
-												INNER JOIN TurnoServicio TS ON ETSC.TurnoServicio = TS.Servicio
-												INNER JOIN ServicioCasino SC ON TS.Servicio = SC.Oid
-                                                INNER JOIN ESA_Instalacion EI ON SC.Oid = EI.Oid
+            string sql = string.Format(@"SELECT ETSC.Empleado, ETSC.TurnoServicio 
+                                            FROM EmpleadoTurnoServicioCasino ETSC 
+                                            INNER JOIN TurnoServicio TS ON ETSC.TurnoServicio = TS.Oid INNER JOIN ServicioCasino SC ON TS.Servicio = SC.Oid
+                                            INNER JOIN ESA_Instalacion EI ON SC.Casino = EI.Oid 
                                             WHERE EI.Usuario = '{0}'", loggedUser);
             var res = new List<EmpleadoTurnoServicioCasino>();
             try
