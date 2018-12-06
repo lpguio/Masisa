@@ -1131,6 +1131,20 @@ namespace EnroladorStandAlone
                     ModificarAccion(accionEditadaModificarContraseña);
                 }
             }
+
+
+            string EmailValorAntiguo = textEditMostrarEmail.OldEditValue.ToString() ?? "";
+            string TelefonoValorAntiguo = textEditMostrarEmail.OldEditValue.ToString() ?? "";
+            bool ManejaCasinoValorAntiguo = (bool)checkEditMostrarManejaCasino.OldEditValue;
+
+            if ((textEditMostrarEmail.Text != EmailValorAntiguo) ||
+                (textEditMostarTelefono.Text != TelefonoValorAntiguo) ||
+                (checkEditMostrarManejaCasino.Checked != ManejaCasinoValorAntiguo)) {
+                AccionCrearEmpleado accionEditadaCrearEmpleado = (AccionCrearEmpleado)accionEditada;
+                if (accionEditadaCrearEmpleado.Editar(txtEditarClave.Text, txtEditarNombre.Text, txtEditarApellidos.Text, textEditarEmail.Text, textEditarTelefono.Text, checkEditManejaEditarCasino.Checked, parent)) {
+                    ModificarAccion(accionEditadaCrearEmpleado);
+                }
+            }
         }
 
         private void wpNuevoContrato_PageCommit(object sender, EventArgs e)

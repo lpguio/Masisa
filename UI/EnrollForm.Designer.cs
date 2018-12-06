@@ -61,6 +61,8 @@
             this.txtMostrarNombre = new DevExpress.XtraEditors.TextEdit();
             this.txtMostrarApellidos = new DevExpress.XtraEditors.TextEdit();
             this.chkMostrarClave = new DevExpress.XtraEditors.CheckEdit();
+            this.textEditMostrarEmail = new DevExpress.XtraEditors.TextEdit();
+            this.textEditMostarTelefono = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -68,6 +70,8 @@
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem40 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem45 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem46 = new DevExpress.XtraLayout.LayoutControlItem();
             this.wpNuevoContrato = new DevExpress.XtraWizard.WizardPage();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
             this.dteNuevoInicioVigencia = new DevExpress.XtraEditors.DateEdit();
@@ -192,10 +196,6 @@
             this.simpleSeparator9 = new DevExpress.XtraLayout.SimpleSeparator();
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
             this.simpleSeparator11 = new DevExpress.XtraLayout.SimpleSeparator();
-            this.textEditMostrarEmail = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem45 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEditMostarTelefono = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem46 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.wzrEnroll)).BeginInit();
             this.wzrEnroll.SuspendLayout();
             this.wpRUT.SuspendLayout();
@@ -232,6 +232,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMostrarNombre.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMostrarApellidos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkMostrarClave.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditMostrarEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditMostarTelefono.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
@@ -239,6 +241,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem45)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).BeginInit();
             this.wpNuevoContrato.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
             this.layoutControl3.SuspendLayout();
@@ -346,10 +350,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditMostrarEmail.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem45)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditMostarTelefono.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).BeginInit();
             this.SuspendLayout();
             // 
             // wzrEnroll
@@ -760,6 +760,30 @@
             this.chkMostrarClave.TabIndex = 5;
             this.chkMostrarClave.CheckedChanged += new System.EventHandler(this.chkMostrarClave_CheckedChanged);
             // 
+            // textEditMostrarEmail
+            // 
+            this.textEditMostrarEmail.Location = new System.Drawing.Point(95, 180);
+            this.textEditMostrarEmail.Name = "textEditMostrarEmail";
+            this.textEditMostrarEmail.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.textEditMostrarEmail.Properties.Appearance.Options.UseFont = true;
+            this.textEditMostrarEmail.Properties.Mask.EditMask = "\\w+([-+.\']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+            this.textEditMostrarEmail.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.textEditMostrarEmail.Size = new System.Drawing.Size(645, 30);
+            this.textEditMostrarEmail.StyleController = this.layoutControl2;
+            this.textEditMostrarEmail.TabIndex = 1;
+            // 
+            // textEditMostarTelefono
+            // 
+            this.textEditMostarTelefono.Location = new System.Drawing.Point(95, 214);
+            this.textEditMostarTelefono.Name = "textEditMostarTelefono";
+            this.textEditMostarTelefono.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.textEditMostarTelefono.Properties.Appearance.Options.UseFont = true;
+            this.textEditMostarTelefono.Properties.Mask.EditMask = "(\\d?\\d?\\d?) \\d\\d\\d-\\d\\d\\d\\d";
+            this.textEditMostarTelefono.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Regular;
+            this.textEditMostarTelefono.Size = new System.Drawing.Size(645, 30);
+            this.textEditMostarTelefono.StyleController = this.layoutControl2;
+            this.textEditMostarTelefono.TabIndex = 1;
+            // 
             // layoutControlGroup2
             // 
             this.layoutControlGroup2.CustomizationFormText = "Root";
@@ -839,6 +863,30 @@
             this.layoutControlItem40.Size = new System.Drawing.Size(732, 32);
             this.layoutControlItem40.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem40.TextVisible = false;
+            // 
+            // layoutControlItem45
+            // 
+            this.layoutControlItem45.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.layoutControlItem45.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem45.Control = this.textEditMostrarEmail;
+            this.layoutControlItem45.CustomizationFormText = "Email";
+            this.layoutControlItem45.Location = new System.Drawing.Point(0, 168);
+            this.layoutControlItem45.Name = "layoutControlItem45";
+            this.layoutControlItem45.Size = new System.Drawing.Size(732, 34);
+            this.layoutControlItem45.Text = "Email";
+            this.layoutControlItem45.TextSize = new System.Drawing.Size(80, 24);
+            // 
+            // layoutControlItem46
+            // 
+            this.layoutControlItem46.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.layoutControlItem46.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem46.Control = this.textEditMostarTelefono;
+            this.layoutControlItem46.CustomizationFormText = "Telefono";
+            this.layoutControlItem46.Location = new System.Drawing.Point(0, 202);
+            this.layoutControlItem46.Name = "layoutControlItem46";
+            this.layoutControlItem46.Size = new System.Drawing.Size(732, 195);
+            this.layoutControlItem46.Text = "Telefono";
+            this.layoutControlItem46.TextSize = new System.Drawing.Size(80, 24);
             // 
             // wpNuevoContrato
             // 
@@ -2298,56 +2346,6 @@
             this.simpleSeparator11.Name = "simpleSeparator11";
             this.simpleSeparator11.Size = new System.Drawing.Size(732, 2);
             // 
-            // textEditMostrarEmail
-            // 
-            this.textEditMostrarEmail.Enabled = false;
-            this.textEditMostrarEmail.Location = new System.Drawing.Point(95, 180);
-            this.textEditMostrarEmail.Name = "textEditMostrarEmail";
-            this.textEditMostrarEmail.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.textEditMostrarEmail.Properties.Appearance.Options.UseFont = true;
-            this.textEditMostrarEmail.Properties.Mask.EditMask = "\\w+([-+.\']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-            this.textEditMostrarEmail.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.textEditMostrarEmail.Size = new System.Drawing.Size(645, 30);
-            this.textEditMostrarEmail.StyleController = this.layoutControl2;
-            this.textEditMostrarEmail.TabIndex = 1;
-            // 
-            // layoutControlItem45
-            // 
-            this.layoutControlItem45.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.layoutControlItem45.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem45.Control = this.textEditMostrarEmail;
-            this.layoutControlItem45.CustomizationFormText = "Email";
-            this.layoutControlItem45.Location = new System.Drawing.Point(0, 168);
-            this.layoutControlItem45.Name = "layoutControlItem45";
-            this.layoutControlItem45.Size = new System.Drawing.Size(732, 34);
-            this.layoutControlItem45.Text = "Email";
-            this.layoutControlItem45.TextSize = new System.Drawing.Size(80, 13);
-            // 
-            // textEditMostarTelefono
-            // 
-            this.textEditMostarTelefono.Enabled = false;
-            this.textEditMostarTelefono.Location = new System.Drawing.Point(95, 214);
-            this.textEditMostarTelefono.Name = "textEditMostarTelefono";
-            this.textEditMostarTelefono.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.textEditMostarTelefono.Properties.Appearance.Options.UseFont = true;
-            this.textEditMostarTelefono.Properties.Mask.EditMask = "(\\d?\\d?\\d?) \\d\\d\\d-\\d\\d\\d\\d";
-            this.textEditMostarTelefono.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Regular;
-            this.textEditMostarTelefono.Size = new System.Drawing.Size(645, 30);
-            this.textEditMostarTelefono.StyleController = this.layoutControl2;
-            this.textEditMostarTelefono.TabIndex = 1;
-            // 
-            // layoutControlItem46
-            // 
-            this.layoutControlItem46.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.layoutControlItem46.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem46.Control = this.textEditMostarTelefono;
-            this.layoutControlItem46.CustomizationFormText = "Telefono";
-            this.layoutControlItem46.Location = new System.Drawing.Point(0, 202);
-            this.layoutControlItem46.Name = "layoutControlItem46";
-            this.layoutControlItem46.Size = new System.Drawing.Size(732, 195);
-            this.layoutControlItem46.Text = "Telefono";
-            this.layoutControlItem46.TextSize = new System.Drawing.Size(80, 13);
-            // 
             // EnrollForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2358,7 +2356,6 @@
             this.MinimumSize = new System.Drawing.Size(600, 480);
             this.Name = "EnrollForm";
             this.Text = "Enrolar";
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EnrollForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.wzrEnroll)).EndInit();
             this.wzrEnroll.ResumeLayout(false);
@@ -2396,6 +2393,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMostrarNombre.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMostrarApellidos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkMostrarClave.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditMostrarEmail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditMostarTelefono.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
@@ -2403,6 +2402,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem45)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).EndInit();
             this.wpNuevoContrato.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
             this.layoutControl3.ResumeLayout(false);
@@ -2510,10 +2511,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditMostrarEmail.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem45)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditMostarTelefono.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).EndInit();
             this.ResumeLayout(false);
 
         }
