@@ -1797,7 +1797,13 @@ namespace EnroladorStandAlone
 
         private void casinosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCasino.ProcesarCasinos(Casinos, ListEmpleadoTurnoServicioCasino, ListServicioCasino, ListTurnoServicio);
+            Point pt = gvHistoria.GridControl.PointToClient(Control.MousePosition);
+            GridHitInfo info = gvHistoria.CalcHitInfo(pt);
+            if ((info.InRow || info.InDataRow || info.InRowCell) && info.RowHandle >= 0)
+            {
+                string RUT = (string)gvHistoria.GetRowCellValue(info.RowHandle, "Item1");
+                FrmCasino.ProcesarCasinos(accionesPorEnviar, RUT, this, Casinos, ListEmpleadoTurnoServicioCasino, ListServicioCasino, ListTurnoServicio);
+            }
         }
     }
 }
