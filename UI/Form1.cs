@@ -181,8 +181,9 @@ namespace EnroladorStandAlone
             }
 
             HWID = HardwareID.GetBaseHardwareFingerPrint();
-            //lpg
+#if DEBUG
             HWID = new Guid("f6a74090-e0d1-daf9-e8c4-7d7497f4c9ad");
+#endif
             string baseFile = Path.Combine(programFolder, HWID.ToString());
             loginFile = baseFile + "-0.dat";
             huellaUserFile = baseFile + "-1.dat";
@@ -244,19 +245,20 @@ namespace EnroladorStandAlone
             }
 
             // Subir huellas del usuario al huellero
+#if DEBUG
             huellero = new Huellero();
-            //lpg
-            //while (!(await Task<bool>.Factory.StartNew(() =>
-            //{
-            //    return huellero.Connect(huellaUserTable);
-            //})))
-            //{
-            //    if (MessageBox.Show("No se ha podido conectar con el huellero. Compruebe la conexión del dispositivo", "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Hand) == DialogResult.Cancel)
-            //    {
-            //        Application.Exit();
-            //        return;
-            //    }
-            //}
+#endif
+            while (!(await Task<bool>.Factory.StartNew(() =>
+            {
+                return huellero.Connect(huellaUserTable);
+            })))
+            {
+                if (MessageBox.Show("No se ha podido conectar con el huellero. Compruebe la conexión del dispositivo", "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Hand) == DialogResult.Cancel)
+                {
+                    Application.Exit();
+                    return;
+                }
+            }
 
             if (online || !LoadDataOffline())
             {
@@ -321,7 +323,6 @@ namespace EnroladorStandAlone
                     {
                         if (accion is AccionCrearEmpleado && ((AccionCrearEmpleado)accion).Oid.Equals(emp.Key))
                         {
-                            //lpg
                             nuevos.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Nueva, emp.Value.Item4.Item3 + " " + emp.Value.Item4.Item4, emp.Value.Item4.Item5));
                             found = true;
                             break;
@@ -839,8 +840,10 @@ namespace EnroladorStandAlone
                     bin.Serialize(stream, huellaUserTable);
                     stream.Close();
                 }
-                //lpg
+#if DEBUG
+                //Al no tener el equipo lo bypass
                 return true;
+#endif
                 return huellero.Refrescar(huellaUserTable);
             }
             catch (Exception)

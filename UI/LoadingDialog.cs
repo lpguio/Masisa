@@ -47,8 +47,8 @@ namespace EnroladorStandAlone
         }
 
         public void AvanzarActual() {
+            //Hay que revisar que está dando problemas y no muestra lo que es
             pgbActual.PerformStep();
-            //lpg
             var value = ((numeroPaso - 1) * 10) + (10 * pgbActual.Value / pgbActual.Maximum);
             pgbTotal.Value = value > 100 ? 100 : value;
             ActualizaLabels();

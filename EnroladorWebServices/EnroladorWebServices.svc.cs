@@ -563,7 +563,6 @@ namespace EnroladorWebServices
 
         public List<Tuple<Guid, string, Guid, DateTime?>> LeeCuenta(Guid loggedUser)
         {
-            //lpg string sql = string.Format("SELECT Oid, Nombre, Empresa FROM ESA_Cuenta WHERE Usuario = '{0}'", loggedUser);
             string sql = string.Format(@"SELECT EC.Oid, EC.Nombre, EC.Empresa, C.FechaUltimoCierre FROM ESA_Cuenta EC
                                                 INNER JOIN Cuenta C ON C.Oid = EC.Oid WHERE EC.Usuario = '{0}'", loggedUser);
 
@@ -664,8 +663,7 @@ namespace EnroladorWebServices
 
         //public List<Tuple<Guid, int, string, bool, string, string>> LeeEmpleado()
         //{
-        //    //lpg
-        //    string sql = "SELECT TOP 3000 Oid, EnrollID, RUT, Contraseña, Firstname, LastName FROM ESA_Empleado";
+        //    string sql = "SELECT Oid, EnrollID, RUT, Contraseña, Firstname, LastName FROM ESA_Empleado";
 
         //    try
         //    {
@@ -1047,9 +1045,10 @@ namespace EnroladorWebServices
                     comm.ExecuteNonQuery();
 
                     if (!(outParam.Value is DBNull)) {
-                        //lpg
+#if DEBUG
                         return true;
-                        //return (bool)outParam.Value;
+#endif
+                        return (bool)outParam.Value;
                     } else {
                         return false;
                     }

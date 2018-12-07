@@ -1134,7 +1134,7 @@ namespace EnroladorStandAlone
 
 
             string EmailValorAntiguo = textEditMostrarEmail.OldEditValue.ToString() ?? "";
-            string TelefonoValorAntiguo = textEditMostrarEmail.OldEditValue.ToString() ?? "";
+            string TelefonoValorAntiguo = textEditMostarTelefono.OldEditValue.ToString() ?? "";
             bool ManejaCasinoValorAntiguo = (bool)checkEditMostrarManejaCasino.OldEditValue;
 
             if ((textEditMostrarEmail.Text != EmailValorAntiguo) ||
