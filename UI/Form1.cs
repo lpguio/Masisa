@@ -22,6 +22,7 @@ namespace EnroladorStandAlone
 {
     public partial class Form1 : XtraForm
     {
+
         #region Fields
         private const int DIAS_RECOMENDAR_CONECTAR = 14;
         private bool actualizando = false;
@@ -247,7 +248,7 @@ namespace EnroladorStandAlone
             // Subir huellas del usuario al huellero
 #if DEBUG
             huellero = new Huellero();
-#endif
+#else
             while (!(await Task<bool>.Factory.StartNew(() =>
             {
                 return huellero.Connect(huellaUserTable);
@@ -259,7 +260,7 @@ namespace EnroladorStandAlone
                     return;
                 }
             }
-
+#endif
             if (online || !LoadDataOffline())
             {
                 //Pedir autorizacion para cargar data online si falla la carga offline
@@ -843,8 +844,9 @@ namespace EnroladorStandAlone
 #if DEBUG
                 //Al no tener el equipo lo bypass
                 return true;
-#endif
+#else
                 return huellero.Refrescar(huellaUserTable);
+#endif
             }
             catch (Exception)
             {

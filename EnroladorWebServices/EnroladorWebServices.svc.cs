@@ -1047,8 +1047,9 @@ namespace EnroladorWebServices
                     if (!(outParam.Value is DBNull)) {
 #if DEBUG
                         return true;
-#endif
+#else
                         return (bool)outParam.Value;
+#endif
                     } else {
                         return false;
                     }
