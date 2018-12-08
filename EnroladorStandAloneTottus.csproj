@@ -261,6 +261,7 @@
     <Compile Include="UI\FrmCasino.Designer.cs">
       <DependentUpon>FrmCasino.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="UI\EnrollForm.resx">
       <DependentUpon>EnrollForm.cs</DependentUpon>
     </EmbeddedResource>

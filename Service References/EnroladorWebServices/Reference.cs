@@ -152,23 +152,31 @@ namespace EnroladorStandAlone.EnroladorWebServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeTurnoServicio", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeTurnoServicioResponse")]
         System.Threading.Tasks.Task<Enrolador.DataAccessLayer.TurnoServicio[]> LeeTurnoServicioAsync(System.Guid loggedUser);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasino", ReplyAction = "http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasinoResponse")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasino", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasinoResponse")]
         Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino[] LeeEmpleadoTurnoServicioCasino(System.Guid loggedUser);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasino", ReplyAction = "http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasinoResponse")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasino", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeEmpleadoTurnoServicioCasinoResponse")]
         System.Threading.Tasks.Task<Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino[]> LeeEmpleadoTurnoServicioCasinoAsync(System.Guid loggedUser);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasino", ReplyAction = "http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasinoResponse")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasin" +
+            "o", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasin" +
+            "oResponse")]
         string AccionInsertarEmpleadoTurnoServicioCasino(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino, System.Guid LoggedUserOid);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasino", ReplyAction = "http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasinoResponse")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasin" +
+            "o", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasin" +
+            "oResponse")]
         System.Threading.Tasks.Task<string> AccionInsertarEmpleadoTurnoServicioCasinoAsync(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino, System.Guid LoggedUserOid);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEnroladorWebServices/AccionEliminarEmpleadoTurnoServicioCasino", ReplyAction = "http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasinoResponse")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionEliminarEmpleadoTurnoServicioCasin" +
+            "o", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionEliminarEmpleadoTurnoServicioCasin" +
+            "oResponse")]
         string AccionEliminarEmpleadoTurnoServicioCasino(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino, System.Guid LoggedUserOid);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEnroladorWebServices/AccionEliminarEmpleadoTurnoServicioCasino", ReplyAction = "http://tempuri.org/IEnroladorWebServices/AccionInsertarEmpleadoTurnoServicioCasinoResponse")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/AccionEliminarEmpleadoTurnoServicioCasin" +
+            "o", ReplyAction="http://tempuri.org/IEnroladorWebServices/AccionEliminarEmpleadoTurnoServicioCasin" +
+            "oResponse")]
         System.Threading.Tasks.Task<string> AccionEliminarEmpleadoTurnoServicioCasinoAsync(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino, System.Guid LoggedUserOid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEnroladorWebServices/LeeEmpleados", ReplyAction="http://tempuri.org/IEnroladorWebServices/LeeEmpleadosResponse")]
@@ -409,7 +417,7 @@ namespace EnroladorStandAlone.EnroladorWebServices {
             return base.Channel.LeeEmpleadoTurnoServicioCasinoAsync(loggedUser);
         }
         
-        public string AccionInsertarEmpleadoTurnoServicioCasino(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino,System.Guid LoggedUserOid) {
+        public string AccionInsertarEmpleadoTurnoServicioCasino(Enrolador.DataAccessLayer.EmpleadoTurnoServicioCasino empleadoTurnoServicioCasino, System.Guid LoggedUserOid) {
             return base.Channel.AccionInsertarEmpleadoTurnoServicioCasino(empleadoTurnoServicioCasino, LoggedUserOid);
         }
         

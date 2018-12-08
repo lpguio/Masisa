@@ -371,6 +371,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" minOccurs="0" name="empleadoTurnoServicioCasino" nillable="true" type="q51:EmpleadoTurnoServicioCasino" />
+        <xs:element xmlns:q52="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="LoggedUserOid" type="q52:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -384,7 +385,8 @@
   <xs:element name="AccionEliminarEmpleadoTurnoServicioCasino">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" minOccurs="0" name="empleadoTurnoServicioCasino" nillable="true" type="q52:EmpleadoTurnoServicioCasino" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" minOccurs="0" name="empleadoTurnoServicioCasino" nillable="true" type="q53:EmpleadoTurnoServicioCasino" />
+        <xs:element xmlns:q54="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="LoggedUserOid" type="q54:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -403,15 +405,15 @@
   <xs:element name="LeeEmpleadosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" minOccurs="0" name="LeeEmpleadosResult" nillable="true" type="q53:ArrayOfPOCOEmpleado" />
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" minOccurs="0" name="LeeEmpleadosResult" nillable="true" type="q55:ArrayOfPOCOEmpleado" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AccionCrearEmpleadoYOtroDatos">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q54="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="loggedUser" type="q54:guid" />
-        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" minOccurs="0" name="Empleado" nillable="true" type="q55:POCOEmpleado" />
+        <xs:element xmlns:q56="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="loggedUser" type="q56:guid" />
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" minOccurs="0" name="Empleado" nillable="true" type="q57:POCOEmpleado" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -425,8 +427,8 @@
   <xs:element name="AccionModificarEmpleado">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q56="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="loggedUser" type="q56:guid" />
-        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" minOccurs="0" name="Empleado" nillable="true" type="q57:POCOEmpleado" />
+        <xs:element xmlns:q58="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="loggedUser" type="q58:guid" />
+        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/Enrolador.DataAccessLayer" minOccurs="0" name="Empleado" nillable="true" type="q59:POCOEmpleado" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

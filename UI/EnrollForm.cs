@@ -1076,6 +1076,25 @@ namespace EnroladorStandAlone
         private void wpMostrarEmpleado_PageCommit(object sender, EventArgs e)
         {
             AccionModificarContraseña accionEditadaModificarContraseña = (AccionModificarContraseña)accionEditada;
+
+            var empleado = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]];
+
+            string EmailValorAntiguo = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item3 ?? "";
+            string TelefonoValorAntiguo = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item4 ?? "";
+            bool ManejaCasinoValorAntiguo = (bool)parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item5;
+
+            //lpg
+            if ((textEditMostrarEmail.Text != EmailValorAntiguo) ||
+                (textEditMostarTelefono.Text != TelefonoValorAntiguo) ||
+                (checkEditMostrarManejaCasino.Checked != ManejaCasinoValorAntiguo)) {
+
+                var accion =
+                    new AccionCrearEmpleado(parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item1, RUT, txtMostrarClave.Text, parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item1,
+                    parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item2, textEditMostrarEmail.Text, textEditMostarTelefono.Text, checkEditMostrarManejaCasino.Checked, parent);
+                acciones.Add(accion);
+                accionesActuales.Push(new Tuple<Accion, TipoAccion>(accion, TipoAccion.Modificada));
+            }
+
             if (chkMostrarClave.Checked != parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item3)
             {
                 // Cambio de estado de clave
@@ -1148,6 +1167,7 @@ namespace EnroladorStandAlone
                     ModificarAccion(accionEditadaModificarContraseña);
                 }
             }
+
         }
 
         private void wpNuevoContrato_PageCommit(object sender, EventArgs e)
