@@ -1132,18 +1132,33 @@ namespace EnroladorStandAlone
                 }
             }
 
+            var empleado = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]];
 
-            string EmailValorAntiguo = textEditMostrarEmail.OldEditValue.ToString() ?? "";
-            string TelefonoValorAntiguo = textEditMostarTelefono.OldEditValue.ToString() ?? "";
-            bool ManejaCasinoValorAntiguo = (bool)checkEditMostrarManejaCasino.OldEditValue;
+            //string EmailValorAntiguo = textEditMostrarEmail.OldEditValue.ToString() ?? "";
+            //string TelefonoValorAntiguo = textEditMostarTelefono.OldEditValue.ToString() ?? "";
+            //bool ManejaCasinoValorAntiguo = (bool)checkEditMostrarManejaCasino.OldEditValue;
 
+            string EmailValorAntiguo = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item3 ?? "";
+            string TelefonoValorAntiguo = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item4 ?? "";
+            bool ManejaCasinoValorAntiguo = (bool)parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item5;
+
+            //lpg
             if ((textEditMostrarEmail.Text != EmailValorAntiguo) ||
                 (textEditMostarTelefono.Text != TelefonoValorAntiguo) ||
                 (checkEditMostrarManejaCasino.Checked != ManejaCasinoValorAntiguo)) {
-                AccionCrearEmpleado accionEditadaCrearEmpleado = (AccionCrearEmpleado)accionEditada;
-                if (accionEditadaCrearEmpleado.Editar(txtEditarClave.Text, txtEditarNombre.Text, txtEditarApellidos.Text, textEditarEmail.Text, textEditarTelefono.Text, checkEditManejaEditarCasino.Checked, parent)) {
-                    ModificarAccion(accionEditadaCrearEmpleado);
-                }
+
+                var accion =
+                    new AccionCrearEmpleado(parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item1, RUT, txtMostrarClave.Text, parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item1,
+                    parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item2, textEditMostrarEmail.Text, textEditMostrarEmail.Text, checkEditMostrarManejaCasino.Checked, parent);
+
+
+                acciones.Add(accion);
+                accionesActuales.Push(new Tuple<Accion, TipoAccion>(accion, TipoAccion.Nueva));
+
+                //AccionCrearEmpleado accionEditadaCrearEmpleado = (AccionCrearEmpleado)accionEditada;
+                //if (accionEditadaCrearEmpleado.Editar(txtEditarClave.Text, txtEditarNombre.Text, txtEditarApellidos.Text, textEditarEmail.Text, textEditarTelefono.Text, checkEditManejaEditarCasino.Checked, parent)) {
+                //    ModificarAccion(accionEditadaCrearEmpleado);
+                //}
             }
         }
 
