@@ -1038,22 +1038,39 @@ namespace EnroladorStandAlone
         #region PageCommits
         private void wpNuevoEmpleado_PageCommit(object sender, EventArgs e)
         {
-            Accion accion = new AccionCrearEmpleado(int.Parse(RUT.Substring(0, RUT.Length - 2).Replace(".", "")), RUT, txtNuevoClave.Text, txtNuevoNombre.Text, txtNuevoApellidos.Text, textEditNuevoEmail.Text, textEditNuevoTelefono.Text, checkEditManejaNuevoCasino.Checked, parent);
+            string EmailValor = textEditNuevoEmail.Text.ToString() ?? "";
+            string TelefonoValor = textEditNuevoTelefono.Text.ToString() ?? "";
+            bool ManejaCasinoValor = (bool)checkEditManejaNuevoCasino.OldEditValue;
+
+            Accion accion = new AccionCrearEmpleado(int.Parse(RUT.Substring(0, RUT.Length - 2).Replace(".", "")), RUT, txtNuevoClave.Text, txtNuevoNombre.Text, txtNuevoApellidos.Text, EmailValor, TelefonoValor, ManejaCasinoValor, parent);
+
             acciones.Add(accion);
             accionesActuales.Push(new Tuple<Accion, TipoAccion>(accion, TipoAccion.Nueva));
         }
 
         private void wpEditarEmpleado_PageCommit(object sender, EventArgs e)
         {
+
+            string EmailValorAntiguo = textEditarEmail.OldEditValue.ToString() ?? "";
+            string TelefonoValorAntiguo = textEditarTelefono.OldEditValue.ToString() ?? "";
+            bool ManejaCasinoValorAntiguo = (bool)checkEditManejaEditarCasino.OldEditValue;
+       
             AccionCrearEmpleado accionEditadaCrearEmpleado = (AccionCrearEmpleado)accionEditada;
             if (string.IsNullOrEmpty(accionEditadaCrearEmpleado.Contraseña) && !string.IsNullOrEmpty(txtEditarClave.Text))
             {
                 EliminarHuellasRecienCreadas(accionEditadaCrearEmpleado.Oid);
             }
-            if (accionEditadaCrearEmpleado.Editar(txtEditarClave.Text, txtEditarNombre.Text, txtEditarApellidos.Text, textEditarEmail.Text, textEditarTelefono.Text, checkEditManejaEditarCasino.Checked ,parent))
-            {
-                ModificarAccion(accionEditadaCrearEmpleado);
+            if ((textEditarEmail.Text != EmailValorAntiguo) ||
+                (textEditarTelefono.Text != TelefonoValorAntiguo) ||
+                (checkEditManejaEditarCasino.Checked != ManejaCasinoValorAntiguo)) {
+                if (accionEditadaCrearEmpleado.Editar(txtEditarClave.Text, txtEditarNombre.Text, txtEditarApellidos.Text, textEditarEmail.Text, textEditarTelefono.Text, checkEditManejaEditarCasino.Checked, parent)) {
+                    ModificarAccion(accionEditadaCrearEmpleado);
+                }
             }
+            //if (accionEditadaCrearEmpleado.Editar(txtEditarClave.Text, txtEditarNombre.Text, txtEditarApellidos.Text, textEditarEmail.Text, textEditarTelefono.Text, checkEditManejaEditarCasino.Checked ,parent))
+            //{
+            //    ModificarAccion(accionEditadaCrearEmpleado);
+            //}
         }
 
         private void wpMostrarEmpleado_PageCommit(object sender, EventArgs e)
@@ -1129,20 +1146,6 @@ namespace EnroladorStandAlone
 
                     // Marcar acción como modificada
                     ModificarAccion(accionEditadaModificarContraseña);
-                }
-            }
-
-
-            string EmailValorAntiguo = textEditMostrarEmail.OldEditValue.ToString() ?? "";
-            string TelefonoValorAntiguo = textEditMostarTelefono.OldEditValue.ToString() ?? "";
-            bool ManejaCasinoValorAntiguo = (bool)checkEditMostrarManejaCasino.OldEditValue;
-
-            if ((textEditMostrarEmail.Text != EmailValorAntiguo) ||
-                (textEditMostarTelefono.Text != TelefonoValorAntiguo) ||
-                (checkEditMostrarManejaCasino.Checked != ManejaCasinoValorAntiguo)) {
-                AccionCrearEmpleado accionEditadaCrearEmpleado = (AccionCrearEmpleado)accionEditada;
-                if (accionEditadaCrearEmpleado.Editar(txtEditarClave.Text, txtEditarNombre.Text, txtEditarApellidos.Text, textEditarEmail.Text, textEditarTelefono.Text, checkEditManejaEditarCasino.Checked, parent)) {
-                    ModificarAccion(accionEditadaCrearEmpleado);
                 }
             }
         }

@@ -1221,49 +1221,10 @@ namespace EnroladorWebServices
 
         #region Empleado con Email, Telefono, MarcaCasino
         public List<POCOEmpleado> LeeEmpleados() {
-            string sql = string.Format(@"SELECT TOP 3000 E.Oid, E.EnrollID, E.RUT, P.FirstName, P.LastName, P.Email, PN.Number, P.MarcaCasino, E.Contraseña 
+            string sql = string.Format(@"SELECT E.Oid, E.EnrollID, E.RUT, P.FirstName, P.LastName, P.Email, PN.Number, P.MarcaCasino, E.Contraseña 
             FROM ESA_Empleado E
             INNER JOIN Person P ON E.Oid = P.Oid
             FULL JOIN PhoneNumber PN ON PN.Oid = P.Oid");
-            var res = new List<POCOEmpleado>();
-            try {
-                using (SqlConnection conn = new SqlConnection(connectionString()))
-                using (SqlCommand comm = new SqlCommand(sql, conn)) {
-                    conn.Open();
-                    SqlDataReader reader = null;
-                    try {
-                        reader = comm.ExecuteReader();
-
-                        while (reader.Read()) {
-                            var pEmpleado = new POCOEmpleado() {
-                                Oid = reader.GetFieldValue<Guid>(0),
-                                EnrollId = reader.GetFieldValue<int>(1),
-                                RUT = reader.GetFieldValue<string>(2),
-                                Nombres = reader.GetFieldValue<string>(3),
-                                Apellidos = reader.GetFieldValue<string>(4),
-                                Correo = reader.IsDBNull(5) ? "" : reader.GetFieldValue<string>(5),
-                                NumeroTelefono = reader.IsDBNull(6) ? "" : reader.GetFieldValue<string>(6),
-                                ManejaCasino = reader.IsDBNull(7) ? false : reader.GetFieldValue<Boolean>(7),
-                                TieneContraseña = reader.GetFieldValue<int>(8) == 0 ? false : true
-                            };
-                            res.Add(pEmpleado);
-                        }
-                    } finally {
-                        reader.Close();
-                    }
-                    return res;
-                }
-            } catch {
-                return res;
-            }
-        }
-
-        public List<POCOEmpleado> LeeDatosEmpleadoTelefonoEmailMarcaCasino(Guid loggedUser) {
-            string sql = string.Format(@"SELECT E.Oid, E.EnrollID EnrollId, E.RUT, P.FirstName Nombre, P.LastName Apellidos, P.Email Correo, PN.Number NumeroTelefono, P.MarcaCasino, E.Contraseña
-                                        FROM ESA_Empleado E
-                                        INNER JOIN Person P ON E.Oid = P.Oid
-                                        FULL JOIN PhoneNumber PN ON PN.Oid = P.Oid
-                                        WHERE P.Oid = '{0}'", loggedUser);
             var res = new List<POCOEmpleado>();
             try {
                 using (SqlConnection conn = new SqlConnection(connectionString()))
