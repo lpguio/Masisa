@@ -62,7 +62,7 @@ namespace EnroladorStandAlone
                 descripcion = string.Format("Crear contraseña al empleado con RUT {0}", parent.EmpleadoTable[oid].Item2);
             }
 
-            parent.EmpleadoTable[oid] = new Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>(parent.EmpleadoTable[oid].Item1, parent.EmpleadoTable[oid].Item2, !string.IsNullOrEmpty(contraseña), new Tuple<string, string, string, string, bool>(parent.EmpleadoTable[oid].Item4.Item1, parent.EmpleadoTable[oid].Item4.Item2, parent.EmpleadoTable[oid].Item4.Item3, parent.EmpleadoTable[oid].Item4.Item4, parent.EmpleadoTable[oid].Item4.Item5), parent.EmpleadoTable[oid].Item5);
+            parent.EmpleadoTable[oid] = new Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>(parent.EmpleadoTable[oid].Item1, parent.EmpleadoTable[oid].Item2, !string.IsNullOrEmpty(contraseña), new Tuple<string, string, string, string>(parent.EmpleadoTable[oid].Item4.Item1, parent.EmpleadoTable[oid].Item4.Item2, parent.EmpleadoTable[oid].Item4.Item3, parent.EmpleadoTable[oid].Item4.Item4), parent.EmpleadoTable[oid].Item5);
             return true;
         }
 
@@ -85,13 +85,13 @@ namespace EnroladorStandAlone
         public override void Cancelar(Form1 parent)
         {
             //parent.EmpleadoTable[oid] = new Tuple<int, string, bool, string, string, Tuple<List<Guid>, List<Guid>, List<Guid>>>(parent.EmpleadoTable[oid].Item1, parent.EmpleadoTable[oid].Item2, teniaContraseña, parent.EmpleadoTable[oid].Item4, parent.EmpleadoTable[oid].Item5, parent.EmpleadoTable[oid].Item6);
-            parent.EmpleadoTable[oid] = new Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>(parent.EmpleadoTable[oid].Item1, parent.EmpleadoTable[oid].Item2, !string.IsNullOrEmpty(contraseña), new Tuple<string, string, string, string, bool>(parent.EmpleadoTable[oid].Item4.Item1, parent.EmpleadoTable[oid].Item4.Item2, parent.EmpleadoTable[oid].Item4.Item3, parent.EmpleadoTable[oid].Item4.Item4, parent.EmpleadoTable[oid].Item4.Item5), parent.EmpleadoTable[oid].Item5);
+            parent.EmpleadoTable[oid] = new Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>(parent.EmpleadoTable[oid].Item1, parent.EmpleadoTable[oid].Item2, !string.IsNullOrEmpty(contraseña), new Tuple<string, string, string, string>(parent.EmpleadoTable[oid].Item4.Item1, parent.EmpleadoTable[oid].Item4.Item2, parent.EmpleadoTable[oid].Item4.Item3, parent.EmpleadoTable[oid].Item4.Item4), parent.EmpleadoTable[oid].Item5);
 
         }
 
         public override void Aplicar(Form1 parent)
         {
-            parent.EmpleadoTable[oid] = new Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>(parent.EmpleadoTable[oid].Item1, parent.EmpleadoTable[oid].Item2, !string.IsNullOrEmpty(contraseña), new Tuple<string, string, string, string, bool>(parent.EmpleadoTable[oid].Item4.Item1, parent.EmpleadoTable[oid].Item4.Item2, parent.EmpleadoTable[oid].Item4.Item3, parent.EmpleadoTable[oid].Item4.Item4, parent.EmpleadoTable[oid].Item4.Item5), parent.EmpleadoTable[oid].Item5);
+            parent.EmpleadoTable[oid] = new Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>(parent.EmpleadoTable[oid].Item1, parent.EmpleadoTable[oid].Item2, !string.IsNullOrEmpty(contraseña), new Tuple<string, string, string, string>(parent.EmpleadoTable[oid].Item4.Item1, parent.EmpleadoTable[oid].Item4.Item2, parent.EmpleadoTable[oid].Item4.Item3, parent.EmpleadoTable[oid].Item4.Item4), parent.EmpleadoTable[oid].Item5);
         }
     }
 }

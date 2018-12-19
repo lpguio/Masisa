@@ -29,7 +29,7 @@ namespace EnroladorStandAlone
         private object fileLock = new object();
         private List<Accion> accionesPorEnviar = new List<Accion>();
         private List<string> erroresDeEnvio = new List<string>();
-        private BindingList<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>> bnlEmpleados = new BindingList<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>>();
+        private BindingList<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>> bnlEmpleados = new BindingList<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>>();
         private Guid HWID;
         private DateTime ultimaConexión;
         private string loginFile;
@@ -50,7 +50,7 @@ namespace EnroladorStandAlone
         private string cuentaFile;
         private Dictionary<Guid, Tuple<string, DateTime?>> cuentaTable; // Oid => Nombre
         private string empleadoFile;
-        private Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> empleadoTable; // Oid => EnrollID, RUT, Contraseña, Tupla(firstname, lastname, correo, numerotelefono, manejacasino), (lista de huellas, lista de dispositivos, lista de contratos)
+        private Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> empleadoTable; // Oid => EnrollID, RUT, Contraseña, Tupla(firstname, lastname, correo, numerotelefono, manejacasino), (lista de huellas, lista de dispositivos, lista de contratos)
         private Dictionary<string, Guid> empleadoRUTIndex; // Indice sobre RUT en tabla Empleado
         private string huellaFile;
         private Dictionary<Guid, TipoHuella> huellaTable; // Oid => TipoHuella
@@ -74,7 +74,7 @@ namespace EnroladorStandAlone
         public Dictionary<Guid, Tuple<string, List<Guid>, List<Guid>>> EmpresaTable { get { return empresaTable; } }
         public Dictionary<Guid, string> CargoTable { get { return cargoTable; } }
         public Dictionary<Guid, Tuple<string, DateTime?>> CuentaTable { get { return cuentaTable; } }
-        public Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> EmpleadoTable { get { return empleadoTable; } }
+        public Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> EmpleadoTable { get { return empleadoTable; } }
         public Dictionary<string, Guid> EmpleadoRUTIndex { get { return empleadoRUTIndex; } }
         public Dictionary<Guid, TipoHuella> HuellaTable { get { return huellaTable; } }
         public Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>> ContratoTable { get { return contratoTable; } }
@@ -301,11 +301,11 @@ namespace EnroladorStandAlone
 
         private void LlenaGridEmpleados()
         {
-            bnlEmpleados = new BindingList<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>>();
-            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>> nuevos = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>>();
-            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>> modificados = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>>();
-            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>> eliminados = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string,  bool>>();
-            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string,  bool>> otros = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>>();
+            bnlEmpleados = new BindingList<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>>();
+            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>> nuevos = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>>();
+            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>> modificados = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>>();
+            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>> eliminados = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>>();
+            List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>> otros = new List<Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>>();
             foreach (var emp in empleadoTable.OrderBy((obj) => { return obj.Value.Item1; }))
             {
                 if (emp.Value.Item5.Item3.Count() > 0)
@@ -324,7 +324,7 @@ namespace EnroladorStandAlone
                     {
                         if (accion is AccionCrearEmpleado && ((AccionCrearEmpleado)accion).Oid.Equals(emp.Key))
                         {
-                            nuevos.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Nueva, emp.Value.Item4.Item3 + " " + emp.Value.Item4.Item4, emp.Value.Item4.Item5));
+                            nuevos.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Nueva, emp.Value.Item4.Item3 + " " + emp.Value.Item4.Item4));
                             found = true;
                             break;
                         }
@@ -339,7 +339,7 @@ namespace EnroladorStandAlone
                                 AccionCaducarContrato accionCaducarContrato = (AccionCaducarContrato)accion;
                                 if (accionCaducarContrato.Empleado.Equals(emp.Key) && accionCaducarContrato.FinVigencia.HasValue)
                                 {
-                                    eliminados.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Eliminada, emp.Value.Item4.Item3 + " " + emp.Value.Item4.Item4, emp.Value.Item4.Item5));
+                                    eliminados.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Eliminada, emp.Value.Item4.Item3 + " " + emp.Value.Item4.Item4));
                                     found = true;
                                     break;
                                 }
@@ -416,7 +416,7 @@ namespace EnroladorStandAlone
                             }
                             if (found)
                             {
-                                modificados.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Modificada, emp.Value.Item4.Item3+ " " +emp.Value.Item4.Item4, emp.Value.Item4.Item5));
+                                modificados.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, EnrollForm.TipoAccion.Modificada, emp.Value.Item4.Item3+ " " +emp.Value.Item4.Item4));
 
                                 break;
                             }
@@ -424,7 +424,7 @@ namespace EnroladorStandAlone
                     }
                     if (!found)
                     {
-                        otros.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, null, emp.Value.Item4.Item3 + " " + emp.Value.Item4.Item4, emp.Value.Item4.Item5));
+                        otros.Add(new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>(emp.Value.Item2, emp.Value.Item4.Item1, emp.Value.Item4.Item2, identificacion, null, emp.Value.Item4.Item3 + " " + emp.Value.Item4.Item4));
                     }
                 }
             }
@@ -1005,7 +1005,7 @@ namespace EnroladorStandAlone
                 using (Stream stream = File.Open(empleadoFile, FileMode.Open, FileAccess.Read))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
-                    empleadoTable = (Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>>)bin.Deserialize(stream);
+                    empleadoTable = (Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>>)bin.Deserialize(stream);
                     if (empleadoTable == null)
                     {
                         return false;
@@ -1098,7 +1098,7 @@ namespace EnroladorStandAlone
             Dictionary<Guid, Tuple<string, List<Guid>, List<Guid>>> newEmpresaTable;
             Dictionary<Guid, string> newCargoTable;
             Dictionary<Guid, Tuple<string, DateTime?>> newCuentaTable;
-            Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable;
+            Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable;
             Dictionary<string, Guid> newEmpleadoRUTIndex;
             Dictionary<Guid, TipoHuella> newHuellaTable;
             Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>> newContratoTable;
@@ -1288,13 +1288,13 @@ namespace EnroladorStandAlone
             return newCuentaTable;
         }
 
-        private async Task<Tuple<Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>>, Dictionary<string, Guid>>> LeeEmpleado(ILoadingDialog loading)
+        private async Task<Tuple<Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>>, Dictionary<string, Guid>>> LeeEmpleado(ILoadingDialog loading)
         {
-            Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple <List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable;
+            Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple <List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable;
             Dictionary<string, Guid> newEmpleadoRUTIndex;
             var res = await new EnroladorWebServices.EnroladorWebServicesClient().LeeEmpleadosAsync();
             loading.SiguientePaso(res.Length, "Cargando Empleados");
-            newEmpleadoTable = new Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>>(res.Length);
+            newEmpleadoTable = new Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>>(res.Length);
             newEmpleadoRUTIndex = new Dictionary<string, Guid>(res.Length);
             foreach (var empleado in res)
             {
@@ -1311,17 +1311,16 @@ namespace EnroladorStandAlone
                 string LastName = empleado.Apellidos;
                 string Correo = empleado.Correo;
                 string NumeroTelefono = empleado.NumeroTelefono;
-                Boolean ManejaCasino = empleado.ManejaCasino;
 
-                newEmpleadoTable[Oid] = new Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>(EnrollID, RUT, Contraseña, new Tuple<string, string, string, string, bool>(FirstName, LastName, Correo, NumeroTelefono, ManejaCasino), new Tuple<List<Guid>, List<Guid>, List<Guid>>(new List<Guid>(), new List<Guid>(), new List<Guid>()));
+                newEmpleadoTable[Oid] = new Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>(EnrollID, RUT, Contraseña, new Tuple<string, string, string, string>(FirstName, LastName, Correo, NumeroTelefono), new Tuple<List<Guid>, List<Guid>, List<Guid>>(new List<Guid>(), new List<Guid>(), new List<Guid>()));
                 newEmpleadoRUTIndex[RUT] = Oid;
                 loading.AvanzarActual();
             }
 
-            return new Tuple<Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>>, Dictionary<string, Guid>>(newEmpleadoTable, newEmpleadoRUTIndex);
+            return new Tuple<Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>>, Dictionary<string, Guid>>(newEmpleadoTable, newEmpleadoRUTIndex);
         }
 
-        private async Task<Dictionary<Guid, TipoHuella>> LeeHuella(ILoadingDialog loading, Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable)
+        private async Task<Dictionary<Guid, TipoHuella>> LeeHuella(ILoadingDialog loading, Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable)
         {
             Dictionary<Guid, TipoHuella> newHuellaTable;
             var res = await new EnroladorWebServices.EnroladorWebServicesClient().LeeHuellaAsync();
@@ -1343,7 +1342,7 @@ namespace EnroladorStandAlone
             return newHuellaTable;
         }
 
-        private async Task LeeEmpleadosDispositivos(ILoadingDialog loading, Dictionary<Guid, Tuple<string, string, int, TipoDispositivo, List<Guid>>> newDispositivoTable, Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable)
+        private async Task LeeEmpleadosDispositivos(ILoadingDialog loading, Dictionary<Guid, Tuple<string, string, int, TipoDispositivo, List<Guid>>> newDispositivoTable, Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable)
         {
             var res = await new EnroladorWebServices.EnroladorWebServicesClient().LeeEmpleadosDispositivosAsync();
             loading.SiguientePaso(res.Length, "Cargando Asignaciones");
@@ -1360,7 +1359,7 @@ namespace EnroladorStandAlone
             }
         }
 
-        private async Task<Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>>> LeeContrato(ILoadingDialog loading, Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable, Dictionary<Guid, Tuple<string, List<Guid>, List<Guid>>> newEmpresaTable, Dictionary<Guid, Tuple<string, DateTime?>> newCuentaTable, Dictionary<Guid, string> newCargoTable)
+        private async Task<Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>>> LeeContrato(ILoadingDialog loading, Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable, Dictionary<Guid, Tuple<string, List<Guid>, List<Guid>>> newEmpresaTable, Dictionary<Guid, Tuple<string, DateTime?>> newCuentaTable, Dictionary<Guid, string> newCargoTable)
         {
             Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>> newContratoTable;
             var res = await new EnroladorWebServices.EnroladorWebServicesClient().LeeContratoAsync(loggedUser.Item1);
@@ -1852,8 +1851,8 @@ namespace EnroladorStandAlone
                 FrmCasino.ProcesarCasinos(accionesPorEnviar, RUT, this, Casinos, ListServicioCasino, ListTurnoServicio);
                 if (accionesPorEnviar.Count != cantidadAccionesAntesdeCasinos)
                 {
-                    var emp = (Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>)gvHistoria.GetRow(info.RowHandle);
-                    var emp1 = new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string, bool>(emp.Item1, emp.Item2, emp.Item3, emp.Item4, EnrollForm.TipoAccion.Nueva, emp.Item6, emp.Item7);
+                    var emp = (Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>)gvHistoria.GetRow(info.RowHandle);
+                    var emp1 = new Tuple<string, string, string, string, EnrollForm.TipoAccion?, string>(emp.Item1, emp.Item2, emp.Item3, emp.Item4, EnrollForm.TipoAccion.Nueva, emp.Item6);
                     bnlEmpleados[bnlEmpleados.IndexOf(emp)] = emp1;
                 }
             }

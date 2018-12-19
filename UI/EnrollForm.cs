@@ -111,7 +111,6 @@ namespace EnroladorStandAlone
             txtEditarApellidos.Text = empleado.Item4.Item2;
             textEditarEmail.Text = empleado.Item4.Item3;
             textEditarTelefono.Text = empleado.Item4.Item4;
-            checkEditManejaEditarCasino.Checked = empleado.Item4.Item5;
 
             chkEditarClave.CheckedChanged -= chkEditarClave_CheckedChanged;
 
@@ -158,7 +157,6 @@ namespace EnroladorStandAlone
             txtMostrarApellidos.Text = empleado.Item4.Item2;
             textEditMostrarEmail.Text = empleado.Item4.Item3;
             textEditMostarTelefono.Text = empleado.Item4.Item4;
-            checkEditMostrarManejaCasino.Checked = empleado.Item4.Item5;
 
             chkMostrarClave.CheckedChanged -= chkMostrarClave_CheckedChanged;
             if (empleado.Item3)
@@ -1040,9 +1038,8 @@ namespace EnroladorStandAlone
         {
             string EmailValor = textEditNuevoEmail.Text.ToString() ?? "";
             string TelefonoValor = textEditNuevoTelefono.Text.ToString() ?? "";
-            bool ManejaCasinoValor = (bool)checkEditManejaNuevoCasino.OldEditValue;
 
-            Accion accion = new AccionCrearEmpleado(int.Parse(RUT.Substring(0, RUT.Length - 2).Replace(".", "")), RUT, txtNuevoClave.Text, txtNuevoNombre.Text, txtNuevoApellidos.Text, EmailValor, TelefonoValor, ManejaCasinoValor, parent);
+            Accion accion = new AccionCrearEmpleado(int.Parse(RUT.Substring(0, RUT.Length - 2).Replace(".", "")), RUT, txtNuevoClave.Text, txtNuevoNombre.Text, txtNuevoApellidos.Text, EmailValor, TelefonoValor, parent);
 
             acciones.Add(accion);
             accionesActuales.Push(new Tuple<Accion, TipoAccion>(accion, TipoAccion.Nueva));
@@ -1053,7 +1050,6 @@ namespace EnroladorStandAlone
 
             string EmailValorAntiguo = textEditarEmail.OldEditValue.ToString() ?? "";
             string TelefonoValorAntiguo = textEditarTelefono.OldEditValue.ToString() ?? "";
-            bool ManejaCasinoValorAntiguo = (bool)checkEditManejaEditarCasino.OldEditValue;
        
             AccionCrearEmpleado accionEditadaCrearEmpleado = (AccionCrearEmpleado)accionEditada;
             if (string.IsNullOrEmpty(accionEditadaCrearEmpleado.Contraseña) && !string.IsNullOrEmpty(txtEditarClave.Text))
@@ -1061,9 +1057,8 @@ namespace EnroladorStandAlone
                 EliminarHuellasRecienCreadas(accionEditadaCrearEmpleado.Oid);
             }
             if ((textEditarEmail.Text != EmailValorAntiguo) ||
-                (textEditarTelefono.Text != TelefonoValorAntiguo) ||
-                (checkEditManejaEditarCasino.Checked != ManejaCasinoValorAntiguo)) {
-                if (accionEditadaCrearEmpleado.Editar(txtEditarClave.Text, txtEditarNombre.Text, txtEditarApellidos.Text, textEditarEmail.Text, textEditarTelefono.Text, checkEditManejaEditarCasino.Checked, parent)) {
+                (textEditarTelefono.Text != TelefonoValorAntiguo)) {
+                if (accionEditadaCrearEmpleado.Editar(txtEditarClave.Text, txtEditarNombre.Text, txtEditarApellidos.Text, textEditarEmail.Text, textEditarTelefono.Text, parent)) {
                     ModificarAccion(accionEditadaCrearEmpleado);
                 }
             }
@@ -1081,16 +1076,14 @@ namespace EnroladorStandAlone
 
             string EmailValorAntiguo = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item3 ?? "";
             string TelefonoValorAntiguo = parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item4 ?? "";
-            bool ManejaCasinoValorAntiguo = (bool)parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item5;
 
             //lpg
             if ((textEditMostrarEmail.Text != EmailValorAntiguo) ||
-                (textEditMostarTelefono.Text != TelefonoValorAntiguo) ||
-                (checkEditMostrarManejaCasino.Checked != ManejaCasinoValorAntiguo)) {
+                (textEditMostarTelefono.Text != TelefonoValorAntiguo)) {
 
                 var accion =
                     new AccionCrearEmpleado(parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item1, RUT, txtMostrarClave.Text, parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item1,
-                    parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item2, textEditMostrarEmail.Text, textEditMostarTelefono.Text, checkEditMostrarManejaCasino.Checked, parent);
+                    parent.EmpleadoTable[parent.EmpleadoRUTIndex[RUT]].Item4.Item2, textEditMostrarEmail.Text, textEditMostarTelefono.Text, parent);
                 acciones.Add(accion);
                 accionesActuales.Push(new Tuple<Accion, TipoAccion>(accion, TipoAccion.Modificada));
             }

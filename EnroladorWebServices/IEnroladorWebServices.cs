@@ -25,7 +25,7 @@ namespace EnroladorWebServices
         string AccionCrearContrato(Guid responsable, Guid oid, Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string CodigoContrato);
 
         [OperationContract]
-        string AccionCrearEmpleado(Guid responsable, Guid oid, string RUT, string firstName, string lastName, string Correo, string Telefono, bool ManejaCasino, int enrollID, string contraseña);
+        string AccionCrearEmpleado(Guid responsable, Guid oid, string RUT, string firstName, string lastName, string Correo, string Telefono, int enrollID, string contraseña);
 
         [OperationContract]
         string AccionCrearHuella(Guid responsable, Guid oid, Guid empleado, int tipoHuella, string data);
@@ -97,7 +97,7 @@ namespace EnroladorWebServices
 
         #endregion
 
-        #region Empleado con Email, Telefono, MarcaCasino
+        #region Empleado con Email, Telefono
         [OperationContract]
         List<POCOEmpleado> LeeEmpleados();
 

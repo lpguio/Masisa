@@ -19,6 +19,5 @@ namespace Enrolador.DataAccessLayer {
         public bool TieneContraseña { get; set; }
         public string Contraseña { get; set; }
         public string NumeroTelefono { get; set; }
-        public Boolean ManejaCasino { get; set; }
     }
 }
