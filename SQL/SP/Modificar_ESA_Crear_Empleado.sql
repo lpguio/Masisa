@@ -14,7 +14,6 @@ ALTER PROCEDURE [dbo].[ESA_Crear_Empleado]
        @LastName VARCHAR(50),
        @Correo NVARCHAR(250),
        @Telefono NVARCHAR(50),
-       @ManejaCasino BIT = 0,
        @EnrollID INT,
        @Contraseña NVARCHAR(MAX),
        @Error NVARCHAR(MAX) OUTPUT
@@ -25,7 +24,7 @@ BEGIN
        IF NOT EXISTS(SELECT * FROM ESA_Empleado WHERE RUT = @RUT) --Lo inserto porque no existe
        BEGIN
                      DECLARE @Query NVARCHAR(Max)=' EXEC [ESA_Crear_Empleado]'+''''+CAST(@LoggedUserOid AS NVARCHAR(36))+','''+CAST(@Oid AS NVARCHAR(36))+','''+@RUT+','''+','''
-              +@FirstName+','''+@LastName+','''++','''+@Correo+','''++','''+@Telefono+','''++','''+CAST(@ManejaCasino AS NVARCHAR(5))+','''+CAST(@EnrollID AS NVARCHAR)+','''+@Contraseña+''''
+              +@FirstName+','''+@LastName+','''++','''+@Correo+','''++','''+@Telefono+','''+','''+CAST(@EnrollID AS NVARCHAR)+','''+@Contraseña+''''
 
                      DECLARE @OidAudit UNIQUEIDENTIFIER = NEWID()
 
@@ -63,7 +62,7 @@ BEGIN
                      END
                      */
 
-                     EXEC @Count= CREATE_EMPLEADO @RUT, @FirstName, @LastName, @Correo, @Telefono, @ManejaCasino, @EnrollID, @Contraseña, @Oid
+                     EXEC @Count= CREATE_EMPLEADO @RUT, @FirstName, @LastName, @Correo, @Telefono, @EnrollID, @Contraseña, @Oid
                      IF @Count = 0
                      BEGIN
                            SET @Error = 'No se pudo insertar el empleado en la BD'              
@@ -81,8 +80,7 @@ BEGIN
               
               --Aqui actualizamos primero en persona
               UPDATE Person
-              SET Email = @Correo,
-                     MarcaCasino = @ManejaCasino
+              SET Email = @Correo
               WHERE Oid = @myGUIForUpdate
 
               --Ahora los telefonos

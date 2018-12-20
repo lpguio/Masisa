@@ -13,7 +13,6 @@ ALTER PROCEDURE [dbo].[CREATE_EMPLEADO]
 	@LastName varchar(MAX),
 	@Correo varchar(MAX),
 	@Telefono varchar(MAX),
-	@ManejaCasino BIT = 0,
 	@EnrollID INT,
 	@Contraseña NVARCHAR(MAX),
 	@Oid2 NVARCHAR(36) = NULL,
@@ -96,7 +95,6 @@ BEGIN
 	,[MiddleName]
 	,[Birthday]
 	,[Email]
-	,[MarcaCasino]
 	)
      VALUES
 		(@OID
@@ -104,8 +102,7 @@ BEGIN
 		,@LastName
 		,null
 		,null
-		,@Correo
-		,@ManejaCasino)
+		,@Correo)
 
 
 	IF @@ROWCOUNT = 0

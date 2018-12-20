@@ -38,7 +38,6 @@
             this.simpleSeparator5 = new DevExpress.XtraLayout.SimpleSeparator();
             this.wpNuevoEmpleado = new DevExpress.XtraWizard.WizardPage();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.checkEditManejaNuevoCasino = new DevExpress.XtraEditors.CheckEdit();
             this.txtNuevoClave = new DevExpress.XtraEditors.TextEdit();
             this.chkNuevoClave = new DevExpress.XtraEditors.CheckEdit();
             this.txtNuevoNombre = new DevExpress.XtraEditors.TextEdit();
@@ -51,12 +50,10 @@
             this.simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem38 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem41 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem42 = new DevExpress.XtraLayout.LayoutControlItem();
             this.wpMostrarEmpleado = new DevExpress.XtraWizard.WizardPage();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
-            this.checkEditMostrarManejaCasino = new DevExpress.XtraEditors.CheckEdit();
             this.txtMostrarClave = new DevExpress.XtraEditors.TextEdit();
             this.txtMostrarNombre = new DevExpress.XtraEditors.TextEdit();
             this.txtMostrarApellidos = new DevExpress.XtraEditors.TextEdit();
@@ -69,7 +66,6 @@
             this.simpleSeparator2 = new DevExpress.XtraLayout.SimpleSeparator();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem40 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem45 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem46 = new DevExpress.XtraLayout.LayoutControlItem();
             this.wpNuevoContrato = new DevExpress.XtraWizard.WizardPage();
@@ -167,7 +163,6 @@
             this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
             this.wpEditarEmpleado = new DevExpress.XtraWizard.WizardPage();
             this.layoutControl9 = new DevExpress.XtraLayout.LayoutControl();
-            this.checkEditManejaEditarCasino = new DevExpress.XtraEditors.CheckEdit();
             this.txtEditarClave = new DevExpress.XtraEditors.TextEdit();
             this.txtEditarNombre = new DevExpress.XtraEditors.TextEdit();
             this.txtEditarApellidos = new DevExpress.XtraEditors.TextEdit();
@@ -180,7 +175,6 @@
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
             this.simpleSeparator6 = new DevExpress.XtraLayout.SimpleSeparator();
-            this.layoutControlItem39 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem43 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem44 = new DevExpress.XtraLayout.LayoutControlItem();
             this.wpCaducarContrato = new DevExpress.XtraWizard.WizardPage();
@@ -224,7 +218,6 @@
             this.wpNuevoEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditManejaNuevoCasino.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNuevoClave.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkNuevoClave.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNuevoNombre.Properties)).BeginInit();
@@ -237,13 +230,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem38)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem41)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem42)).BeginInit();
             this.wpMostrarEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditMostrarManejaCasino.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMostrarClave.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMostrarNombre.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMostrarApellidos.Properties)).BeginInit();
@@ -256,7 +247,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem45)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).BeginInit();
             this.wpNuevoContrato.SuspendLayout();
@@ -333,7 +323,6 @@
             this.wpEditarEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl9)).BeginInit();
             this.layoutControl9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditManejaEditarCasino.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEditarClave.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEditarNombre.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEditarApellidos.Properties)).BeginInit();
@@ -346,7 +335,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem39)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem43)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem44)).BeginInit();
             this.wpCaducarContrato.SuspendLayout();
@@ -509,7 +497,6 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.checkEditManejaNuevoCasino);
             this.layoutControl1.Controls.Add(this.txtNuevoClave);
             this.layoutControl1.Controls.Add(this.chkNuevoClave);
             this.layoutControl1.Controls.Add(this.txtNuevoNombre);
@@ -524,17 +511,6 @@
             this.layoutControl1.Size = new System.Drawing.Size(752, 417);
             this.layoutControl1.TabIndex = 4;
             this.layoutControl1.Text = "layoutControl1";
-            // 
-            // checkEditManejaNuevoCasino
-            // 
-            this.checkEditManejaNuevoCasino.Location = new System.Drawing.Point(12, 148);
-            this.checkEditManejaNuevoCasino.Name = "checkEditManejaNuevoCasino";
-            this.checkEditManejaNuevoCasino.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.checkEditManejaNuevoCasino.Properties.Appearance.Options.UseFont = true;
-            this.checkEditManejaNuevoCasino.Properties.Caption = "Maneja Casino";
-            this.checkEditManejaNuevoCasino.Size = new System.Drawing.Size(728, 28);
-            this.checkEditManejaNuevoCasino.StyleController = this.layoutControl1;
-            this.checkEditManejaNuevoCasino.TabIndex = 6;
             // 
             // txtNuevoClave
             // 
@@ -581,7 +557,7 @@
             // 
             // textEditNuevoEmail
             // 
-            this.textEditNuevoEmail.Location = new System.Drawing.Point(95, 180);
+            this.textEditNuevoEmail.Location = new System.Drawing.Point(95, 148);
             this.textEditNuevoEmail.Name = "textEditNuevoEmail";
             this.textEditNuevoEmail.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.textEditNuevoEmail.Properties.Appearance.Options.UseFont = true;
@@ -593,7 +569,7 @@
             // 
             // textEditNuevoTelefono
             // 
-            this.textEditNuevoTelefono.Location = new System.Drawing.Point(95, 214);
+            this.textEditNuevoTelefono.Location = new System.Drawing.Point(95, 182);
             this.textEditNuevoTelefono.Name = "textEditNuevoTelefono";
             this.textEditNuevoTelefono.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.textEditNuevoTelefono.Properties.Appearance.Options.UseFont = true;
@@ -614,7 +590,6 @@
             this.simpleSeparator1,
             this.layoutControlItem19,
             this.layoutControlItem20,
-            this.layoutControlItem38,
             this.layoutControlItem41,
             this.layoutControlItem42});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
@@ -674,22 +649,13 @@
             this.layoutControlItem20.Text = "Clave";
             this.layoutControlItem20.TextSize = new System.Drawing.Size(80, 24);
             // 
-            // layoutControlItem38
-            // 
-            this.layoutControlItem38.Control = this.checkEditManejaNuevoCasino;
-            this.layoutControlItem38.Location = new System.Drawing.Point(0, 136);
-            this.layoutControlItem38.Name = "layoutControlItem38";
-            this.layoutControlItem38.Size = new System.Drawing.Size(732, 32);
-            this.layoutControlItem38.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem38.TextVisible = false;
-            // 
             // layoutControlItem41
             // 
             this.layoutControlItem41.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 15F);
             this.layoutControlItem41.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem41.Control = this.textEditNuevoEmail;
             this.layoutControlItem41.CustomizationFormText = "Email";
-            this.layoutControlItem41.Location = new System.Drawing.Point(0, 168);
+            this.layoutControlItem41.Location = new System.Drawing.Point(0, 136);
             this.layoutControlItem41.Name = "layoutControlItem41";
             this.layoutControlItem41.Size = new System.Drawing.Size(732, 34);
             this.layoutControlItem41.Text = "Email";
@@ -701,9 +667,9 @@
             this.layoutControlItem42.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem42.Control = this.textEditNuevoTelefono;
             this.layoutControlItem42.CustomizationFormText = "Telefono";
-            this.layoutControlItem42.Location = new System.Drawing.Point(0, 202);
+            this.layoutControlItem42.Location = new System.Drawing.Point(0, 170);
             this.layoutControlItem42.Name = "layoutControlItem42";
-            this.layoutControlItem42.Size = new System.Drawing.Size(732, 195);
+            this.layoutControlItem42.Size = new System.Drawing.Size(732, 227);
             this.layoutControlItem42.Text = "Telefono";
             this.layoutControlItem42.TextSize = new System.Drawing.Size(80, 24);
             // 
@@ -720,7 +686,6 @@
             // 
             // layoutControl2
             // 
-            this.layoutControl2.Controls.Add(this.checkEditMostrarManejaCasino);
             this.layoutControl2.Controls.Add(this.txtMostrarClave);
             this.layoutControl2.Controls.Add(this.txtMostrarNombre);
             this.layoutControl2.Controls.Add(this.txtMostrarApellidos);
@@ -735,17 +700,6 @@
             this.layoutControl2.Size = new System.Drawing.Size(752, 417);
             this.layoutControl2.TabIndex = 4;
             this.layoutControl2.Text = "layoutControl2";
-            // 
-            // checkEditMostrarManejaCasino
-            // 
-            this.checkEditMostrarManejaCasino.Location = new System.Drawing.Point(12, 148);
-            this.checkEditMostrarManejaCasino.Name = "checkEditMostrarManejaCasino";
-            this.checkEditMostrarManejaCasino.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.checkEditMostrarManejaCasino.Properties.Appearance.Options.UseFont = true;
-            this.checkEditMostrarManejaCasino.Properties.Caption = "Maneja Casino";
-            this.checkEditMostrarManejaCasino.Size = new System.Drawing.Size(728, 28);
-            this.checkEditMostrarManejaCasino.StyleController = this.layoutControl2;
-            this.checkEditMostrarManejaCasino.TabIndex = 7;
             // 
             // txtMostrarClave
             // 
@@ -794,7 +748,7 @@
             // 
             // textEditMostrarEmail
             // 
-            this.textEditMostrarEmail.Location = new System.Drawing.Point(95, 180);
+            this.textEditMostrarEmail.Location = new System.Drawing.Point(95, 148);
             this.textEditMostrarEmail.Name = "textEditMostrarEmail";
             this.textEditMostrarEmail.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.textEditMostrarEmail.Properties.Appearance.Options.UseFont = true;
@@ -806,7 +760,7 @@
             // 
             // textEditMostarTelefono
             // 
-            this.textEditMostarTelefono.Location = new System.Drawing.Point(95, 214);
+            this.textEditMostarTelefono.Location = new System.Drawing.Point(95, 182);
             this.textEditMostarTelefono.Name = "textEditMostarTelefono";
             this.textEditMostarTelefono.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.textEditMostarTelefono.Properties.Appearance.Options.UseFont = true;
@@ -827,7 +781,6 @@
             this.simpleSeparator2,
             this.layoutControlItem21,
             this.layoutControlItem23,
-            this.layoutControlItem40,
             this.layoutControlItem45,
             this.layoutControlItem46});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
@@ -887,22 +840,13 @@
             this.layoutControlItem23.Text = "Clave";
             this.layoutControlItem23.TextSize = new System.Drawing.Size(80, 24);
             // 
-            // layoutControlItem40
-            // 
-            this.layoutControlItem40.Control = this.checkEditMostrarManejaCasino;
-            this.layoutControlItem40.Location = new System.Drawing.Point(0, 136);
-            this.layoutControlItem40.Name = "layoutControlItem40";
-            this.layoutControlItem40.Size = new System.Drawing.Size(732, 32);
-            this.layoutControlItem40.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem40.TextVisible = false;
-            // 
             // layoutControlItem45
             // 
             this.layoutControlItem45.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 15F);
             this.layoutControlItem45.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem45.Control = this.textEditMostrarEmail;
             this.layoutControlItem45.CustomizationFormText = "Email";
-            this.layoutControlItem45.Location = new System.Drawing.Point(0, 168);
+            this.layoutControlItem45.Location = new System.Drawing.Point(0, 136);
             this.layoutControlItem45.Name = "layoutControlItem45";
             this.layoutControlItem45.Size = new System.Drawing.Size(732, 34);
             this.layoutControlItem45.Text = "Email";
@@ -914,9 +858,9 @@
             this.layoutControlItem46.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem46.Control = this.textEditMostarTelefono;
             this.layoutControlItem46.CustomizationFormText = "Telefono";
-            this.layoutControlItem46.Location = new System.Drawing.Point(0, 202);
+            this.layoutControlItem46.Location = new System.Drawing.Point(0, 170);
             this.layoutControlItem46.Name = "layoutControlItem46";
-            this.layoutControlItem46.Size = new System.Drawing.Size(732, 195);
+            this.layoutControlItem46.Size = new System.Drawing.Size(732, 227);
             this.layoutControlItem46.Text = "Telefono";
             this.layoutControlItem46.TextSize = new System.Drawing.Size(80, 24);
             // 
@@ -2007,7 +1951,6 @@
             // 
             // layoutControl9
             // 
-            this.layoutControl9.Controls.Add(this.checkEditManejaEditarCasino);
             this.layoutControl9.Controls.Add(this.txtEditarClave);
             this.layoutControl9.Controls.Add(this.txtEditarNombre);
             this.layoutControl9.Controls.Add(this.txtEditarApellidos);
@@ -2022,17 +1965,6 @@
             this.layoutControl9.Size = new System.Drawing.Size(752, 417);
             this.layoutControl9.TabIndex = 0;
             this.layoutControl9.Text = "layoutControl9";
-            // 
-            // checkEditManejaEditarCasino
-            // 
-            this.checkEditManejaEditarCasino.Location = new System.Drawing.Point(12, 148);
-            this.checkEditManejaEditarCasino.Name = "checkEditManejaEditarCasino";
-            this.checkEditManejaEditarCasino.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.checkEditManejaEditarCasino.Properties.Appearance.Options.UseFont = true;
-            this.checkEditManejaEditarCasino.Properties.Caption = "Maneja Casino";
-            this.checkEditManejaEditarCasino.Size = new System.Drawing.Size(728, 28);
-            this.checkEditManejaEditarCasino.StyleController = this.layoutControl9;
-            this.checkEditManejaEditarCasino.TabIndex = 12;
             // 
             // txtEditarClave
             // 
@@ -2081,7 +2013,7 @@
             // textEditarEmail
             // 
             this.textEditarEmail.Enabled = false;
-            this.textEditarEmail.Location = new System.Drawing.Point(95, 180);
+            this.textEditarEmail.Location = new System.Drawing.Point(95, 148);
             this.textEditarEmail.Name = "textEditarEmail";
             this.textEditarEmail.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.textEditarEmail.Properties.Appearance.Options.UseFont = true;
@@ -2094,7 +2026,7 @@
             // textEditarTelefono
             // 
             this.textEditarTelefono.Enabled = false;
-            this.textEditarTelefono.Location = new System.Drawing.Point(95, 214);
+            this.textEditarTelefono.Location = new System.Drawing.Point(95, 182);
             this.textEditarTelefono.Name = "textEditarTelefono";
             this.textEditarTelefono.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.textEditarTelefono.Properties.Appearance.Options.UseFont = true;
@@ -2114,7 +2046,6 @@
             this.layoutControlItem24,
             this.layoutControlItem22,
             this.simpleSeparator6,
-            this.layoutControlItem39,
             this.layoutControlItem43,
             this.layoutControlItem44});
             this.layoutControlGroup9.Location = new System.Drawing.Point(0, 0);
@@ -2171,22 +2102,13 @@
             this.simpleSeparator6.Name = "simpleSeparator6";
             this.simpleSeparator6.Size = new System.Drawing.Size(732, 2);
             // 
-            // layoutControlItem39
-            // 
-            this.layoutControlItem39.Control = this.checkEditManejaEditarCasino;
-            this.layoutControlItem39.Location = new System.Drawing.Point(0, 136);
-            this.layoutControlItem39.Name = "layoutControlItem39";
-            this.layoutControlItem39.Size = new System.Drawing.Size(732, 32);
-            this.layoutControlItem39.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem39.TextVisible = false;
-            // 
             // layoutControlItem43
             // 
             this.layoutControlItem43.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 15F);
             this.layoutControlItem43.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem43.Control = this.textEditarEmail;
             this.layoutControlItem43.CustomizationFormText = "Email";
-            this.layoutControlItem43.Location = new System.Drawing.Point(0, 168);
+            this.layoutControlItem43.Location = new System.Drawing.Point(0, 136);
             this.layoutControlItem43.Name = "layoutControlItem43";
             this.layoutControlItem43.Size = new System.Drawing.Size(732, 34);
             this.layoutControlItem43.Text = "Email";
@@ -2198,9 +2120,9 @@
             this.layoutControlItem44.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem44.Control = this.textEditarTelefono;
             this.layoutControlItem44.CustomizationFormText = "Telefono";
-            this.layoutControlItem44.Location = new System.Drawing.Point(0, 202);
+            this.layoutControlItem44.Location = new System.Drawing.Point(0, 170);
             this.layoutControlItem44.Name = "layoutControlItem44";
-            this.layoutControlItem44.Size = new System.Drawing.Size(732, 195);
+            this.layoutControlItem44.Size = new System.Drawing.Size(732, 227);
             this.layoutControlItem44.Text = "Telefono";
             this.layoutControlItem44.TextSize = new System.Drawing.Size(80, 24);
             // 
@@ -2558,7 +2480,6 @@
             this.wpNuevoEmpleado.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditManejaNuevoCasino.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNuevoClave.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkNuevoClave.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNuevoNombre.Properties)).EndInit();
@@ -2571,13 +2492,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem38)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem41)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem42)).EndInit();
             this.wpMostrarEmpleado.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditMostrarManejaCasino.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMostrarClave.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMostrarNombre.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMostrarApellidos.Properties)).EndInit();
@@ -2590,7 +2509,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem45)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).EndInit();
             this.wpNuevoContrato.ResumeLayout(false);
@@ -2667,7 +2585,6 @@
             this.wpEditarEmpleado.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl9)).EndInit();
             this.layoutControl9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditManejaEditarCasino.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEditarClave.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEditarNombre.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEditarApellidos.Properties)).EndInit();
@@ -2680,7 +2597,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem39)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem43)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem44)).EndInit();
             this.wpCaducarContrato.ResumeLayout(false);
@@ -2871,12 +2787,6 @@
         private DevExpress.XtraEditors.TextEdit txtCodigoContrato;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem37;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraEditors.CheckEdit checkEditManejaNuevoCasino;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem38;
-        private DevExpress.XtraEditors.CheckEdit checkEditManejaEditarCasino;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem39;
-        private DevExpress.XtraEditors.CheckEdit checkEditMostrarManejaCasino;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem40;
         private DevExpress.XtraEditors.TextEdit textEditNuevoEmail;
         private DevExpress.XtraEditors.TextEdit textEditNuevoTelefono;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem41;
