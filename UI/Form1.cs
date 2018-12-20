@@ -1358,8 +1358,8 @@ namespace EnroladorStandAlone
             }
         }
 
-        private async Task<Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>>> LeeContrato(ILoadingDialog loading, Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable, Dictionary<Guid, Tuple<string, List<Guid>, List<Guid>>> newEmpresaTable, Dictionary<Guid, Tuple<string, DateTime?>> newCuentaTable, Dictionary<Guid, string> newCargoTable)
-        private async Task<Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>>> LeeContrato(ILoadingDialog loading, Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable, Dictionary<Guid, Tuple<string, List<Guid>, List<Guid>>> newEmpresaTable, Dictionary<Guid, Tuple<string, DateTime?>> newCuentaTable, Dictionary<Guid, string> newCargoTable)
+        private async Task<Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>>> LeeContrato(ILoadingDialog loading, Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable, Dictionary<Guid, Tuple<string, List<Guid>, List<Guid>>> newEmpresaTable, Dictionary<Guid, Tuple<string, DateTime?>> newCuentaTable, Dictionary<Guid, string> newCargoTable)
+      //  private async Task<Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>>> LeeContrato(ILoadingDialog loading, Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable, Dictionary<Guid, Tuple<string, List<Guid>, List<Guid>>> newEmpresaTable, Dictionary<Guid, Tuple<string, DateTime?>> newCuentaTable, Dictionary<Guid, string> newCargoTable)
         {
             Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>> newContratoTable;
             var res = await new EnroladorWebServices.EnroladorWebServicesClient().LeeContratoAsync(loggedUser.Item1);

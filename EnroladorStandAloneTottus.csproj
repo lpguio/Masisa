@@ -368,7 +368,6 @@
     <Content Include="SQL\SP\Modificar_ESA_Login.sql" />
     <Content Include="SQL\SP\Modificar_ESA_Revalidar.sql" />
     <Content Include="SQL\TABLAS\Modificar_Contrato.sql" />
-    <Content Include="SQL\TABLAS\Modificar_Person.sql" />
     <Content Include="SQL\VIEW\Modificar_ESA_Contrato.sql" />
     <None Include="Service References\EnroladorWebServices\EnroladorWebServices.disco" />
     <None Include="Service References\EnroladorWebServices\EnroladorWebServices.wsdl" />
@@ -457,9 +456,7 @@
       <Name>Enrolador.DataAccessLayer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SQL\TABLAS\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
