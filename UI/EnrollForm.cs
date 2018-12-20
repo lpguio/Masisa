@@ -524,7 +524,7 @@ namespace EnroladorStandAlone
 
                     if (accionCrearContrato != null)
                     {
-                        if (accionCrearContrato.Editar(accionCrearContrato.Empresa, accionCrearContrato.Cuenta, accionCrearContrato.Cargo, accionCrearContrato.InicioVigencia, null, accionCrearContrato.CodigoContrato, parent))
+                        if (accionCrearContrato.Editar(accionCrearContrato.Empresa, accionCrearContrato.Cuenta, accionCrearContrato.Cargo, accionCrearContrato.InicioVigencia, null, accionCrearContrato.CodigoContrato, accionCrearContrato.ManejaColacion, accionCrearContrato.ManejaCasino, parent))
                         {
                             ModificarAccion(accionCrearContrato);
                         }
@@ -1187,7 +1187,7 @@ namespace EnroladorStandAlone
         private void wpEditarContrato_PageCommit(object sender, EventArgs e)
         {
             AccionCrearContrato accionEditadaCrearContrato = (AccionCrearContrato)accionEditada;
-            if (accionEditadaCrearContrato.Editar(((ComboBoxItem)cmbEditarEmpresa.SelectedItem).Oid, ((ComboBoxItem)cmbEditarCuenta.SelectedItem).Oid, ((ComboBoxItem)cmbEditarCargo.SelectedItem).Oid, dteEditarInicioVigencia.DateTime, accionEditadaCrearContrato.FinVigencia, txtCodigoContrato.Text, parent))
+            if (accionEditadaCrearContrato.Editar(((ComboBoxItem)cmbEditarEmpresa.SelectedItem).Oid, ((ComboBoxItem)cmbEditarCuenta.SelectedItem).Oid, ((ComboBoxItem)cmbEditarCargo.SelectedItem).Oid, dteEditarInicioVigencia.DateTime, accionEditadaCrearContrato.FinVigencia, txtEditarContrato.Text, chManejaColacionEditar.Checked, chManejaCasinoEditar.Checked, parent))
             {
                 ModificarAccion(accionEditadaCrearContrato);
             }
@@ -1204,7 +1204,7 @@ namespace EnroladorStandAlone
             else if (accionEditada is AccionCrearContrato)
             {
                 AccionCrearContrato accionEditadaCrearContrato = (AccionCrearContrato)accionEditada;
-                if (accionEditadaCrearContrato.Editar(accionEditadaCrearContrato.Empresa, accionEditadaCrearContrato.Cuenta, accionEditadaCrearContrato.Cargo, accionEditadaCrearContrato.InicioVigencia, dteCaducarContrato.DateTime, txtCodigoContrato.Text, parent))
+                if (accionEditadaCrearContrato.Editar(accionEditadaCrearContrato.Empresa, accionEditadaCrearContrato.Cuenta, accionEditadaCrearContrato.Cargo, accionEditadaCrearContrato.InicioVigencia, dteCaducarContrato.DateTime, txtCodigoContrato.Text, chManejaColacionEditar.Checked, chManejaCasinoEditar.Checked, parent))
                 {
                     ModificarAccion(accionEditadaCrearContrato);
                 }

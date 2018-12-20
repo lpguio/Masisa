@@ -17,6 +17,8 @@ namespace EnroladorStandAlone
         Guid cargo;
         DateTime inicioVigencia;
         DateTime? finVigencia;
+        bool consideraCasino = false;
+        bool consideraColacion = false;
         string codigoContrato;
         public Guid Empleado { get { return empleado; } }
         public Guid Empresa { get { return empresa; } }
@@ -25,6 +27,8 @@ namespace EnroladorStandAlone
         public DateTime InicioVigencia { get { return inicioVigencia; } }
         public DateTime? FinVigencia { get { return finVigencia; } }
         public string CodigoContrato { get { return codigoContrato; } }
+        public bool ManejaCasino{ get { return consideraCasino; } }
+        public bool ManejaColacion{ get { return consideraColacion; } }
 
         public AccionCrearContrato(Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string pcodigoContrato, Form1 parent)
             : base(parent.LoggedUser.Item1, DateTime.Now, Guid.NewGuid())
@@ -59,7 +63,7 @@ namespace EnroladorStandAlone
             return new AccionCrearContrato(this);
         }
 
-        public bool Editar(Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string pcodigoContrato, Form1 parent)
+        public bool Editar(Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string pcodigoContrato, bool pManejaColacion, bool pManejaCasino, Form1 parent)
         {
             if (this.empresa.Equals(empresa) && this.cuenta.Equals(cuenta) && this.cargo.Equals(cargo) && this.inicioVigencia.Equals(inicioVigencia) && this.finVigencia.Equals(finVigencia))
             {
@@ -71,9 +75,11 @@ namespace EnroladorStandAlone
             this.inicioVigencia = inicioVigencia;
             this.finVigencia = finVigencia;
             this.codigoContrato = pcodigoContrato;
+            this.consideraCasino = pManejaCasino;
+            this.consideraColacion = pManejaColacion;
             descripcion = string.Format("Crear contrato al empleado con RUT {0} con la empresa {1}, cuenta {2} y cargo {3}. Inicio de vigencia {4}{5}. Codigo Contrato {6}", parent.EmpleadoTable[empleado].Item2, parent.EmpresaTable[empresa].Item1, parent.CuentaTable[cuenta], parent.CargoTable[cargo], inicioVigencia.ToString("dd/MM/yyyy"), finVigencia.HasValue ? ". Fin de vigencia " + finVigencia.Value.ToString("dd/MM/yyyy") : "", CodigoContrato);
 
-            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato);
+            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>(empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato, new Tuple<bool,bool>(consideraColacion, consideraCasino));
             return true;
         }
 
@@ -81,7 +87,7 @@ namespace EnroladorStandAlone
         {
             try
             {
-                string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionCrearContratoAsync(responsable, oid, empleado, empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato);
+                string error = await new EnroladorWebServices.EnroladorWebServicesClient().AccionCrearContratoAsync(responsable, oid, empleado, empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato, ManejaColacion, ManejaCasino);
                 if (!string.IsNullOrEmpty(error))
                 {
                     throw new Exception("Contrato no creado: " + error);
@@ -110,7 +116,7 @@ namespace EnroladorStandAlone
                 {
                     parent.EmpleadoTable[empleado].Item5.Item3.Add(oid);
                 }
-                parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato);
+                parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>(empresa, cuenta, cargo, inicioVigencia, finVigencia, CodigoContrato, new Tuple<bool, bool>(ManejaColacion, ManejaCasino));
             }
         }
     }

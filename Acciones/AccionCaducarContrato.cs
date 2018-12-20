@@ -14,9 +14,13 @@ namespace EnroladorStandAlone
         DateTime? finVigencia;
         DateTime? oldFinVigencia;
         Guid empleado;
+        bool consideraCasino = false;
+        bool consideraColacion = false;
         string CodigoContrato = "SIN CONTRATO";
         public DateTime? FinVigencia { get { return finVigencia; } }
         public Guid Empleado { get { return empleado; } }
+        public bool ManejaCasino { get { return consideraCasino; } }
+        public bool ManejaColacion { get { return consideraColacion; } }
 
         public AccionCaducarContrato(Guid contrato, Guid empleado, DateTime? finVigencia, Form1 parent)
             : base(parent.LoggedUser.Item1, DateTime.Now, contrato)
@@ -66,7 +70,7 @@ namespace EnroladorStandAlone
                 descripcion = string.Format("Eliminar caducidad de contrato al empleado con RUT {0} con la empresa {1}, cuenta {2} y cargo {3}", parent.EmpleadoTable[empleado].Item2, parent.EmpresaTable[parent.ContratoTable[oid].Item1].Item1, parent.CuentaTable[parent.ContratoTable[oid].Item2], parent.CargoTable[parent.ContratoTable[oid].Item3]);
             }
 
-            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(parent.ContratoTable[oid].Item1, parent.ContratoTable[oid].Item2, parent.ContratoTable[oid].Item3, parent.ContratoTable[oid].Item4, finVigencia, CodigoContrato);
+            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>(parent.ContratoTable[oid].Item1, parent.ContratoTable[oid].Item2, parent.ContratoTable[oid].Item3, parent.ContratoTable[oid].Item4, finVigencia, CodigoContrato, new Tuple<bool, bool>(ManejaColacion, ManejaCasino));
             return true;
         }
 
@@ -88,12 +92,12 @@ namespace EnroladorStandAlone
 
         public override void Cancelar(Form1 parent)
         {
-            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(parent.ContratoTable[oid].Item1, parent.ContratoTable[oid].Item2, parent.ContratoTable[oid].Item3, parent.ContratoTable[oid].Item4, oldFinVigencia, CodigoContrato);
+            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>(parent.ContratoTable[oid].Item1, parent.ContratoTable[oid].Item2, parent.ContratoTable[oid].Item3, parent.ContratoTable[oid].Item4, oldFinVigencia, CodigoContrato, new Tuple<bool, bool>(ManejaColacion, ManejaCasino));
         }
 
         public override void Aplicar(Form1 parent)
         {
-            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(parent.ContratoTable[oid].Item1, parent.ContratoTable[oid].Item2, parent.ContratoTable[oid].Item3, parent.ContratoTable[oid].Item4, finVigencia, CodigoContrato);
+            parent.ContratoTable[oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>(parent.ContratoTable[oid].Item1, parent.ContratoTable[oid].Item2, parent.ContratoTable[oid].Item3, parent.ContratoTable[oid].Item4, finVigencia, CodigoContrato, new Tuple<bool, bool>(ManejaColacion, ManejaCasino));
         }
     }
 }

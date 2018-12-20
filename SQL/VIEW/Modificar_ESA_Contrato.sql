@@ -10,7 +10,8 @@ SELECT
 	SecuritySystemUser.Oid AS Usuario, 
 	ISNULL(Contrato.InicioVigencia, '19000101') InicioVigencia,
     Contrato.FinVigencia,
-	Contrato.Codigo
+	Contrato.Codigo,
+	Contrato.ConsideraColacion
 -- SELECT *
 FROM            
 	RolesUserExtensionEnroladorStandAloneUserExtension_CuentaCuenta Rol_Cuenta

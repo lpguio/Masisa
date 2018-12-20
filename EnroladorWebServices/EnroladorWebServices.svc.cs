@@ -124,7 +124,7 @@ namespace EnroladorWebServices
             }
         }
 
-        public string AccionCrearContrato(Guid responsable, Guid oid, Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string CodigoContrato)
+        public string AccionCrearContrato(Guid responsable, Guid oid, Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string CodigoContrato, bool ConsideraColacion, bool ConsideraCasino)
         {
             try
             {
@@ -140,7 +140,9 @@ namespace EnroladorWebServices
                     comm.Parameters.Add("@Cuenta", SqlDbType.UniqueIdentifier).Value = cuenta;
                     comm.Parameters.Add("@Cargo", SqlDbType.UniqueIdentifier).Value = cargo;
                     comm.Parameters.Add("@InicioVigencia", SqlDbType.DateTime).Value = inicioVigencia;
-                    comm.Parameters.Add("@CodigoContrato", SqlDbType.VarChar).Value = CodigoContrato.Length > 100 ? CodigoContrato.Substring(0,100) : CodigoContrato;
+                    comm.Parameters.Add("@@ConsideraColacion", SqlDbType.VarChar).Value = CodigoContrato.Length > 100 ? CodigoContrato.Substring(0,100) : CodigoContrato;
+                    comm.Parameters.Add("@ConsideraColacion", SqlDbType.Bit).Value = ConsideraColacion;
+                    comm.Parameters.Add("@ConsideraCasino", SqlDbType.Bit).Value = ConsideraCasino;
 
                     if (finVigencia.HasValue)
                     {
@@ -493,9 +495,10 @@ namespace EnroladorWebServices
             }
         }
 
-        public List<Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid, Tuple<string>>> LeeContrato(Guid loggedUser)
+        public List<Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid, Tuple<string, bool, bool>>> LeeContrato(Guid loggedUser)
         {
-            string sql = string.Format("SELECT Oid, Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, Empleado, Codigo FROM ESA_Contrato WHERE /*(GETDATE() BETWEEN ISNULL(InicioVigencia, GETDATE()) AND ISNULL(FinVigencia, GETDATE())) AND */ Usuario = '{0}'", loggedUser);
+            string sql = string.Format("SELECT Oid, Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, Empleado, Codigo, ConsideraColacion, ConsideraCasino FROM ESA_Contrato " +
+                "WHERE /*(GETDATE() BETWEEN ISNULL(InicioVigencia, GETDATE()) AND ISNULL(FinVigencia, GETDATE())) AND */ Usuario = '{0}'", loggedUser);
 
             try
             {
@@ -503,7 +506,7 @@ namespace EnroladorWebServices
                 using (SqlCommand comm = new SqlCommand("", conn))
                 {
                     conn.Open();
-                    List<Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid, Tuple<string>>> res;
+                    List<Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid, Tuple<string, bool, bool>>> res;
 
                     comm.CommandText = string.Format("SELECT COUNT(*) FROM ({0}) AS Tabla", sql);
                     int filas = (int)comm.ExecuteScalar();
@@ -514,7 +517,7 @@ namespace EnroladorWebServices
                     {
                         reader = comm.ExecuteReader();
 
-                        res = new List<Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid, Tuple<string>>>(filas);
+                        res = new List<Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid, Tuple<string, bool, bool>>>(filas);
                         int i = 0;
                         while (reader.Read())
                         {
@@ -532,9 +535,12 @@ namespace EnroladorWebServices
                                 }
                                 Guid Empleado = reader.GetFieldValue<Guid>(6);
                                 var CodigoContrato = reader.IsDBNull(7) ? "SIN_CODIGO_CONTRATO" : reader.GetFieldValue<string>(7).ToString();
+                                var ConsideraColacion = reader.IsDBNull(8) ? false : reader.GetFieldValue<bool>(8);
+                                var ConsideraCasino = reader.IsDBNull(9) ? false : reader.GetFieldValue<bool>(9);
 
-                                var tplContrato = new Tuple<string>(CodigoContrato);
-                                res.Add(new Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid, Tuple<string>>(Oid, Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, Empleado, tplContrato));
+
+                                var tplContrato = new Tuple<string, bool, bool>(CodigoContrato, ConsideraColacion, ConsideraCasino);
+                                res.Add(new Tuple<Guid, Guid, Guid, Guid, DateTime, DateTime?, Guid, Tuple<string, bool, bool>>(Oid, Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, Empleado, tplContrato));
                                 i++;
                             }
                             catch (Exception Ex)

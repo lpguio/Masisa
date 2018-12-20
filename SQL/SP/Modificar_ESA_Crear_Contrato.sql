@@ -8,13 +8,15 @@
 	@InicioVigencia DATETIME,
 	@FinVigencia DATETIME = NULL,
 	@CodigoContrato varchar(100),
+	@ConsideraColacion bit,
+	@ConsideraCasino bit,
 	@Error NVARCHAR(MAX) OUTPUT
 AS
 BEGIN
 	SET NOCOUNT ON;
 	DECLARE @Query NVARCHAR(Max)=' EXEC [ESA_Crear_Contrato]'+''''+CAST(@LoggedUserOid AS NVARCHAR(36))+','''+CAST(@Oid AS NVARCHAR(36))+','''+CAST(@Empleado AS NVARCHAR(36))+','''
 	+CAST(@Empresa AS NVARCHAR(36))+','''+CAST(@Cuenta AS NVARCHAR(36))+','''+CAST(@Cargo AS NVARCHAR(36))+','''+CONVERT(NVARCHAR(10), @InicioVigencia,112)+''''+','''+CASE WHEN @FINVIGENCIA IS NOT NULL THEN CONVERT(NVARCHAR(10), @FinVigencia,112) END+''''
-	+ ',' + '''' + @CodigoContrato + ''''
+	+ ',' + '''' + @CodigoContrato + '''' + ',' + UPPER(CAST(@ConsideraColacion AS INT))+ ',' + UPPER(CAST(@ConsideraCasino AS INT))
 
 	DECLARE @OidAudit UNIQUEIDENTIFIER = NEWID()
 
@@ -67,9 +69,9 @@ BEGIN
 	END
 
 
-     INSERT INTO Contrato(Oid, Empleado, Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, OptimisticLockField, GCRecord, ObjectType, Supervisor, TipoContrato, Usuario, ConsideraColacion, EsSupervisor, Codigo)
+     INSERT INTO Contrato(Oid, Empleado, Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, OptimisticLockField, GCRecord, ObjectType, Supervisor, TipoContrato, Usuario, ConsideraColacion, EsSupervisor, Codigo, ConsideraCasino)
      SELECT 
-		@oid, @Empleado, @Empresa, @Cuenta, @Cargo, @InicioVigencia, @FinVigencia, 0 OptimisticLockField,NULL GCRecord,15 ObjectType,NULL Supervisor,0 TipoContrato,NULL Usuario,1 ConsideraColacion,0 EsSupervisor, @CodigoContrato
+		@oid, @Empleado, @Empresa, @Cuenta, @Cargo, @InicioVigencia, @FinVigencia, 0 OptimisticLockField,NULL GCRecord,15 ObjectType,NULL Supervisor,0 TipoContrato,NULL Usuario,@ConsideraColacion ConsideraColacion,0 EsSupervisor, @CodigoContrato, @ConsideraCasino
 		 
 	IF @@ROWCOUNT <> 1
 	BEGIN

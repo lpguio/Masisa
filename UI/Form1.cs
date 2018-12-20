@@ -55,7 +55,7 @@ namespace EnroladorStandAlone
         private string huellaFile;
         private Dictionary<Guid, TipoHuella> huellaTable; // Oid => TipoHuella
         private string contratoFile;
-        private Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>> contratoTable; // Oid => Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, Codigo
+        private Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>> contratoTable; // Oid => Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, Codigo
         private bool dataLoaded = false;
         public Huellero Huellero { get { return huellero; } }
         private Huellero huellero;
@@ -77,7 +77,7 @@ namespace EnroladorStandAlone
         public Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> EmpleadoTable { get { return empleadoTable; } }
         public Dictionary<string, Guid> EmpleadoRUTIndex { get { return empleadoRUTIndex; } }
         public Dictionary<Guid, TipoHuella> HuellaTable { get { return huellaTable; } }
-        public Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>> ContratoTable { get { return contratoTable; } }
+        public Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>> ContratoTable { get { return contratoTable; } }
         public List<EmpleadoTurnoServicioCasino> ListEmpleadoTurnoServicioCasino { get; set; }
         public List<ServicioCasino> ListServicioCasino { get; set; }
         public List<TurnoServicio> ListTurnoServicio { get; set; }
@@ -147,7 +147,6 @@ namespace EnroladorStandAlone
             }
             await IniciarSistema();
             barEditItem2.EditValue = rgTipoContrato.Items[0].Value;
-           // barEditItem2_EditValueChanged(null, null);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -1029,7 +1028,7 @@ namespace EnroladorStandAlone
                 using (Stream stream = File.Open(contratoFile, FileMode.Open, FileAccess.Read))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
-                    contratoTable = (Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>>)bin.Deserialize(stream);
+                    contratoTable = (Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>>)bin.Deserialize(stream);
                     if (contratoTable == null)
                     {
                         return false;
@@ -1101,7 +1100,7 @@ namespace EnroladorStandAlone
             Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable;
             Dictionary<string, Guid> newEmpleadoRUTIndex;
             Dictionary<Guid, TipoHuella> newHuellaTable;
-            Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>> newContratoTable;
+            Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>> newContratoTable;
             List<EmpleadoTurnoServicioCasino> newListEmpleadoTurnoServicioCasino;
             List<ServicioCasino> newListServicioCasino;
             List<TurnoServicio> newListTurnoServicio;  
@@ -1360,12 +1359,12 @@ namespace EnroladorStandAlone
             }
         }
 
-        private async Task<Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>>> LeeContrato(ILoadingDialog loading, Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable, Dictionary<Guid, Tuple<string, List<Guid>, List<Guid>>> newEmpresaTable, Dictionary<Guid, Tuple<string, DateTime?>> newCuentaTable, Dictionary<Guid, string> newCargoTable)
+        private async Task<Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>>> LeeContrato(ILoadingDialog loading, Dictionary<Guid, Tuple<int, string, bool, Tuple<string, string, string, string, bool>, Tuple<List<Guid>, List<Guid>, List<Guid>>>> newEmpleadoTable, Dictionary<Guid, Tuple<string, List<Guid>, List<Guid>>> newEmpresaTable, Dictionary<Guid, Tuple<string, DateTime?>> newCuentaTable, Dictionary<Guid, string> newCargoTable)
         {
-            Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>> newContratoTable;
+            Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>> newContratoTable;
             var res = await new EnroladorWebServices.EnroladorWebServicesClient().LeeContratoAsync(loggedUser.Item1);
             loading.SiguientePaso(res.Length, "Cargando Contratos");
-            newContratoTable = new Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>>(res.Length);
+            newContratoTable = new Dictionary<Guid, Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>>(res.Length);
             foreach (var contrato in res)
             {
                 Guid Oid = contrato.Item1;
@@ -1376,6 +1375,8 @@ namespace EnroladorStandAlone
                 DateTime? FinVigencia = contrato.Item6;
                 Guid Empleado = contrato.Item7;
                 string CodigoContrato = contrato.Rest.Item1;
+                bool ManejaColacion = contrato.Rest.Item2;
+                bool ManejaCasino = contrato.Rest.Item3;
                 if (Oid.ToString().ToUpper().Equals("2D4554D6-6A05-4B08-BA50-874C1C2989F9"))
                 {
                     loading.SiguientePaso(res.Length, "Cargando Contratos Entré");
@@ -1383,7 +1384,7 @@ namespace EnroladorStandAlone
                 if (newEmpleadoTable.ContainsKey(Empleado) && newEmpresaTable.ContainsKey(Empresa) && newCuentaTable.ContainsKey(Cuenta) && newCargoTable.ContainsKey(Cargo))
                 {
                     newEmpleadoTable[Empleado].Item5.Item3.Add(Oid);
-                    newContratoTable[Oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string>(Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, CodigoContrato);
+                    newContratoTable[Oid] = new Tuple<Guid, Guid, Guid, DateTime, DateTime?, string, Tuple<bool, bool>>(Empresa, Cuenta, Cargo, InicioVigencia, FinVigencia, CodigoContrato, new Tuple<bool, bool>(ManejaColacion,ManejaCasino));
                 }
                 loading.AvanzarActual();
             }

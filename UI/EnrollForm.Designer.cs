@@ -79,6 +79,8 @@
             this.cmbNuevoEmpresa = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbNuevoCuenta = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtCodigoContrato = new DevExpress.XtraEditors.TextEdit();
+            this.chManejaColacionNuevo = new DevExpress.XtraEditors.CheckEdit();
+            this.chManejaCasinosNuevo = new DevExpress.XtraEditors.CheckEdit();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -88,6 +90,11 @@
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.simpleSeparator10 = new DevExpress.XtraLayout.SimpleSeparator();
             this.layoutControlItem37 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem47 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleSeparator12 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.layoutControlItem48 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleSeparator14 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.simpleSeparator15 = new DevExpress.XtraLayout.SimpleSeparator();
             this.wpMostrarContratos = new DevExpress.XtraWizard.WizardPage();
             this.layoutControl7 = new DevExpress.XtraLayout.LayoutControl();
             this.btnEditarContrato = new DevExpress.XtraEditors.SimpleButton();
@@ -188,6 +195,8 @@
             this.cmbEditarCargo = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbEditarCuenta = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbEditarEmpresa = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.chManejaColacionEditar = new DevExpress.XtraEditors.CheckEdit();
+            this.chManejaCasinoEditar = new DevExpress.XtraEditors.CheckEdit();
             this.layoutControlGroup10 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -196,6 +205,13 @@
             this.simpleSeparator9 = new DevExpress.XtraLayout.SimpleSeparator();
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
             this.simpleSeparator11 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.layoutControlItem50 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem51 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtEditarContrato = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem49 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleSeparator13 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.simpleSeparator16 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.simpleSeparator17 = new DevExpress.XtraLayout.SimpleSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.wzrEnroll)).BeginInit();
             this.wzrEnroll.SuspendLayout();
             this.wpRUT.SuspendLayout();
@@ -252,6 +268,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbNuevoEmpresa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNuevoCuenta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodigoContrato.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chManejaColacionNuevo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chManejaCasinosNuevo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
@@ -261,6 +279,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem47)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem48)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator15)).BeginInit();
             this.wpMostrarContratos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl7)).BeginInit();
             this.layoutControl7.SuspendLayout();
@@ -342,6 +365,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbEditarCargo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbEditarCuenta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbEditarEmpresa.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chManejaColacionEditar.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chManejaCasinoEditar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
@@ -350,6 +375,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem50)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEditarContrato.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem49)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator17)).BeginInit();
             this.SuspendLayout();
             // 
             // wzrEnroll
@@ -906,10 +938,12 @@
             this.layoutControl3.Controls.Add(this.cmbNuevoEmpresa);
             this.layoutControl3.Controls.Add(this.cmbNuevoCuenta);
             this.layoutControl3.Controls.Add(this.txtCodigoContrato);
+            this.layoutControl3.Controls.Add(this.chManejaColacionNuevo);
+            this.layoutControl3.Controls.Add(this.chManejaCasinosNuevo);
             this.layoutControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl3.Location = new System.Drawing.Point(0, 0);
             this.layoutControl3.Name = "layoutControl3";
-            this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(614, 145, 250, 350);
+            this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(373, 519, 677, 350);
             this.layoutControl3.Root = this.layoutControlGroup3;
             this.layoutControl3.Size = new System.Drawing.Size(752, 417);
             this.layoutControl3.TabIndex = 6;
@@ -979,13 +1013,35 @@
             // 
             // txtCodigoContrato
             // 
-            this.txtCodigoContrato.Location = new System.Drawing.Point(159, 154);
+            this.txtCodigoContrato.Location = new System.Drawing.Point(159, 156);
             this.txtCodigoContrato.Name = "txtCodigoContrato";
             this.txtCodigoContrato.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtCodigoContrato.Properties.Appearance.Options.UseFont = true;
             this.txtCodigoContrato.Size = new System.Drawing.Size(581, 30);
             this.txtCodigoContrato.StyleController = this.layoutControl3;
             this.txtCodigoContrato.TabIndex = 7;
+            // 
+            // chManejaColacionNuevo
+            // 
+            this.chManejaColacionNuevo.Location = new System.Drawing.Point(159, 192);
+            this.chManejaColacionNuevo.Name = "chManejaColacionNuevo";
+            this.chManejaColacionNuevo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.chManejaColacionNuevo.Properties.Appearance.Options.UseFont = true;
+            this.chManejaColacionNuevo.Properties.Caption = "Maneja Colación";
+            this.chManejaColacionNuevo.Size = new System.Drawing.Size(581, 28);
+            this.chManejaColacionNuevo.StyleController = this.layoutControl3;
+            this.chManejaColacionNuevo.TabIndex = 8;
+            // 
+            // chManejaCasinosNuevo
+            // 
+            this.chManejaCasinosNuevo.Location = new System.Drawing.Point(159, 226);
+            this.chManejaCasinosNuevo.Name = "chManejaCasinosNuevo";
+            this.chManejaCasinosNuevo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.chManejaCasinosNuevo.Properties.Appearance.Options.UseFont = true;
+            this.chManejaCasinosNuevo.Properties.Caption = "Maneja Casinos";
+            this.chManejaCasinosNuevo.Size = new System.Drawing.Size(581, 28);
+            this.chManejaCasinosNuevo.StyleController = this.layoutControl3;
+            this.chManejaCasinosNuevo.TabIndex = 9;
             // 
             // layoutControlGroup3
             // 
@@ -1000,7 +1056,12 @@
             this.simpleSeparator4,
             this.layoutControlItem31,
             this.simpleSeparator10,
-            this.layoutControlItem37});
+            this.layoutControlItem37,
+            this.layoutControlItem47,
+            this.simpleSeparator12,
+            this.layoutControlItem48,
+            this.simpleSeparator14,
+            this.simpleSeparator15});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "Root";
             this.layoutControlGroup3.Size = new System.Drawing.Size(752, 417);
@@ -1082,11 +1143,48 @@
             this.layoutControlItem37.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem37.Control = this.txtCodigoContrato;
             this.layoutControlItem37.CustomizationFormText = "Código Contrato:";
-            this.layoutControlItem37.Location = new System.Drawing.Point(0, 142);
+            this.layoutControlItem37.Location = new System.Drawing.Point(0, 144);
             this.layoutControlItem37.Name = "layoutControlItem37";
-            this.layoutControlItem37.Size = new System.Drawing.Size(732, 255);
+            this.layoutControlItem37.Size = new System.Drawing.Size(732, 34);
             this.layoutControlItem37.Text = "Código Contrato";
             this.layoutControlItem37.TextSize = new System.Drawing.Size(144, 24);
+            // 
+            // layoutControlItem47
+            // 
+            this.layoutControlItem47.Control = this.chManejaColacionNuevo;
+            this.layoutControlItem47.Location = new System.Drawing.Point(0, 180);
+            this.layoutControlItem47.Name = "layoutControlItem47";
+            this.layoutControlItem47.Size = new System.Drawing.Size(732, 32);
+            this.layoutControlItem47.TextSize = new System.Drawing.Size(144, 13);
+            // 
+            // simpleSeparator12
+            // 
+            this.simpleSeparator12.AllowHotTrack = false;
+            this.simpleSeparator12.Location = new System.Drawing.Point(0, 142);
+            this.simpleSeparator12.Name = "simpleSeparator12";
+            this.simpleSeparator12.Size = new System.Drawing.Size(732, 2);
+            // 
+            // layoutControlItem48
+            // 
+            this.layoutControlItem48.Control = this.chManejaCasinosNuevo;
+            this.layoutControlItem48.Location = new System.Drawing.Point(0, 214);
+            this.layoutControlItem48.Name = "layoutControlItem48";
+            this.layoutControlItem48.Size = new System.Drawing.Size(732, 183);
+            this.layoutControlItem48.TextSize = new System.Drawing.Size(144, 13);
+            // 
+            // simpleSeparator14
+            // 
+            this.simpleSeparator14.AllowHotTrack = false;
+            this.simpleSeparator14.Location = new System.Drawing.Point(0, 212);
+            this.simpleSeparator14.Name = "simpleSeparator14";
+            this.simpleSeparator14.Size = new System.Drawing.Size(732, 2);
+            // 
+            // simpleSeparator15
+            // 
+            this.simpleSeparator15.AllowHotTrack = false;
+            this.simpleSeparator15.Location = new System.Drawing.Point(0, 178);
+            this.simpleSeparator15.Name = "simpleSeparator15";
+            this.simpleSeparator15.Size = new System.Drawing.Size(732, 2);
             // 
             // wpMostrarContratos
             // 
@@ -2193,6 +2291,9 @@
             this.layoutControl10.Controls.Add(this.cmbEditarCargo);
             this.layoutControl10.Controls.Add(this.cmbEditarCuenta);
             this.layoutControl10.Controls.Add(this.cmbEditarEmpresa);
+            this.layoutControl10.Controls.Add(this.chManejaColacionEditar);
+            this.layoutControl10.Controls.Add(this.chManejaCasinoEditar);
+            this.layoutControl10.Controls.Add(this.txtEditarContrato);
             this.layoutControl10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl10.Location = new System.Drawing.Point(0, 0);
             this.layoutControl10.Name = "layoutControl10";
@@ -2264,6 +2365,28 @@
             this.cmbEditarEmpresa.TabIndex = 1;
             this.cmbEditarEmpresa.SelectedIndexChanged += new System.EventHandler(this.cmbEditarEmpresa_SelectedIndexChanged);
             // 
+            // chManejaColacionEditar
+            // 
+            this.chManejaColacionEditar.Location = new System.Drawing.Point(144, 192);
+            this.chManejaColacionEditar.Name = "chManejaColacionEditar";
+            this.chManejaColacionEditar.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.chManejaColacionEditar.Properties.Appearance.Options.UseFont = true;
+            this.chManejaColacionEditar.Properties.Caption = "Maneja Colación";
+            this.chManejaColacionEditar.Size = new System.Drawing.Size(596, 28);
+            this.chManejaColacionEditar.StyleController = this.layoutControl10;
+            this.chManejaColacionEditar.TabIndex = 8;
+            // 
+            // chManejaCasinoEditar
+            // 
+            this.chManejaCasinoEditar.Location = new System.Drawing.Point(144, 226);
+            this.chManejaCasinoEditar.Name = "chManejaCasinoEditar";
+            this.chManejaCasinoEditar.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.chManejaCasinoEditar.Properties.Appearance.Options.UseFont = true;
+            this.chManejaCasinoEditar.Properties.Caption = "Maneja Casinos";
+            this.chManejaCasinoEditar.Size = new System.Drawing.Size(596, 28);
+            this.chManejaCasinoEditar.StyleController = this.layoutControl10;
+            this.chManejaCasinoEditar.TabIndex = 9;
+            // 
             // layoutControlGroup10
             // 
             this.layoutControlGroup10.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -2275,7 +2398,13 @@
             this.simpleSeparator8,
             this.simpleSeparator9,
             this.layoutControlItem32,
-            this.simpleSeparator11});
+            this.simpleSeparator11,
+            this.layoutControlItem50,
+            this.layoutControlItem51,
+            this.layoutControlItem49,
+            this.simpleSeparator13,
+            this.simpleSeparator16,
+            this.simpleSeparator17});
             this.layoutControlGroup10.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup10.Name = "Root";
             this.layoutControlGroup10.Size = new System.Drawing.Size(752, 417);
@@ -2335,7 +2464,7 @@
             this.layoutControlItem32.Control = this.dteEditarInicioVigencia;
             this.layoutControlItem32.Location = new System.Drawing.Point(0, 108);
             this.layoutControlItem32.Name = "layoutControlItem32";
-            this.layoutControlItem32.Size = new System.Drawing.Size(732, 289);
+            this.layoutControlItem32.Size = new System.Drawing.Size(732, 34);
             this.layoutControlItem32.Text = "Inicio Vigencia";
             this.layoutControlItem32.TextSize = new System.Drawing.Size(129, 24);
             // 
@@ -2345,6 +2474,66 @@
             this.simpleSeparator11.Location = new System.Drawing.Point(0, 106);
             this.simpleSeparator11.Name = "simpleSeparator11";
             this.simpleSeparator11.Size = new System.Drawing.Size(732, 2);
+            // 
+            // layoutControlItem50
+            // 
+            this.layoutControlItem50.Control = this.chManejaColacionEditar;
+            this.layoutControlItem50.CustomizationFormText = "layoutControlItem47";
+            this.layoutControlItem50.Location = new System.Drawing.Point(0, 180);
+            this.layoutControlItem50.Name = "layoutControlItem50";
+            this.layoutControlItem50.Size = new System.Drawing.Size(732, 32);
+            this.layoutControlItem50.Text = "layoutControlItem47";
+            this.layoutControlItem50.TextSize = new System.Drawing.Size(129, 13);
+            // 
+            // layoutControlItem51
+            // 
+            this.layoutControlItem51.Control = this.chManejaCasinoEditar;
+            this.layoutControlItem51.CustomizationFormText = "layoutControlItem48";
+            this.layoutControlItem51.Location = new System.Drawing.Point(0, 214);
+            this.layoutControlItem51.Name = "layoutControlItem51";
+            this.layoutControlItem51.Size = new System.Drawing.Size(732, 183);
+            this.layoutControlItem51.Text = "layoutControlItem48";
+            this.layoutControlItem51.TextSize = new System.Drawing.Size(129, 13);
+            // 
+            // txtEditarContrato
+            // 
+            this.txtEditarContrato.Location = new System.Drawing.Point(144, 156);
+            this.txtEditarContrato.Name = "txtEditarContrato";
+            this.txtEditarContrato.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtEditarContrato.Properties.Appearance.Options.UseFont = true;
+            this.txtEditarContrato.Size = new System.Drawing.Size(596, 30);
+            this.txtEditarContrato.StyleController = this.layoutControl10;
+            this.txtEditarContrato.TabIndex = 10;
+            // 
+            // layoutControlItem49
+            // 
+            this.layoutControlItem49.Control = this.txtEditarContrato;
+            this.layoutControlItem49.Location = new System.Drawing.Point(0, 144);
+            this.layoutControlItem49.Name = "layoutControlItem49";
+            this.layoutControlItem49.Size = new System.Drawing.Size(732, 34);
+            this.layoutControlItem49.Text = "Contrato";
+            this.layoutControlItem49.TextSize = new System.Drawing.Size(129, 13);
+            // 
+            // simpleSeparator13
+            // 
+            this.simpleSeparator13.AllowHotTrack = false;
+            this.simpleSeparator13.Location = new System.Drawing.Point(0, 178);
+            this.simpleSeparator13.Name = "simpleSeparator13";
+            this.simpleSeparator13.Size = new System.Drawing.Size(732, 2);
+            // 
+            // simpleSeparator16
+            // 
+            this.simpleSeparator16.AllowHotTrack = false;
+            this.simpleSeparator16.Location = new System.Drawing.Point(0, 212);
+            this.simpleSeparator16.Name = "simpleSeparator16";
+            this.simpleSeparator16.Size = new System.Drawing.Size(732, 2);
+            // 
+            // simpleSeparator17
+            // 
+            this.simpleSeparator17.AllowHotTrack = false;
+            this.simpleSeparator17.Location = new System.Drawing.Point(0, 142);
+            this.simpleSeparator17.Name = "simpleSeparator17";
+            this.simpleSeparator17.Size = new System.Drawing.Size(732, 2);
             // 
             // EnrollForm
             // 
@@ -2413,6 +2602,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbNuevoEmpresa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNuevoCuenta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodigoContrato.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chManejaColacionNuevo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chManejaCasinosNuevo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
@@ -2422,6 +2613,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem47)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem48)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator15)).EndInit();
             this.wpMostrarContratos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl7)).EndInit();
             this.layoutControl7.ResumeLayout(false);
@@ -2503,6 +2699,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbEditarCargo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbEditarCuenta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbEditarEmpresa.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chManejaColacionEditar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chManejaCasinoEditar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
@@ -2511,6 +2709,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem50)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEditarContrato.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem49)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator17)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2684,5 +2889,21 @@
         private DevExpress.XtraEditors.TextEdit textEditMostarTelefono;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem45;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem46;
+        private DevExpress.XtraEditors.CheckEdit chManejaColacionNuevo;
+        private DevExpress.XtraEditors.CheckEdit chManejaCasinosNuevo;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem47;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator12;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem48;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator14;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator15;
+        private DevExpress.XtraEditors.CheckEdit chManejaColacionEditar;
+        private DevExpress.XtraEditors.CheckEdit chManejaCasinoEditar;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem50;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem51;
+        private DevExpress.XtraEditors.TextEdit txtEditarContrato;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem49;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator13;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator16;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator17;
     }
 }

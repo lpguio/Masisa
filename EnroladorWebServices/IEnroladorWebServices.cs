@@ -22,7 +22,7 @@ namespace EnroladorWebServices
         string AccionCrearAsignacion(Guid responsable, Guid oid, Guid empleado, Guid dispositivo);
 
         [OperationContract]
-        string AccionCrearContrato(Guid responsable, Guid oid, Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string CodigoContrato);
+        string AccionCrearContrato(Guid responsable, Guid oid, Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string CodigoContrato, bool ConsideraColacion, bool ConsideraCasino);
 
         [OperationContract]
         string AccionCrearEmpleado(Guid responsable, Guid oid, string RUT, string firstName, string lastName, string Correo, string Telefono, bool ManejaCasino, int enrollID, string contraseña);
@@ -76,7 +76,7 @@ namespace EnroladorWebServices
         List<Tuple<Guid,Guid>> LeeEmpleadosDispositivos();
 
         [OperationContract]
-        List<Tuple<Guid,Guid,Guid,Guid,DateTime,DateTime?,Guid, Tuple<string>>> LeeContrato(Guid loggedUser);
+        List<Tuple<Guid,Guid,Guid,Guid,DateTime,DateTime?,Guid, Tuple<string, bool, bool>>> LeeContrato(Guid loggedUser);
 
         #region Casinos
 
