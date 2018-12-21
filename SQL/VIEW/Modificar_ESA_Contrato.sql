@@ -11,7 +11,8 @@ SELECT
 	ISNULL(Contrato.InicioVigencia, '19000101') InicioVigencia,
     Contrato.FinVigencia,
 	Contrato.Codigo,
-	Contrato.ConsideraColacion
+	Contrato.ConsideraColacion,
+	Contrato.ConsideraCasino
 -- SELECT *
 FROM            
 	RolesUserExtensionEnroladorStandAloneUserExtension_CuentaCuenta Rol_Cuenta
