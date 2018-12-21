@@ -140,7 +140,7 @@ namespace EnroladorWebServices
                     comm.Parameters.Add("@Cuenta", SqlDbType.UniqueIdentifier).Value = cuenta;
                     comm.Parameters.Add("@Cargo", SqlDbType.UniqueIdentifier).Value = cargo;
                     comm.Parameters.Add("@InicioVigencia", SqlDbType.DateTime).Value = inicioVigencia;
-                    comm.Parameters.Add("@@ConsideraColacion", SqlDbType.VarChar).Value = CodigoContrato.Length > 100 ? CodigoContrato.Substring(0,100) : CodigoContrato;
+                    comm.Parameters.Add("@CodigoContrato", SqlDbType.VarChar).Value = CodigoContrato.Length > 100 ? CodigoContrato.Substring(0,100) : CodigoContrato;
                     comm.Parameters.Add("@ConsideraColacion", SqlDbType.Bit).Value = ConsideraColacion;
                     comm.Parameters.Add("@ConsideraCasino", SqlDbType.Bit).Value = ConsideraCasino;
 

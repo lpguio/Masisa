@@ -30,7 +30,7 @@ namespace EnroladorStandAlone
         public bool ManejaCasino{ get { return consideraCasino; } }
         public bool ManejaColacion{ get { return consideraColacion; } }
 
-        public AccionCrearContrato(Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string pcodigoContrato, Form1 parent)
+        public AccionCrearContrato(Guid empleado, Guid empresa, Guid cuenta, Guid cargo, DateTime inicioVigencia, DateTime? finVigencia, string pcodigoContrato, bool pConsideraColacion, bool pConsideraCasino, Form1 parent)
             : base(parent.LoggedUser.Item1, DateTime.Now, Guid.NewGuid())
         {
             this.empleado = empleado;
@@ -40,6 +40,8 @@ namespace EnroladorStandAlone
             this.inicioVigencia = inicioVigencia;
             this.finVigencia = finVigencia;
             this.codigoContrato = pcodigoContrato;
+            this.consideraColacion = pConsideraColacion; 
+            this.consideraCasino = pConsideraCasino;
             descripcion = string.Format("Crear contrato al empleado con RUT {0} con la empresa {1}, cuenta {2} y cargo {3}. Inicio de vigencia {4}{5}", parent.EmpleadoTable[empleado].Item2, parent.EmpresaTable[empresa].Item1, parent.CuentaTable[cuenta], parent.CargoTable[cargo], inicioVigencia.ToString("dd/MM/yyyy"), finVigencia.HasValue ? ". Fin de vigencia " + finVigencia.Value.ToString("dd/MM/yyyy") : "");
 
             Aplicar(parent);
@@ -56,6 +58,9 @@ namespace EnroladorStandAlone
             finVigencia = original.finVigencia;
             descripcion = original.descripcion;
             codigoContrato = original.codigoContrato;
+            consideraColacion = original.consideraColacion;
+            consideraCasino = original.consideraCasino;
+
         }
 
         public override Accion Clonar()

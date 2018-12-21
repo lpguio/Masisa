@@ -1167,7 +1167,7 @@ namespace EnroladorStandAlone
         {
             if (parent.EmpleadoRUTIndex.ContainsKey(RUT) && parent.EmpleadoTable.ContainsKey(parent.EmpleadoRUTIndex[RUT]))
             {
-                Accion accion = new AccionCrearContrato(parent.EmpleadoRUTIndex[RUT], ((ComboBoxItem)cmbNuevoEmpresa.SelectedItem).Oid, ((ComboBoxItem)cmbNuevoCuenta.SelectedItem).Oid, ((ComboBoxItem)cmbNuevoCargo.SelectedItem).Oid, dteNuevoInicioVigencia.DateTime, null, txtCodigoContrato.Text, parent);
+                Accion accion = new AccionCrearContrato(parent.EmpleadoRUTIndex[RUT], ((ComboBoxItem)cmbNuevoEmpresa.SelectedItem).Oid, ((ComboBoxItem)cmbNuevoCuenta.SelectedItem).Oid, ((ComboBoxItem)cmbNuevoCargo.SelectedItem).Oid, dteNuevoInicioVigencia.DateTime, null, txtCodigoContrato.Text, chManejaColacionNuevo.Checked, chManejaCasinosNuevo.Checked, parent);
                 acciones.Add(accion);
                 accionesActuales.Push(new Tuple<Accion, TipoAccion>(accion, TipoAccion.Nueva));
             }
